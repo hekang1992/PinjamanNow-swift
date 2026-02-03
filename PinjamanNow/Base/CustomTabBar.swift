@@ -74,8 +74,8 @@ class CustomTabBar: UIView {
     
     private func setupSnapKitConstraints() {
         self.snp.makeConstraints { make in
-            make.width.equalTo(335)
-            make.height.equalTo(62)
+            make.width.equalTo(335.pix())
+            make.height.equalTo(62.pix())
         }
         
         backgroundImageView.snp.makeConstraints { make in
@@ -105,7 +105,7 @@ class CustomTabBar: UIView {
         
         buttons.forEach { button in
             button.snp.makeConstraints { make in
-                make.width.height.equalTo(35)
+                make.width.height.equalTo(32.pix())
             }
         }
     }

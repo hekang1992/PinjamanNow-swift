@@ -6,25 +6,31 @@
 //
 
 import UIKit
+import SnapKit
 
 class OrderViewController: BaseViewController {
+
+    lazy var loginBtn: UIButton = {
+        let loginBtn = UIButton(type: .custom)
+        loginBtn.setTitle("Log in to Zoom Loan", for: .normal)
+        loginBtn.addTarget(self, action: #selector(adaf), for: .touchUpInside)
+        return loginBtn
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        view.backgroundColor = .black
+        view.backgroundColor = .systemPink
+        view.addSubview(loginBtn)
+        loginBtn.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(200)
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func adaf() {
+        self.navigationController?.popViewController(animated: true)
     }
-    */
-
+    
 }

@@ -1,5 +1,5 @@
 //
-//  Color+Ex.swift
+//  Color+Extension.swift
 //  PinjamanNow
 //
 //  Created by hekang on 2026/2/3.
@@ -49,5 +49,23 @@ extension UIColor {
         }
         
         self.init(red: r, green: g, blue: b, alpha: a)
+    }
+}
+
+extension CGFloat {
+    func pix() -> CGFloat {
+        return self / 375.0 * UIScreen.main.bounds.width
+    }
+}
+
+extension Double {
+    func pix() -> CGFloat {
+        return CGFloat(self) / 375.0 * UIScreen.main.bounds.width
+    }
+}
+
+extension Int {
+    func pix() -> CGFloat {
+        return CGFloat(self) / 375.0 * UIScreen.main.bounds.width
     }
 }

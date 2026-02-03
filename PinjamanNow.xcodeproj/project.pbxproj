@@ -17,9 +17,11 @@
 		7344C3352F31C38D006DEE99 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C3342F31C38D006DEE99 /* BaseNavigationController.swift */; };
 		7344C33B2F31C3F0006DEE99 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7344C3392F31C3F0006DEE99 /* Localizable.strings */; };
 		7344C33E2F31C3FD006DEE99 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7344C33C2F31C3FD006DEE99 /* InfoPlist.strings */; };
-		7344C3422F31C418006DEE99 /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C3412F31C410006DEE99 /* Color+extension.swift */; };
-		7344C3442F31C560006DEE99 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C3432F31C560006DEE99 /* MainViewController.swift */; };
+		7344C3422F31C418006DEE99 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C3412F31C410006DEE99 /* Color+Extension.swift */; };
+		7344C3442F31C560006DEE99 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C3432F31C560006DEE99 /* MainTabBarController.swift */; };
 		7344C3462F31C65A006DEE99 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C3452F31C65A006DEE99 /* CustomTabBar.swift */; };
+		7344C34A2F31CDBC006DEE99 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C3492F31CDBC006DEE99 /* HomeView.swift */; };
+		7344C34C2F31CF81006DEE99 /* HomeHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C34B2F31CF81006DEE99 /* HomeHeadView.swift */; };
 		7358E1402F31C19300A2DB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7358E1372F31C19300A2DB8D /* Assets.xcassets */; };
 		7358E1422F31C19300A2DB8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7358E13A2F31C19300A2DB8D /* LaunchScreen.storyboard */; };
 		7358E1442F31C19300A2DB8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E1362F31C19300A2DB8D /* AppDelegate.swift */; };
@@ -39,9 +41,11 @@
 		7344C33D2F31C3FD006DEE99 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7344C33F2F31C404006DEE99 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7344C3402F31C408006DEE99 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
-		7344C3412F31C410006DEE99 /* Color+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+extension.swift"; sourceTree = "<group>"; };
-		7344C3432F31C560006DEE99 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7344C3412F31C410006DEE99 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		7344C3432F31C560006DEE99 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7344C3452F31C65A006DEE99 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		7344C3492F31CDBC006DEE99 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7344C34B2F31CF81006DEE99 /* HomeHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeadView.swift; sourceTree = "<group>"; };
 		7358E11E2F31C18C00A2DB8D /* PinjamanNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinjamanNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7358E1362F31C19300A2DB8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7358E1372F31C19300A2DB8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,7 +71,7 @@
 		7344C3362F31C3AF006DEE99 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				7344C3412F31C410006DEE99 /* Color+extension.swift */,
+				7344C3412F31C410006DEE99 /* Color+Extension.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -118,7 +122,7 @@
 				7344C3452F31C65A006DEE99 /* CustomTabBar.swift */,
 				7344C3282F31C2F4006DEE99 /* BaseViewController.swift */,
 				7344C3342F31C38D006DEE99 /* BaseNavigationController.swift */,
-				7344C3432F31C560006DEE99 /* MainViewController.swift */,
+				7344C3432F31C560006DEE99 /* MainTabBarController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -141,7 +145,9 @@
 		7358E14A2F31C28F00A2DB8D /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				7344C3492F31CDBC006DEE99 /* HomeView.swift */,
 				7344C32C2F31C302006DEE99 /* HomeViewController.swift */,
+				7344C34B2F31CF81006DEE99 /* HomeHeadView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -310,14 +316,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				7344C3352F31C38D006DEE99 /* BaseNavigationController.swift in Sources */,
+				7344C34C2F31CF81006DEE99 /* HomeHeadView.swift in Sources */,
 				7344C32B2F31C2FC006DEE99 /* LoginViewController.swift in Sources */,
 				7344C3462F31C65A006DEE99 /* CustomTabBar.swift in Sources */,
-				7344C3442F31C560006DEE99 /* MainViewController.swift in Sources */,
-				7344C3422F31C418006DEE99 /* Color+extension.swift in Sources */,
+				7344C3442F31C560006DEE99 /* MainTabBarController.swift in Sources */,
+				7344C3422F31C418006DEE99 /* Color+Extension.swift in Sources */,
 				7344C32F2F31C30B006DEE99 /* OrderViewController.swift in Sources */,
 				7358E1442F31C19300A2DB8D /* AppDelegate.swift in Sources */,
 				7344C3332F31C31A006DEE99 /* ProductViewController.swift in Sources */,
 				7344C3312F31C312006DEE99 /* CenterViewController.swift in Sources */,
+				7344C34A2F31CDBC006DEE99 /* HomeView.swift in Sources */,
 				7344C3292F31C2F4006DEE99 /* BaseViewController.swift in Sources */,
 				7344C32D2F31C302006DEE99 /* HomeViewController.swift in Sources */,
 			);
@@ -369,6 +377,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PinjamanNow/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pinjaman Now";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -408,6 +417,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PinjamanNow/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pinjaman Now";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
