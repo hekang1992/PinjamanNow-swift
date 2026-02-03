@@ -6,5 +6,11 @@
 //
 
 class BaseModel: Codable {
-    
+    var bebit: String?
+    var calcfootment: String?
+    var record: recordModel?
+}
+
+class recordModel: Codable {
+    var americanate: String?
 }

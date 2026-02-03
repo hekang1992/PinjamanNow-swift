@@ -8,12 +8,21 @@
 class AppViewModel {
     
     func appInfo(with parameters: [String: String]) async throws -> BaseModel {
-        do {
-            let model: BaseModel = try await NetworkManager.shared.postRequest(url: "/nameling/nonagenine", parameters: parameters)
-            return model
-        } catch {
-            throw error
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
         }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/nonagenine",
+            parameters: parameters
+        )
     }
     
 }
