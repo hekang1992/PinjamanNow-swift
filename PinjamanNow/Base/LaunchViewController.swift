@@ -36,10 +36,9 @@ class LaunchViewController: BaseViewController {
 
 extension LaunchViewController {
     
-    //印尼9182，印度3102
     private func appInfo() async {
         do {
-            let paras = ["ordinaneous": "1", "hepat": "1", "successfulness": "1"]
+            let paras = DeviceSecurityHelper.fetchSecurityInfo()
             let model = try await viewModel.appInfo(with: paras)
             let bebit = model.bebit ?? ""
             if bebit == "0" || bebit == "00" {
@@ -61,4 +60,33 @@ extension LaunchViewController {
         NotificationCenter.default.post(name: NSNotification.Name("changeRootViewController"), object: nil)
     }
     
+}
+
+class LanguageManager {
+    
+    enum Language: Int {
+        case english = 3102
+        case indonesian = 9182
+        
+        var code: String {
+            switch self {
+            case .english: return "en"
+            case .indonesian: return "id"
+            }
+        }
+    }
+    
+    static var current: Language {
+        get {
+            let id = UserDefaults.standard.integer(forKey: "language_code")
+            return Language(rawValue: id) ?? .english
+        }
+        set {
+            UserDefaults.standard.set(newValue.rawValue, forKey: "language_code")
+        }
+    }
+    
+    static func getLanguageCode() -> String {
+        return current.code
+    }
 }

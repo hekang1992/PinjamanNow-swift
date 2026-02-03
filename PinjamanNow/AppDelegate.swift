@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,6 +34,10 @@ extension AppDelegate {
     }
     
     private func setupNotifications() {
+        
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(handleChangeRootViewController),

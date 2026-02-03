@@ -14,6 +14,7 @@
 		7344326E2F31F679006A8F1E /* IDFVKeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344326D2F31F679006A8F1E /* IDFVKeychainManager.swift */; };
 		734432702F31F9F2006A8F1E /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344326F2F31F9F2006A8F1E /* LoginManager.swift */; };
 		734432722F31FC3B006A8F1E /* LoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734432712F31FC3B006A8F1E /* LoadingManager.swift */; };
+		734432742F31FDC0006A8F1E /* DeviceSecurityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734432732F31FDC0006A8F1E /* DeviceSecurityHelper.swift */; };
 		7344C3292F31C2F4006DEE99 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C3282F31C2F4006DEE99 /* BaseViewController.swift */; };
 		7344C32B2F31C2FC006DEE99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C32A2F31C2FC006DEE99 /* LoginViewController.swift */; };
 		7344C32D2F31C302006DEE99 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C32C2F31C302006DEE99 /* HomeViewController.swift */; };
@@ -43,6 +44,7 @@
 		7344326D2F31F679006A8F1E /* IDFVKeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDFVKeychainManager.swift; sourceTree = "<group>"; };
 		7344326F2F31F9F2006A8F1E /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		734432712F31FC3B006A8F1E /* LoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingManager.swift; sourceTree = "<group>"; };
+		734432732F31FDC0006A8F1E /* DeviceSecurityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSecurityHelper.swift; sourceTree = "<group>"; };
 		7344C3282F31C2F4006DEE99 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7344C32A2F31C2FC006DEE99 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7344C32C2F31C302006DEE99 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -149,9 +151,10 @@
 		7358E1482F31C28B00A2DB8D /* Http */ = {
 			isa = PBXGroup;
 			children = (
+				734432692F31F378006A8F1E /* AppViewModel.swift */,
+				734432732F31FDC0006A8F1E /* DeviceSecurityHelper.swift */,
 				734432712F31FC3B006A8F1E /* LoadingManager.swift */,
 				7344326D2F31F679006A8F1E /* IDFVKeychainManager.swift */,
-				734432692F31F378006A8F1E /* AppViewModel.swift */,
 				7344C34D2F31DA60006DEE99 /* BaseModel.swift */,
 				7344C34F2F31DB9F006DEE99 /* NetworkManager.swift */,
 				7344326B2F31F4A3006A8F1E /* CommonParaManager.swift */,
@@ -162,9 +165,9 @@
 		7358E1492F31C28D00A2DB8D /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				7344326F2F31F9F2006A8F1E /* LoginManager.swift */,
 				7344C3532F31DBF3006DEE99 /* LoginView.swift */,
 				7344C32A2F31C2FC006DEE99 /* LoginViewController.swift */,
+				7344326F2F31F9F2006A8F1E /* LoginManager.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -322,13 +325,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PinjamanNow/Pods-PinjamanNow-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PinjamanNow/Pods-PinjamanNow-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -358,6 +357,7 @@
 				7344326A2F31F37D006A8F1E /* AppViewModel.swift in Sources */,
 				7358E1442F31C19300A2DB8D /* AppDelegate.swift in Sources */,
 				7344C3332F31C31A006DEE99 /* ProductViewController.swift in Sources */,
+				734432742F31FDC0006A8F1E /* DeviceSecurityHelper.swift in Sources */,
 				7344C3312F31C312006DEE99 /* CenterViewController.swift in Sources */,
 				7344326C2F31F4AC006A8F1E /* CommonParaManager.swift in Sources */,
 				7344C34A2F31CDBC006DEE99 /* HomeView.swift in Sources */,

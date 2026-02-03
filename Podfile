@@ -9,4 +9,8 @@ target 'PinjamanNow' do
   pod 'SnapKit'
   pod 'Alamofire'
   pod 'DeviceKit'
+  pod 'IQKeyboardManagerSwift', '~> 6.5.16'
+  pod 'Kingfisher'
+  pod 'TYAlertController'
+  pod 'FBSDKCoreKit'
 end
