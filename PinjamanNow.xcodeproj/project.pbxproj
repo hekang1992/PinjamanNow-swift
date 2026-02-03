@@ -166,8 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				7344C3532F31DBF3006DEE99 /* LoginView.swift */,
-				7344C32A2F31C2FC006DEE99 /* LoginViewController.swift */,
 				7344326F2F31F9F2006A8F1E /* LoginManager.swift */,
+				7344C32A2F31C2FC006DEE99 /* LoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -325,9 +325,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PinjamanNow/Pods-PinjamanNow-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PinjamanNow/Pods-PinjamanNow-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

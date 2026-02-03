@@ -9,7 +9,7 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    let languageCode = LanguageManager.getLanguageCode()
+    let languageCode = LanguageManager.current
 
     override func viewDidLoad() {
         super.viewDidLoad()

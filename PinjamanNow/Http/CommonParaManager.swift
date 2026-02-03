@@ -15,14 +15,14 @@ class CommonParaManager {
         
         return [
             "studo": "ios",
-            "die": "die",
+            "die": "1.0.0",
             "seboie": Device.current.description,
             "propertyward": idfv,
             "gradsome": Device.current.systemVersion ?? "",
             "recognizeth": "pinjaman_now",
-            "salinee": "",
+            "salinee": LoginManager.shared.getToken() ?? "",
             "ovile": idfv,
-            "americanate": ""
+            "americanate": UserDefaults.standard.object(forKey: "language_code") ?? ""
         ]
     }
     

@@ -10,6 +10,12 @@ import SnapKit
 
 class LoginView: UIView {
     
+    var codeBlock: (() -> Void)?
+    
+    var loginBlock: (() -> Void)?
+    
+    var bacaBlock: (() -> Void)?
+    
     let languageCode = LanguageManager.current
     
     lazy var bgImageView: UIImageView = {
@@ -135,6 +141,8 @@ class LoginView: UIView {
         codeBtn.setTitle(languageCode == .indonesian ? "Kirim kode" : "Get code", for: .normal)
         codeBtn.setTitleColor(UIColor.init(hexString: "#0956FB"), for: .normal)
         codeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        codeBtn.addTarget(self, action: #selector(codeBtnClick), for: .touchUpInside)
+//        codeBtn.contentHorizontalAlignment = .right
         return codeBtn
     }()
     
@@ -151,6 +159,7 @@ class LoginView: UIView {
         sureBtn.isSelected = true
         sureBtn.setImage(UIImage(named: "login_tc_xz_image"), for: .normal)
         sureBtn.setImage(UIImage(named: "login_tc_sel_image"), for: .selected)
+        sureBtn.addTarget(self, action: #selector(sureBtnClick), for: .touchUpInside)
         return sureBtn
     }()
     
@@ -189,6 +198,7 @@ class LoginView: UIView {
         loginBtn.setTitleColor(.white, for: .normal)
         loginBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         loginBtn.setBackgroundImage(UIImage(named: "login_btn_image"), for: .normal)
+        loginBtn.addTarget(self, action: #selector(loginBtnClick), for: .touchUpInside)
         return loginBtn
     }()
     
@@ -322,8 +332,20 @@ class LoginView: UIView {
 
 extension LoginView {
     
+    @objc func sureBtnClick() {
+        sureBtn.isSelected.toggle()
+    }
+    
+    @objc func codeBtnClick() {
+        self.codeBlock?()
+    }
+    
+    @objc func loginBtnClick() {
+        self.loginBlock?()
+    }
+    
     @objc private func labelTapped(_ gesture: UITapGestureRecognizer) {
-        
+        self.bacaBlock?()
     }
     
 }

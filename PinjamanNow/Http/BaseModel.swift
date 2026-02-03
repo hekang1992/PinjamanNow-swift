@@ -9,6 +9,24 @@ class BaseModel: Codable {
     var bebit: String?
     var calcfootment: String?
     var record: recordModel?
+    
+    private enum CodingKeys: String, CodingKey {
+        case bebit, calcfootment, record
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let intValue = try? container.decode(Int.self, forKey: .bebit) {
+            bebit = String(intValue)
+        } else {
+            bebit = try? container.decode(String.self, forKey: .bebit)
+        }
+        
+        calcfootment = try? container.decode(String.self, forKey: .calcfootment)
+        record = try? container.decode(recordModel.self, forKey: .record)
+    }
+    
 }
 
 class recordModel: Codable {
