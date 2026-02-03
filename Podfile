@@ -7,4 +7,5 @@ target 'PinjamanNow' do
   
   # Pods for PinjamanNow
   pod 'SnapKit'
+  pod 'Alamofire'
 end
