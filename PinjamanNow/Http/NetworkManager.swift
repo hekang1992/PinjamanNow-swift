@@ -15,6 +15,9 @@ enum APIError: Error {
     case uploadError
 }
 
+let h5_url = "http://8.215.85.208:6873"
+let base_url = "http://8.215.85.208:6873/circumbehind"
+
 class NetworkManager {
     static let shared = NetworkManager()
     
@@ -28,7 +31,7 @@ class NetworkManager {
         parameters: [String: Any]? = nil,
         headers: HTTPHeaders? = nil
     ) async throws -> T {
-        guard let url = URL(string: url) else {
+        guard let url = createRequestUrl(baseUrl: base_url + url) else {
             throw APIError.invalidURL
         }
         
@@ -62,7 +65,7 @@ class NetworkManager {
         parameters: [String: Any]? = nil,
         headers: HTTPHeaders? = nil
     ) async throws -> T {
-        guard let url = URL(string: url) else {
+        guard let url = createRequestUrl(baseUrl: base_url + url) else {
             throw APIError.invalidURL
         }
         
@@ -99,8 +102,8 @@ class NetworkManager {
         parameters: [String: String]? = nil,
         headers: HTTPHeaders? = nil
     ) async throws -> T {
-        guard let url = URL(string: url),
-              let imageData = image.jpegData(compressionQuality: 0.8) else {
+        guard let url = createRequestUrl(baseUrl: base_url + url),
+              let imageData = image.jpegData(compressionQuality: 0.3) else {
             throw APIError.uploadError
         }
         
@@ -148,3 +151,16 @@ class NetworkManager {
     
 }
 
+extension NetworkManager {
+    
+    func createRequestUrl(baseUrl: String) -> URL? {
+        let params = CommonParaManager.toJson()
+        
+        guard var components = URLComponents(string: baseUrl) else { return nil }
+        
+        components.queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value) }
+        
+        return components.url
+    }
+    
+}

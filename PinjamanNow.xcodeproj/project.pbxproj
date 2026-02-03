@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7263EDF5A11A6AC916694517 /* Pods_PinjamanNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7264E18894459A09CDC5067 /* Pods_PinjamanNow.framework */; };
+		734432682F31F012006A8F1E /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734432672F31F012006A8F1E /* LaunchViewController.swift */; };
+		7344326A2F31F37D006A8F1E /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734432692F31F378006A8F1E /* AppViewModel.swift */; };
+		7344326C2F31F4AC006A8F1E /* CommonParaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344326B2F31F4A3006A8F1E /* CommonParaManager.swift */; };
+		7344326E2F31F679006A8F1E /* IDFVKeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344326D2F31F679006A8F1E /* IDFVKeychainManager.swift */; };
 		7344C3292F31C2F4006DEE99 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C3282F31C2F4006DEE99 /* BaseViewController.swift */; };
 		7344C32B2F31C2FC006DEE99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C32A2F31C2FC006DEE99 /* LoginViewController.swift */; };
 		7344C32D2F31C302006DEE99 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344C32C2F31C302006DEE99 /* HomeViewController.swift */; };
@@ -31,6 +35,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		734432672F31F012006A8F1E /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		734432692F31F378006A8F1E /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		7344326B2F31F4A3006A8F1E /* CommonParaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonParaManager.swift; sourceTree = "<group>"; };
+		7344326D2F31F679006A8F1E /* IDFVKeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDFVKeychainManager.swift; sourceTree = "<group>"; };
 		7344C3282F31C2F4006DEE99 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7344C32A2F31C2FC006DEE99 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7344C32C2F31C302006DEE99 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -105,9 +113,9 @@
 			children = (
 				7358E1382F31C19300A2DB8D /* Info.plist */,
 				7358E1372F31C19300A2DB8D /* Assets.xcassets */,
-				7358E1362F31C19300A2DB8D /* AppDelegate.swift */,
 				7344C33C2F31C3FD006DEE99 /* InfoPlist.strings */,
 				7344C3392F31C3F0006DEE99 /* Localizable.strings */,
+				7358E1362F31C19300A2DB8D /* AppDelegate.swift */,
 				7344C3372F31C3C1006DEE99 /* PinjamanNow.entitlements */,
 				7358E13A2F31C19300A2DB8D /* LaunchScreen.storyboard */,
 				7344C3362F31C3AF006DEE99 /* Common */,
@@ -129,6 +137,7 @@
 				7344C3282F31C2F4006DEE99 /* BaseViewController.swift */,
 				7344C3342F31C38D006DEE99 /* BaseNavigationController.swift */,
 				7344C3432F31C560006DEE99 /* MainTabBarController.swift */,
+				734432672F31F012006A8F1E /* LaunchViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -136,8 +145,11 @@
 		7358E1482F31C28B00A2DB8D /* Http */ = {
 			isa = PBXGroup;
 			children = (
+				7344326D2F31F679006A8F1E /* IDFVKeychainManager.swift */,
+				734432692F31F378006A8F1E /* AppViewModel.swift */,
 				7344C34D2F31DA60006DEE99 /* BaseModel.swift */,
 				7344C34F2F31DB9F006DEE99 /* NetworkManager.swift */,
+				7344326B2F31F4A3006A8F1E /* CommonParaManager.swift */,
 			);
 			path = Http;
 			sourceTree = "<group>";
@@ -325,17 +337,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				7344C3352F31C38D006DEE99 /* BaseNavigationController.swift in Sources */,
+				734432682F31F012006A8F1E /* LaunchViewController.swift in Sources */,
 				7344C34C2F31CF81006DEE99 /* HomeHeadView.swift in Sources */,
 				7344C34E2F31DA64006DEE99 /* BaseModel.swift in Sources */,
+				7344326E2F31F679006A8F1E /* IDFVKeychainManager.swift in Sources */,
 				7344C32B2F31C2FC006DEE99 /* LoginViewController.swift in Sources */,
 				7344C3462F31C65A006DEE99 /* CustomTabBar.swift in Sources */,
 				7344C3442F31C560006DEE99 /* MainTabBarController.swift in Sources */,
 				7344C3422F31C418006DEE99 /* Color+Extension.swift in Sources */,
 				7344C32F2F31C30B006DEE99 /* OrderViewController.swift in Sources */,
 				7344C3502F31DB9F006DEE99 /* NetworkManager.swift in Sources */,
+				7344326A2F31F37D006A8F1E /* AppViewModel.swift in Sources */,
 				7358E1442F31C19300A2DB8D /* AppDelegate.swift in Sources */,
 				7344C3332F31C31A006DEE99 /* ProductViewController.swift in Sources */,
 				7344C3312F31C312006DEE99 /* CenterViewController.swift in Sources */,
+				7344326C2F31F4AC006A8F1E /* CommonParaManager.swift in Sources */,
 				7344C34A2F31CDBC006DEE99 /* HomeView.swift in Sources */,
 				7344C3292F31C2F4006DEE99 /* BaseViewController.swift in Sources */,
 				7344C3542F31DBF3006DEE99 /* LoginView.swift in Sources */,
@@ -400,7 +416,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ok.zoom.loan;
+				PRODUCT_BUNDLE_IDENTIFIER = ll.zoom.loan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -440,7 +456,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ok.zoom.loan;
+				PRODUCT_BUNDLE_IDENTIFIER = ll.zoom.loan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -8,4 +8,5 @@ target 'PinjamanNow' do
   # Pods for PinjamanNow
   pod 'SnapKit'
   pod 'Alamofire'
+  pod 'DeviceKit'
 end
