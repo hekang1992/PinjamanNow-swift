@@ -46,6 +46,11 @@ class LoginViewController: BaseViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loginView.phoneFiled.becomeFirstResponder()
+    }
+    
 }
 
 extension LoginViewController {
@@ -63,6 +68,7 @@ extension LoginViewController {
             let bebit = model.bebit ?? ""
             if bebit == "0" || bebit == "00" {
                 startCountdown()
+                self.loginView.codeFiled.becomeFirstResponder()
             }
             ToastManager.showMessage(model.calcfootment ?? "")
         } catch {
@@ -72,16 +78,65 @@ extension LoginViewController {
     
     private func toLoginInfo() async {
         let phone = self.loginView.phoneFiled.text ?? ""
+        let code = self.loginView.codeFiled.text ?? ""
+        let isAgreed = self.loginView.sureBtn.isSelected
+        let isIndonesian = languageCode == .indonesian
+        
         if phone.isEmpty {
-            ToastManager.showMessage(languageCode == .indonesian ? "Silakan masukkan nomor ponsel Anda." : "Please enter your mobile number.")
+            let message = isIndonesian ?
+            "Silakan masukkan nomor ponsel Anda." :
+            "Please enter your mobile number."
+            ToastManager.showMessage(message)
             return
         }
         
+        if code.isEmpty {
+            let message = isIndonesian ?
+            "Silakan masukkan kode verifikasi." :
+            "Please enter the verification code."
+            ToastManager.showMessage(message)
+            return
+        }
+        
+        if !isAgreed {
+            let message = isIndonesian ?
+            "Silakan baca dan konfirmasi perjanjian privasi." :
+            "Please read and confirm the privacy agreement."
+            ToastManager.showMessage(message)
+            return
+        }
+        
+        let paras = ["camera": phone, "ruminade": code, "airdom": "1"]
+        
+        do {
+            let model = try await viewModel.toLoginInfo(with: paras)
+            let bebit = model.bebit ?? ""
+            
+            if let message = model.calcfootment, !message.isEmpty {
+                ToastManager.showMessage(message)
+            }
+            
+            if bebit == "0" || bebit == "00" {
+                let phone = model.record?.camera ?? ""
+                let token = model.record?.salinee ?? ""
+                
+                LoginManager.shared.saveLoginInfo(phone: phone, token: token)
+                
+                try? await Task.sleep(nanoseconds: 500_000_000)
+                self.changeRootVc()
+            }
+        } catch {
+            
+        }
     }
     
 }
 
 extension LoginViewController {
+    
+    private func changeRootVc() {
+        NotificationCenter.default.post(name: NSNotification.Name("changeRootViewController"), object: nil)
+    }
     
     private func startCountdown() {
         
@@ -121,11 +176,20 @@ extension LoginViewController {
             stopCountdown()
             self.loginView.codeBtn.isEnabled = true
             self.loginView.codeBtn.setTitle(languageCode == .indonesian ? "Kirim kode" : "Get code", for: .normal)
-            UIView.animate(withDuration: 0.25) {
+            
+            UIView.animate(
+                withDuration: 0.25,
+                delay: 0.25,
+                usingSpringWithDamping: 0.8,
+                initialSpringVelocity: 0.5,
+                options: .curveEaseInOut
+            ) {
                 self.loginView.lineView.snp.updateConstraints { make in
                     make.left.right.equalTo(self.loginView.codeBtn)
                 }
+                self.loginView.layoutIfNeeded()
             }
+            
         } else {
             updateCountdownButton()
         }

@@ -31,4 +31,6 @@ class BaseModel: Codable {
 
 class recordModel: Codable {
     var americanate: String?
+    var camera: String?
+    var salinee: String?
 }
