@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 extension UIColor {
     convenience init?(hexString: String, alpha: CGFloat = 1.0) {
@@ -67,5 +68,22 @@ extension Double {
 extension Int {
     func pix() -> CGFloat {
         return CGFloat(self) / 375.0 * UIScreen.main.bounds.width
+    }
+}
+
+class ToastManager {
+    static func showMessage(_ message: String) {
+        guard let window = UIApplication.shared.windows.first else { return }
+        
+        var style = ToastStyle()
+        style.messageFont = UIFont.systemFont(ofSize: 15, weight: .medium)
+        style.cornerRadius = 12
+        style.horizontalPadding = 12
+        style.verticalPadding = 12
+        
+        window.makeToast(message,
+                         duration: 3.0,
+                         position: .center,
+                         style: style)
     }
 }

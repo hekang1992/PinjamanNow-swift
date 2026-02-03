@@ -75,11 +75,19 @@ class NetworkManager {
         let session = Session(configuration: configuration)
         
         return try await withCheckedThrowingContinuation { continuation in
-            session.request(
-                url,
+            session.upload(
+                multipartFormData: { multipart in
+                    if let parameters = parameters {
+                        parameters.forEach { key, value in
+                            multipart.append(
+                                Data("\(value)".utf8),
+                                withName: key
+                            )
+                        }
+                    }
+                },
+                to: url,
                 method: .post,
-                parameters: parameters,
-                encoding: JSONEncoding.default,
                 headers: headers
             )
             .validate()

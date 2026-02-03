@@ -100,6 +100,20 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>Toast-Swift-Toast-Swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>Toast-Swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
 	</dict>

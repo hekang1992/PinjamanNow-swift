@@ -13,4 +13,5 @@ target 'PinjamanNow' do
   pod 'Kingfisher'
   pod 'TYAlertController'
   pod 'FBSDKCoreKit'
+  pod 'Toast-Swift'
 end

@@ -22,6 +22,7 @@ class LoginViewController: BaseViewController {
         loginView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
     }
 
 }

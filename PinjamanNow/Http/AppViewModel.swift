@@ -5,6 +5,7 @@
 //  Created by hekang on 2026/2/3.
 //
 
+// MARK: - init
 class AppViewModel {
     
     func appInfo(with parameters: [String: String]) async throws -> BaseModel {
@@ -21,6 +22,83 @@ class AppViewModel {
         
         return try await NetworkManager.shared.postRequest(
             url: "/nameling/nonagenine",
+            parameters: parameters
+        )
+    }
+    
+}
+
+// MARK: - login
+extension AppViewModel {
+    
+    func getCodeInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/tryatory",
+            parameters: parameters
+        )
+    }
+    
+    func toLoginInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/performanceite",
+            parameters: parameters
+        )
+    }
+    
+    func logoutInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.getRequest(
+            url: "/nameling/bebit",
+            parameters: parameters
+        )
+    }
+    
+    func deleteInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.getRequest(
+            url: "/nameling/legis",
             parameters: parameters
         )
     }
