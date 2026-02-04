@@ -23,6 +23,7 @@ class LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
         view.addSubview(loginView)
         loginView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -58,7 +59,9 @@ extension LoginViewController {
     private func getCodeInfo() async {
         let phone = self.loginView.phoneFiled.text ?? ""
         if phone.isEmpty {
-            ToastManager.showMessage(languageCode == .indonesian ? "Silakan masukkan nomor ponsel Anda." : "Please enter your mobile number.")
+            ToastManager.showMessage(languageCode == .indonesian ?
+                                     "Silakan masukkan nomor ponsel Anda." :
+                                        "Please enter your mobile number.")
             return
         }
         

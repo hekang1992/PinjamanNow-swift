@@ -1,0 +1,80 @@
+//
+//  HomeViewController.swift
+//  PinjamanNow
+//
+//  Created by hekang on 2026/2/3.
+//
+
+import UIKit
+import SnapKit
+import MJRefresh
+
+class HomeViewController: BaseViewController {
+    
+    private let viewModel = AppViewModel()
+    
+    lazy var homeView: HomeView = {
+        let homeView = HomeView(frame: .zero)
+        homeView.isHidden = true
+        return homeView
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.addSubview(homeView)
+        homeView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        homeView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+            guard let self = self else { return }
+            Task {
+                await self.getHomeInfo()
+            }
+        })
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Task {
+            await self.getHomeInfo()
+        }
+    }
+    
+}
+
+extension HomeViewController {
+    
+    private func getHomeInfo() async {
+        do {
+            let model = try await viewModel.homeInfo()
+            let bebit = model.bebit ?? ""
+            if bebit == "0" || bebit == "00" {
+                let productArray = model.record?.argentfication ?? []
+                
+                let hasSkept = productArray.contains { model in
+                    (model.provide ?? "") == "skept"
+                }
+                
+                if hasSkept {
+                    self.homeView.isHidden = true
+                } else {
+                    let listModel = productArray.first(where: { $0.provide == "habitot" })
+                    self.homeView.isHidden = false
+                    self.homeView.model = listModel?.phalar?.first
+                }
+                
+            }
+            await MainActor.run {
+                self.homeView.scrollView.mj_header?.endRefreshing()
+            }
+        } catch {
+            await MainActor.run {
+                self.homeView.scrollView.mj_header?.endRefreshing()
+            }
+        }
+    }
+    
+}

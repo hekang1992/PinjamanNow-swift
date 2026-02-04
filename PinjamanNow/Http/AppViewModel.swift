@@ -28,6 +28,27 @@ class AppViewModel {
     
 }
 
+extension AppViewModel {
+    
+    func homeInfo() async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.getRequest(
+            url: "/nameling/calcfootment"
+        )
+    }
+    
+}
+
 // MARK: - login_page
 extension AppViewModel {
     
@@ -63,6 +84,29 @@ extension AppViewModel {
         
         return try await NetworkManager.shared.postRequest(
             url: "/nameling/performanceite",
+            parameters: parameters
+        )
+    }
+    
+}
+
+// MARK: - order_list_page
+extension AppViewModel {
+    
+    func orderListInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/phalar",
             parameters: parameters
         )
     }
@@ -122,29 +166,6 @@ extension AppViewModel {
         
         return try await NetworkManager.shared.getRequest(
             url: "/nameling/legis",
-            parameters: parameters
-        )
-    }
-    
-}
-
-// MARK: - order_list_page
-extension AppViewModel {
-    
-    func orderListInfo(with parameters: [String: String]) async throws -> BaseModel {
-        
-        await MainActor.run {
-            LoadingManager.shared.show()
-        }
-        
-        defer {
-            Task { @MainActor in
-                LoadingManager.shared.hide()
-            }
-        }
-        
-        return try await NetworkManager.shared.postRequest(
-            url: "/nameling/phalar",
             parameters: parameters
         )
     }

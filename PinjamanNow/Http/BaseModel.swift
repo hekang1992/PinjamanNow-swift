@@ -56,8 +56,59 @@ class argentficationModel: Codable {
     var gamery: String?
     var hear: String?
     var civsimplyfier: civsimplyfierModel?
+    var provide: String?
+    var phalar: [phalarModel]?
 }
 
 class civsimplyfierModel: Codable {
     var exry: String?
+}
+
+class phalarModel: Codable {
+    var personal: String?
+    var large: String?
+    var fensacious: String?
+    var sorc: String?
+    var directoro: String?
+    var legis: String?
+    
+    var plaudine: String?
+    var clearlyward: String?
+    var cribr: String?
+    var beginid: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case personal
+        case large
+        case fensacious
+        case sorc
+        case directoro
+        case legis
+        case plaudine
+        case clearlyward
+        case cribr
+        case beginid
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        if let intValue = try? container.decode(Int.self, forKey: .personal) {
+            personal = String(intValue)
+        } else {
+            personal = try? container.decode(String.self, forKey: .personal)
+        }
+        
+        large = try? container.decode(String.self, forKey: .large)
+        fensacious = try? container.decode(String.self, forKey: .fensacious)
+        sorc = try? container.decode(String.self, forKey: .sorc)
+        directoro = try? container.decode(String.self, forKey: .directoro)
+        legis = try? container.decode(String.self, forKey: .legis)
+        plaudine = try? container.decode(String.self, forKey: .plaudine)
+        clearlyward = try? container.decode(String.self, forKey: .clearlyward)
+        cribr = try? container.decode(String.self, forKey: .cribr)
+        beginid = try? container.decode(String.self, forKey: .beginid)
+        
+    }
+    
 }
