@@ -37,6 +37,8 @@
 		734D1D662F32E50C003F916A /* H5HeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D652F32E50C003F916A /* H5HeadView.swift */; };
 		734D1D682F32ED36003F916A /* DeepLinkProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D672F32ED36003F916A /* DeepLinkProcessor.swift */; };
 		734D1D6A2F32EE65003F916A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D692F32EE65003F916A /* SettingsViewController.swift */; };
+		734D1D6C2F32F613003F916A /* AppExitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D6B2F32F613003F916A /* AppExitView.swift */; };
+		734D1D6E2F32FB20003F916A /* AppCancelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D6D2F32FB20003F916A /* AppCancelView.swift */; };
 		7358E1402F31C19300A2DB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7358E1372F31C19300A2DB8D /* Assets.xcassets */; };
 		7358E1422F31C19300A2DB8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7358E13A2F31C19300A2DB8D /* LaunchScreen.storyboard */; };
 		7358E1442F31C19300A2DB8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E1362F31C19300A2DB8D /* AppDelegate.swift */; };
@@ -77,6 +79,8 @@
 		734D1D652F32E50C003F916A /* H5HeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H5HeadView.swift; sourceTree = "<group>"; };
 		734D1D672F32ED36003F916A /* DeepLinkProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkProcessor.swift; sourceTree = "<group>"; };
 		734D1D692F32EE65003F916A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		734D1D6B2F32F613003F916A /* AppExitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExitView.swift; sourceTree = "<group>"; };
+		734D1D6D2F32FB20003F916A /* AppCancelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCancelView.swift; sourceTree = "<group>"; };
 		7358E11E2F31C18C00A2DB8D /* PinjamanNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinjamanNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7358E1362F31C19300A2DB8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7358E1372F31C19300A2DB8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 				734D1D632F32E4B7003F916A /* H5ViewController.swift */,
 				734D1D652F32E50C003F916A /* H5HeadView.swift */,
 				734D1D692F32EE65003F916A /* SettingsViewController.swift */,
+				734D1D6B2F32F613003F916A /* AppExitView.swift */,
+				734D1D6D2F32FB20003F916A /* AppCancelView.swift */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -371,6 +377,7 @@
 				734D1D642F32E4B7003F916A /* H5ViewController.swift in Sources */,
 				7344326E2F31F679006A8F1E /* IDFVKeychainManager.swift in Sources */,
 				7344C32B2F31C2FC006DEE99 /* LoginViewController.swift in Sources */,
+				734D1D6C2F32F613003F916A /* AppExitView.swift in Sources */,
 				7344C3462F31C65A006DEE99 /* CustomTabBar.swift in Sources */,
 				7344C3442F31C560006DEE99 /* MainTabBarController.swift in Sources */,
 				7344C3422F31C418006DEE99 /* Color+Extension.swift in Sources */,
@@ -392,6 +399,7 @@
 				7344C3292F31C2F4006DEE99 /* BaseViewController.swift in Sources */,
 				7344C3542F31DBF3006DEE99 /* LoginView.swift in Sources */,
 				7344C32D2F31C302006DEE99 /* HomeViewController.swift in Sources */,
+				734D1D6E2F32FB20003F916A /* AppCancelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

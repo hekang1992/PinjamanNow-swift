@@ -48,7 +48,7 @@ final class DeepLinkProcessor {
             
         case "gonotic":
             let settingVc = SettingsViewController()
-            nav.navigationController?.pushViewController(settingVc, animated: true)
+            nav.pushViewController(settingVc, animated: true)
             
         case "coupleette":
             LoginManager.shared.clearAll()
