@@ -10,6 +10,8 @@ import SnapKit
 
 class HomeApplyView: UIView {
     
+    var clickBlock: (() -> Void)?
+    
     private let languageCode = LanguageManager.current
     
     lazy var descBtn: UIButton = {
@@ -130,11 +132,11 @@ extension HomeApplyView {
     }
     
     @objc func applyBtnClick() {
-        
+        self.clickBlock?()
     }
     
     @objc private func labelTapped(_ gesture: UITapGestureRecognizer) {
-        
+        ToastManager.showMessage("1")
     }
     
 }

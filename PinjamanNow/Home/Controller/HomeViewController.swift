@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 import MJRefresh
 
+let cyania = "1000"
+let himfold = "1001"
 class HomeViewController: BaseViewController {
     
     private let viewModel = AppViewModel()
@@ -25,6 +27,18 @@ class HomeViewController: BaseViewController {
         view.addSubview(homeView)
         homeView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        homeView.clickBlock = { [weak self] model in
+            guard let self = self else { return }
+            if homeView.applyView.sureBtn.isSelected == false {
+                ToastManager.showMessage("Please read and agreed to the Loan terms")
+                return
+            }
+            Task {
+                let productID = model.personal ?? ""
+                await self.clickProductInfo(to: productID)
+            }
         }
         
         homeView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
@@ -74,6 +88,22 @@ extension HomeViewController {
             await MainActor.run {
                 self.homeView.scrollView.mj_header?.endRefreshing()
             }
+        }
+    }
+    
+    private func clickProductInfo(to productID: String) async {
+        do {
+            let paras = ["himfold": himfold,
+                         "cyania": cyania,
+                         "dactyl": cyania,
+                         "institutionit": productID]
+            let model = try await viewModel.clickProductInfo(with: paras)
+            let bebit = model.bebit ?? ""
+            if bebit == "0" || bebit == "00" {
+                
+            }
+        } catch {
+            
         }
     }
     

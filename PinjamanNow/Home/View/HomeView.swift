@@ -11,6 +11,8 @@ import Kingfisher
 
 class HomeView: UIView {
     
+    var clickBlock: ((phalarModel) -> Void)?
+    
     private let languageCode = LanguageManager.current
     
     var model: phalarModel? {
@@ -105,6 +107,10 @@ class HomeView: UIView {
     lazy var applyView: HomeApplyView = {
         let applyView = HomeApplyView(frame: .zero)
         applyView.backgroundColor = .white
+        applyView.clickBlock = { [weak self] in
+            guard let self = self, let model = model else { return }
+            self.clickBlock?(model)
+        }
         return applyView
     }()
     
@@ -200,7 +206,7 @@ class HomeView: UIView {
                 make.top.equalTo(applyView.snp.bottom).offset(15.pix())
                 make.centerX.equalToSuperview()
                 make.size.equalTo(CGSize(width: 335.pix(), height: 114.pix()))
-                make.bottom.equalToSuperview().offset(-100.pix())
+                make.bottom.equalToSuperview().offset(-90.pix())
             }
         }else {
             scrollView.addSubview(bannerView)
@@ -221,7 +227,7 @@ class HomeView: UIView {
                 make.top.equalTo(threeImageView.snp.bottom).offset(10.pix())
                 make.centerX.equalToSuperview()
                 make.size.equalTo(CGSize(width: 335.pix(), height: 70.pix()))
-                make.bottom.equalToSuperview().offset(-100.pix())
+                make.bottom.equalToSuperview().offset(-90.pix())
             }
         }
         

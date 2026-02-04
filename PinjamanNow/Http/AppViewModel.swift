@@ -47,6 +47,24 @@ extension AppViewModel {
         )
     }
     
+    func clickProductInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/ruminade",
+            parameters: parameters
+        )
+    }
+    
 }
 
 // MARK: - login_page
