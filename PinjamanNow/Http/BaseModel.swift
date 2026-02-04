@@ -54,6 +54,7 @@ class argentficationModel: Codable {
     var igmillionical: String?
     var vulgfication: String?
     var gamery: String?
+    var hear: String?
     var civsimplyfier: civsimplyfierModel?
 }
 

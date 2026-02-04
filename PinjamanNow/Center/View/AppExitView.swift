@@ -64,9 +64,9 @@ class AppExitView: UIView {
         leftBtn.snp.makeConstraints { make in
             make.bottom.left.equalToSuperview().inset(15.pix())
             if languageCode == .indonesian {
-                make.size.equalTo(CGSize(width: 112.pix(), height: 46.pix()))
+                make.size.equalTo(CGSize(width: 112.pix(), height: 44.pix()))
             }else {
-                make.size.equalTo(CGSize(width: 130.pix(), height: 44.pix()))
+                make.size.equalTo(CGSize(width: 104.pix(), height: 44.pix()))
             }
         }
         

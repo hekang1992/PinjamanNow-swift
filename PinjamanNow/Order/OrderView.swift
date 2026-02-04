@@ -36,6 +36,8 @@ class OrderView: UIView {
     
     var clickblock: ((OrderTabType) -> Void)?
     
+    var cellblock: ((argentficationModel) -> Void)?
+    
     var addAction: (() -> Void)?
     
     let languageCode = LanguageManager.current
@@ -257,6 +259,12 @@ extension OrderView: UITableViewDelegate, UITableViewDataSource {
         let model = listModelArray?[indexPath.row]
         cell.model = model
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let model = listModelArray?[indexPath.row] {
+            self.cellblock?(model)
+        }
     }
     
 }

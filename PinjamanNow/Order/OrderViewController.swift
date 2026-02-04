@@ -32,6 +32,23 @@ class OrderViewController: BaseViewController {
             NotificationCenter.default.post(name: NSNotification.Name("changeRootViewController"), object: nil)
         }
         
+        self.orderView.cellblock = { [weak self] model in
+            guard let self = self else { return }
+            let pageUrl = model.hear ?? ""
+            
+            switch true {
+            case pageUrl.contains(scheme_url):
+                DeepLinkProcessor.handleString(pageUrl, from: self)
+                
+            case pageUrl.contains("http"):
+                self.goH5WebVcWith(to: pageUrl)
+                
+            default:
+                break
+            }
+            
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
