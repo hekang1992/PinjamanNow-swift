@@ -17,6 +17,7 @@ enum APIError: Error {
 
 let h5_url = "http://8.215.85.208:6873"
 let base_url = "http://8.215.85.208:6873/circumbehind"
+let scheme_url = "iridular://crepitan.patieer.oilitious"
 
 class NetworkManager {
     static let shared = NetworkManager()

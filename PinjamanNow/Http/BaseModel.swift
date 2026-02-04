@@ -33,4 +33,11 @@ class recordModel: Codable {
     var americanate: String?
     var camera: String?
     var salinee: String?
+    var entersome: [entersomeModel]?
+}
+
+class entersomeModel: Codable {
+    var actionsome: String?
+    var ponder: String?
+    var joinency: String?
 }

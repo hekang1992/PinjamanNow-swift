@@ -12,6 +12,10 @@ class ProfileView: UIView {
     
     let languageCode = LanguageManager.current
     
+    var listArray: [entersomeModel] = []
+    
+    var cellBlock: ((entersomeModel) -> Void)?
+    
     lazy var whiteView: UIView = {
         let whiteView = UIView()
         whiteView.backgroundColor = .white
@@ -52,15 +56,15 @@ class ProfileView: UIView {
     
     lazy var odImageView: UIImageView = {
         let odImageView = UIImageView()
-        odImageView.image = languageCode == .indonesian ? UIImage(named: "mb_bg_edc") : UIImage(named: "mb_bg_ynimage")
+        odImageView.image = languageCode == .indonesian ? UIImage(named: "mb_bg_ynimage") : UIImage(named: "mb_bg_edc")
         odImageView.contentMode = .scaleAspectFit
         return odImageView
     }()
     
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .red
+        tableView.backgroundColor = .clear
         tableView.estimatedRowHeight = 80
         tableView.delegate = self
         tableView.dataSource = self
@@ -127,25 +131,54 @@ class ProfileView: UIView {
 extension ProfileView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 52
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headView = UIView()
-        headView.backgroundColor = .red
+        let logoImageView = UIImageView()
+        logoImageView.image = UIImage(named: "flower_ac_image")
+        
+        let nameLabel = UILabel()
+        nameLabel.textAlignment = .left
+        nameLabel.text = languageCode == .indonesian ? "Fungsi yang umum digunakan" : "Commonly used functions"
+        nameLabel.textColor = UIColor.init(hexString: "#010204")
+        nameLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        
+        headView.addSubview(logoImageView)
+        headView.addSubview(nameLabel)
+        
+        logoImageView.snp.makeConstraints { make in
+            make.width.height.equalTo(18)
+            make.bottom.equalToSuperview().offset(-15)
+            make.left.equalToSuperview().offset(18.pix())
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(logoImageView)
+            make.left.equalTo(logoImageView.snp.right).offset(5)
+            make.height.equalTo(20)
+        }
+        
         return headView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return listArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileViewCell", for: indexPath) as! ProfileViewCell
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
+        let model = listArray[indexPath.row]
+        cell.model = model
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = listArray[indexPath.row]
+        self.cellBlock?(model)
+    }
     
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import MJRefresh
 
 class CenterViewController: BaseViewController {
     
@@ -25,6 +26,30 @@ class CenterViewController: BaseViewController {
         view.addSubview(centerView)
         centerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        centerView.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+            guard let self = self else { return }
+            Task {
+                await self.getCenterInfo()
+            }
+        })
+        
+        centerView.cellBlock = { [weak self] model in
+            guard let self = self else { return }
+            let pageUrl = model.joinency ?? ""
+            
+            switch true {
+            case pageUrl.contains(scheme_url):
+                // 包含 scheme_url 的情况
+                break
+                
+            case pageUrl.contains("http"):
+                self.goH5WebVcWith(to: pageUrl)
+                
+            default:
+                break
+            }
         }
     }
     
@@ -45,10 +70,16 @@ extension CenterViewController {
             let model = try await viewModel.centerInfo(with: paras)
             let bebit = model.bebit ?? ""
             if bebit == "0" || bebit == "00" {
-                
+                self.centerView.listArray = model.record?.entersome ?? []
+                self.centerView.tableView.reloadData()
+            }
+            await MainActor.run {
+                self.centerView.tableView.mj_header?.endRefreshing()
             }
         } catch {
-            
+            await MainActor.run {
+                self.centerView.tableView.mj_header?.endRefreshing()
+            }
         }
     }
     

@@ -14,4 +14,5 @@ target 'PinjamanNow' do
   pod 'TYAlertController'
   pod 'FBSDKCoreKit'
   pod 'Toast-Swift'
+  pod 'MJRefresh'
 end
