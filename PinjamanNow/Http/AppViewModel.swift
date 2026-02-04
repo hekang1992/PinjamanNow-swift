@@ -104,3 +104,26 @@ extension AppViewModel {
     }
     
 }
+
+// MARK: - center
+extension AppViewModel {
+    
+    func centerInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.getRequest(
+            url: "/nameling/scalenature",
+            parameters: parameters
+        )
+    }
+    
+}

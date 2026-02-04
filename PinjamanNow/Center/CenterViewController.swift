@@ -10,14 +10,16 @@ import SnapKit
 
 class CenterViewController: BaseViewController {
     
+    private let viewModel = AppViewModel()
+    
     lazy var centerView: ProfileView = {
         let centerView = ProfileView()
         return centerView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor.init(hexString: "#F3F3F3")
         view.addSubview(centerView)
@@ -26,15 +28,28 @@ class CenterViewController: BaseViewController {
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Task {
+            await self.getCenterInfo()
+        }
     }
-    */
+    
+}
 
+extension CenterViewController {
+    
+    private func getCenterInfo() async {
+        do {
+            let paras = ["pecunular": "1"]
+            let model = try await viewModel.centerInfo(with: paras)
+            let bebit = model.bebit ?? ""
+            if bebit == "0" || bebit == "00" {
+                
+            }
+        } catch {
+            
+        }
+    }
+    
 }

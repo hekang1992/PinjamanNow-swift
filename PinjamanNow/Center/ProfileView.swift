@@ -49,14 +49,41 @@ class ProfileView: UIView {
         phoneLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return phoneLabel
     }()
+    
+    lazy var odImageView: UIImageView = {
+        let odImageView = UIImageView()
+        odImageView.image = languageCode == .indonesian ? UIImage(named: "mb_bg_edc") : UIImage(named: "mb_bg_ynimage")
+        odImageView.contentMode = .scaleAspectFit
+        return odImageView
+    }()
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .red
+        tableView.estimatedRowHeight = 80
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
+        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.register(ProfileViewCell.self, forCellReuseIdentifier: "ProfileViewCell")
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+        return tableView
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(whiteView)
-        addSubview(bgImageView)
+        whiteView.addSubview(bgImageView)
+        whiteView.addSubview(odImageView)
         bgImageView.addSubview(logoImageView)
         bgImageView.addSubview(phoneLabel)
         bgImageView.addSubview(nameLabel)
+        addSubview(tableView)
+        
         whiteView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
             make.height.equalTo(365.pix())
@@ -64,6 +91,11 @@ class ProfileView: UIView {
         bgImageView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
             make.height.equalTo(193.pix())
+        }
+        odImageView.snp.makeConstraints { make in
+            make.top.equalTo(bgImageView.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 335.pix(), height: 132.pix()))
         }
         logoImageView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
@@ -80,9 +112,40 @@ class ProfileView: UIView {
             make.height.equalTo(28)
             make.bottom.equalTo(phoneLabel.snp.top).offset(-17)
         }
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(whiteView.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-70)
+        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+extension ProfileView: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headView = UIView()
+        headView.backgroundColor = .red
+        return headView
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileViewCell", for: indexPath) as! ProfileViewCell
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    
 }
