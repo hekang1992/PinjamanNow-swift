@@ -41,8 +41,7 @@ class CenterViewController: BaseViewController {
             
             switch true {
             case pageUrl.contains(scheme_url):
-                // 包含 scheme_url 的情况
-                break
+                DeepLinkProcessor.handleString(pageUrl, from: self)
                 
             case pageUrl.contains("http"):
                 self.goH5WebVcWith(to: pageUrl)

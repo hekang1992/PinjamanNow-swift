@@ -35,6 +35,8 @@
 		734D1D622F32D633003F916A /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D612F32D633003F916A /* ProfileViewCell.swift */; };
 		734D1D642F32E4B7003F916A /* H5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D632F32E4B7003F916A /* H5ViewController.swift */; };
 		734D1D662F32E50C003F916A /* H5HeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D652F32E50C003F916A /* H5HeadView.swift */; };
+		734D1D682F32ED36003F916A /* DeepLinkProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D672F32ED36003F916A /* DeepLinkProcessor.swift */; };
+		734D1D6A2F32EE65003F916A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D692F32EE65003F916A /* SettingsViewController.swift */; };
 		7358E1402F31C19300A2DB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7358E1372F31C19300A2DB8D /* Assets.xcassets */; };
 		7358E1422F31C19300A2DB8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7358E13A2F31C19300A2DB8D /* LaunchScreen.storyboard */; };
 		7358E1442F31C19300A2DB8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E1362F31C19300A2DB8D /* AppDelegate.swift */; };
@@ -73,6 +75,8 @@
 		734D1D612F32D633003F916A /* ProfileViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewCell.swift; sourceTree = "<group>"; };
 		734D1D632F32E4B7003F916A /* H5ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H5ViewController.swift; sourceTree = "<group>"; };
 		734D1D652F32E50C003F916A /* H5HeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H5HeadView.swift; sourceTree = "<group>"; };
+		734D1D672F32ED36003F916A /* DeepLinkProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkProcessor.swift; sourceTree = "<group>"; };
+		734D1D692F32EE65003F916A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7358E11E2F31C18C00A2DB8D /* PinjamanNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinjamanNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7358E1362F31C19300A2DB8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7358E1372F31C19300A2DB8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 		7344C3362F31C3AF006DEE99 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				734D1D672F32ED36003F916A /* DeepLinkProcessor.swift */,
 				7344C3412F31C410006DEE99 /* Color+Extension.swift */,
 			);
 			path = Common;
@@ -206,6 +211,7 @@
 				7344C3302F31C312006DEE99 /* CenterViewController.swift */,
 				734D1D632F32E4B7003F916A /* H5ViewController.swift */,
 				734D1D652F32E50C003F916A /* H5HeadView.swift */,
+				734D1D692F32EE65003F916A /* SettingsViewController.swift */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -375,10 +381,12 @@
 				734D1D662F32E50C003F916A /* H5HeadView.swift in Sources */,
 				7358E1442F31C19300A2DB8D /* AppDelegate.swift in Sources */,
 				7344C3332F31C31A006DEE99 /* ProductViewController.swift in Sources */,
+				734D1D682F32ED36003F916A /* DeepLinkProcessor.swift in Sources */,
 				7388BF4D2F324277005790B7 /* ProfileView.swift in Sources */,
 				734432742F31FDC0006A8F1E /* DeviceSecurityHelper.swift in Sources */,
 				7344C3312F31C312006DEE99 /* CenterViewController.swift in Sources */,
 				734D1D622F32D633003F916A /* ProfileViewCell.swift in Sources */,
+				734D1D6A2F32EE65003F916A /* SettingsViewController.swift in Sources */,
 				7344326C2F31F4AC006A8F1E /* CommonParaManager.swift in Sources */,
 				7344C34A2F31CDBC006DEE99 /* HomeView.swift in Sources */,
 				7344C3292F31C2F4006DEE99 /* BaseViewController.swift in Sources */,
