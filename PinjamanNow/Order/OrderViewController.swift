@@ -7,30 +7,89 @@
 
 import UIKit
 import SnapKit
+import MJRefresh
 
 class OrderViewController: BaseViewController {
-
-    lazy var loginBtn: UIButton = {
-        let loginBtn = UIButton(type: .custom)
-        loginBtn.setTitle("Log in to Zoom Loan", for: .normal)
-        loginBtn.addTarget(self, action: #selector(adaf), for: .touchUpInside)
-        return loginBtn
+    
+    private let viewModel = AppViewModel()
+    var orderType: OrderTabType = .all
+    
+    lazy var orderView: OrderView = {
+        OrderView(frame: .zero)
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        bindOrderView()
+        
+        self.orderView.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+            guard let self = self else { return }
+            self.refreshOrderList()
+        })
+        
+        self.orderView.addAction = {
+            NotificationCenter.default.post(name: NSNotification.Name("changeRootViewController"), object: nil)
+        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshOrderList()
+    }
+}
 
-        // Do any additional setup after loading the view.
-        view.backgroundColor = .systemPink
-        view.addSubview(loginBtn)
-        loginBtn.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.height.equalTo(200)
+private extension OrderViewController {
+    
+    func setupUI() {
+        view.addSubview(orderView)
+        orderView.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-70)
         }
     }
     
-    @objc func adaf() {
-        self.navigationController?.popViewController(animated: true)
+    func bindOrderView() {
+        orderView.clickblock = { [weak self] type in
+            guard let self else { return }
+            self.orderType = type
+            self.refreshOrderList()
+        }
+    }
+}
+
+private extension OrderViewController {
+    
+    func refreshOrderList() {
+        Task {
+            await fetchOrderList()
+        }
     }
     
+    func fetchOrderList() async {
+        do {
+            let params: [String: String] = [
+                "majorics": orderType.requestType,
+                "electionness": "1",
+                "managerably": "60"
+            ]
+            
+            let model = try await viewModel.orderListInfo(with: params)
+            
+            let bebit = model.bebit ?? ""
+            if bebit == "0" || bebit == "00" {
+                let modelArray = model.record?.argentfication ?? []
+                self.orderView.listModelArray = modelArray
+                self.orderView.tableView.reloadData()
+            }
+            await MainActor.run {
+                self.orderView.tableView.mj_header?.endRefreshing()
+            }
+        } catch {
+            await MainActor.run {
+                self.orderView.tableView.mj_header?.endRefreshing()
+            }
+        }
+    }
 }

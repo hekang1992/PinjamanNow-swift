@@ -5,7 +5,7 @@
 //  Created by hekang on 2026/2/3.
 //
 
-// MARK: - init
+// MARK: - init_page
 class AppViewModel {
     
     func appInfo(with parameters: [String: String]) async throws -> BaseModel {
@@ -28,7 +28,7 @@ class AppViewModel {
     
 }
 
-// MARK: - login
+// MARK: - login_page
 extension AppViewModel {
     
     func getCodeInfo(with parameters: [String: String]) async throws -> BaseModel {
@@ -63,6 +63,29 @@ extension AppViewModel {
         
         return try await NetworkManager.shared.postRequest(
             url: "/nameling/performanceite",
+            parameters: parameters
+        )
+    }
+    
+}
+
+// MARK: - center_page
+extension AppViewModel {
+    
+    func centerInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.getRequest(
+            url: "/nameling/scalenature",
             parameters: parameters
         )
     }
@@ -105,10 +128,10 @@ extension AppViewModel {
     
 }
 
-// MARK: - center
+// MARK: - order_list_page
 extension AppViewModel {
     
-    func centerInfo(with parameters: [String: String]) async throws -> BaseModel {
+    func orderListInfo(with parameters: [String: String]) async throws -> BaseModel {
         
         await MainActor.run {
             LoadingManager.shared.show()
@@ -120,8 +143,8 @@ extension AppViewModel {
             }
         }
         
-        return try await NetworkManager.shared.getRequest(
-            url: "/nameling/scalenature",
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/phalar",
             parameters: parameters
         )
     }

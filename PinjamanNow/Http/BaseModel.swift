@@ -34,10 +34,29 @@ class recordModel: Codable {
     var camera: String?
     var salinee: String?
     var entersome: [entersomeModel]?
+    var argentfication: [argentficationModel]?
 }
 
 class entersomeModel: Codable {
     var actionsome: String?
     var ponder: String?
     var joinency: String?
+}
+
+class argentficationModel: Codable {
+    var manu: String?
+    var large: String?
+    var fensacious: String?
+    var sorc: String?
+    var faci: String?
+    var executiveable: String?
+    var affectoon: String?
+    var igmillionical: String?
+    var vulgfication: String?
+    var gamery: String?
+    var civsimplyfier: civsimplyfierModel?
+}
+
+class civsimplyfierModel: Codable {
+    var exry: String?
 }

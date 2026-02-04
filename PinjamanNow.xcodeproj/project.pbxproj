@@ -39,6 +39,9 @@
 		734D1D6A2F32EE65003F916A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D692F32EE65003F916A /* SettingsViewController.swift */; };
 		734D1D6C2F32F613003F916A /* AppExitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D6B2F32F613003F916A /* AppExitView.swift */; };
 		734D1D6E2F32FB20003F916A /* AppCancelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D6D2F32FB20003F916A /* AppCancelView.swift */; };
+		734D1D722F33153D003F916A /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D712F33153D003F916A /* OrderView.swift */; };
+		734D1D742F3325BD003F916A /* OrderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D732F3325BD003F916A /* OrderViewCell.swift */; };
+		734D1D762F333BC8003F916A /* AppEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734D1D752F333BC8003F916A /* AppEmptyView.swift */; };
 		7358E1402F31C19300A2DB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7358E1372F31C19300A2DB8D /* Assets.xcassets */; };
 		7358E1422F31C19300A2DB8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7358E13A2F31C19300A2DB8D /* LaunchScreen.storyboard */; };
 		7358E1442F31C19300A2DB8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E1362F31C19300A2DB8D /* AppDelegate.swift */; };
@@ -81,6 +84,9 @@
 		734D1D692F32EE65003F916A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		734D1D6B2F32F613003F916A /* AppExitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExitView.swift; sourceTree = "<group>"; };
 		734D1D6D2F32FB20003F916A /* AppCancelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCancelView.swift; sourceTree = "<group>"; };
+		734D1D712F33153D003F916A /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		734D1D732F3325BD003F916A /* OrderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewCell.swift; sourceTree = "<group>"; };
+		734D1D752F333BC8003F916A /* AppEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEmptyView.swift; sourceTree = "<group>"; };
 		7358E11E2F31C18C00A2DB8D /* PinjamanNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinjamanNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7358E1362F31C19300A2DB8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7358E1372F31C19300A2DB8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -224,7 +230,10 @@
 		7358E14B2F31C29200A2DB8D /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				734D1D712F33153D003F916A /* OrderView.swift */,
 				7344C32E2F31C30B006DEE99 /* OrderViewController.swift */,
+				734D1D732F3325BD003F916A /* OrderViewCell.swift */,
+				734D1D752F333BC8003F916A /* AppEmptyView.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -386,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7344C3352F31C38D006DEE99 /* BaseNavigationController.swift in Sources */,
+				734D1D722F33153D003F916A /* OrderView.swift in Sources */,
 				734432682F31F012006A8F1E /* LaunchViewController.swift in Sources */,
 				734432702F31F9F2006A8F1E /* LoginManager.swift in Sources */,
 				7344C34C2F31CF81006DEE99 /* HomeHeadView.swift in Sources */,
@@ -396,7 +406,9 @@
 				734D1D6C2F32F613003F916A /* AppExitView.swift in Sources */,
 				7344C3462F31C65A006DEE99 /* CustomTabBar.swift in Sources */,
 				7344C3442F31C560006DEE99 /* MainTabBarController.swift in Sources */,
+				734D1D742F3325BD003F916A /* OrderViewCell.swift in Sources */,
 				7344C3422F31C418006DEE99 /* Color+Extension.swift in Sources */,
+				734D1D762F333BC8003F916A /* AppEmptyView.swift in Sources */,
 				734432722F31FC3B006A8F1E /* LoadingManager.swift in Sources */,
 				7344C32F2F31C30B006DEE99 /* OrderViewController.swift in Sources */,
 				7344C3502F31DB9F006DEE99 /* NetworkManager.swift in Sources */,

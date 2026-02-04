@@ -65,7 +65,7 @@ class H5HeadView: UIView {
         nameLabel.snp.makeConstraints { make in
             make.centerY.equalTo(backBtn)
             make.centerX.equalToSuperview()
-            make.height.equalTo(15)
+            make.height.equalTo(18)
         }
     }
     
