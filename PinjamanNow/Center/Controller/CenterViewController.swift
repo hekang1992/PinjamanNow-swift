@@ -44,7 +44,7 @@ class CenterViewController: BaseViewController {
                 DeepLinkProcessor.handleString(pageUrl, from: self)
                 
             case pageUrl.contains("http"):
-                self.goH5WebVcWith(to: pageUrl)
+                self.goH5WebVcWith(to: "https://www.baidu.com")
                 
             default:
                 break

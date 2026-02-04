@@ -81,7 +81,8 @@ extension LoginViewController {
         let code = self.loginView.codeFiled.text ?? ""
         let isAgreed = self.loginView.sureBtn.isSelected
         let isIndonesian = languageCode == .indonesian
-        
+        self.loginView.phoneFiled.resignFirstResponder()
+        self.loginView.codeFiled.resignFirstResponder()
         if phone.isEmpty {
             let message = isIndonesian ?
             "Silakan masukkan nomor ponsel Anda." :

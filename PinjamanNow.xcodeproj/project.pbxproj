@@ -113,6 +113,28 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		734D1D6F2F330FCF003F916A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7388BF4C2F324277005790B7 /* ProfileView.swift */,
+				734D1D612F32D633003F916A /* ProfileViewCell.swift */,
+				734D1D652F32E50C003F916A /* H5HeadView.swift */,
+				734D1D6B2F32F613003F916A /* AppExitView.swift */,
+				734D1D6D2F32FB20003F916A /* AppCancelView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		734D1D702F330FD9003F916A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7344C3302F31C312006DEE99 /* CenterViewController.swift */,
+				734D1D692F32EE65003F916A /* SettingsViewController.swift */,
+				734D1D632F32E4B7003F916A /* H5ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		7358E1152F31C18C00A2DB8D = {
 			isa = PBXGroup;
 			children = (
@@ -210,14 +232,8 @@
 		7358E14C2F31C2A800A2DB8D /* Center */ = {
 			isa = PBXGroup;
 			children = (
-				7388BF4C2F324277005790B7 /* ProfileView.swift */,
-				734D1D612F32D633003F916A /* ProfileViewCell.swift */,
-				7344C3302F31C312006DEE99 /* CenterViewController.swift */,
-				734D1D632F32E4B7003F916A /* H5ViewController.swift */,
-				734D1D652F32E50C003F916A /* H5HeadView.swift */,
-				734D1D692F32EE65003F916A /* SettingsViewController.swift */,
-				734D1D6B2F32F613003F916A /* AppExitView.swift */,
-				734D1D6D2F32FB20003F916A /* AppCancelView.swift */,
+				734D1D6F2F330FCF003F916A /* View */,
+				734D1D702F330FD9003F916A /* Controller */,
 			);
 			path = Center;
 			sourceTree = "<group>";
