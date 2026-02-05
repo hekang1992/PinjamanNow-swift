@@ -162,9 +162,11 @@ extension CardViewController {
                 self.listView.bImageView.image = UIImage(named: "sel_a_ca_image")
                 Task {
                     try? await Task.sleep(nanoseconds: 250_000_000)
-                    await self.productMessageInfo(with: productID,
-                                                  orderID: orderID,
-                                                  viewModel: viewModel)
+                    let faceVc = FacialViewController()
+                    faceVc.productID = productID
+                    faceVc.orderID = orderID
+                    faceVc.pageTitle = pageTitle
+                    self.navigationController?.pushViewController(faceVc, animated: true)
                 }
             }else {
                 ToastManager.showMessage(model.calcfootment ?? "")

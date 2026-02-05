@@ -55,7 +55,8 @@ extension BaseViewController {
             let model = try await viewModel.productDetailInfo(with: paras)
             let bebit = model.bebit ?? ""
             if bebit == "0" || bebit == "00" {
-                
+                self.toNextVc(typeModel: model.record?.applyorium ?? astyModel(),
+                              cardModel: model.record?.popul ?? populModel())
             }
         } catch {
             
@@ -63,7 +64,27 @@ extension BaseViewController {
     }
     
     func toNextVc(typeModel: astyModel, cardModel: populModel) {
+        let type = typeModel.tv ?? ""
         
+        switch type {
+        case "tensia":
+            break
+            
+        case "recentorium":
+            let personalVc = PersonalViewController()
+            personalVc.pageTitle = typeModel.actionsome ?? ""
+            personalVc.orderID = cardModel.canproof ?? ""
+            self.navigationController?.pushViewController(personalVc, animated: true)
+            
+        case "womanture":
+            break
+            
+        case "oplaceous":
+            break
+            
+        default:
+            break
+        }
     }
     
 }

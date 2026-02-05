@@ -55,7 +55,7 @@ class ProductViewController: BaseViewController {
             guard let self = self else { return }
             let meria = model.meria ?? 0
             if meria == 1 {
-                self.stepInfo(with: model)
+                self.stepInfo(with: model, cardModel: self.model?.record?.popul)
             }else {
                 self.sureBtnClick()
             }
@@ -82,20 +82,23 @@ extension ProductViewController {
     
     @objc func sureBtnClick() {
         if let model = self.model?.record?.applyorium {
-            stepInfo(with: model)
+            stepInfo(with: model, cardModel: self.model?.record?.popul)
         }
     }
     
-    private func stepInfo(with model: astyModel) {
-        let type = model.tv ?? ""
+    private func stepInfo(with typeModel: astyModel, cardModel: populModel?) {
+        let type = typeModel.tv ?? ""
         switch type {
         case "tensia":
             Task {
-                await self.getCardInfo(with: model)
+                await self.getCardInfo(with: typeModel)
             }
             
         case "recentorium":
-            break
+            let personalVc = PersonalViewController()
+            personalVc.orderID = cardModel?.canproof ?? ""
+            personalVc.pageTitle = typeModel.actionsome ?? ""
+            self.navigationController?.pushViewController(personalVc, animated: true)
             
         case "womanture":
             break

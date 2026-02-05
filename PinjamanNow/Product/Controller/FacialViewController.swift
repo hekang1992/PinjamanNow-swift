@@ -107,7 +107,7 @@ extension FacialViewController {
     @objc func sureBtnClick() {
         camera = SystemCamera(
             from: self,
-            cameraPosition: .rear
+            cameraPosition: .front
         ) { [weak self] imageData in
             Task {
                 await self?.uploadImageInfo(with: imageData)
@@ -119,7 +119,7 @@ extension FacialViewController {
     
     private func uploadImageInfo(with imageData: Data) async {
         do {
-            let paras = ["provide": "11",
+            let paras = ["provide": "10",
                          "xanthoptionical": "2",
                          "centuryious": "",
                          "extroise": "1",
@@ -127,42 +127,6 @@ extension FacialViewController {
             let model = try await viewModel.uploadInfo(with: paras,imageData: imageData)
             let bebit = model.bebit ?? ""
             if bebit == "0" || bebit == "00" {
-                popCardMessageView(with: model)
-            }else {
-                ToastManager.showMessage(model.calcfootment ?? "")
-            }
-        } catch {
-            
-        }
-    }
-    
-    private func popCardMessageView(with model: BaseModel) {
-        let popView = PopCardMessageView(frame: self.view.bounds)
-        popView.model = model
-        let alertVc = TYAlertController(alert: popView, preferredStyle: .actionSheet)
-        self.present(alertVc!, animated: true)
-        popView.cancelBlock = { [weak self] in
-            self?.dismiss(animated: true)
-        }
-        popView.sureBlock = { [weak self] in
-            Task {
-                await self?.dsaNameInfo(with: popView)
-            }
-        }
-    }
-    
-    private func dsaNameInfo(with listView: PopCardMessageView) async {
-        do {
-            let paras = ["killature": listView.threeView.enterFiled.text ?? "",
-                         "pylacity": listView.twoView.enterFiled.text ?? "",
-                         "sy": listView.oneView.enterFiled.text ?? "",
-                         "selfopen": LoginManager.shared.getPhone(),
-                         "orderible": orderID,
-                         "institutionit": productID]
-            let model = try await viewModel.saveCardInfo(with: paras)
-            let bebit = model.bebit ?? ""
-            if bebit == "0" || bebit == "00" {
-                self.dismiss(animated: true)
                 self.listView.bImageView.image = UIImage(named: "sel_a_ca_image")
                 Task {
                     try? await Task.sleep(nanoseconds: 250_000_000)
