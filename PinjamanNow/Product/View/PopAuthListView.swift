@@ -108,7 +108,7 @@ class PopAuthListView: UIView {
             make.bottom.equalToSuperview().offset(-30.pix())
         }
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(cancelBtn.snp.bottom).offset(5)
+            make.top.equalTo(cancelBtn.snp.bottom).offset(8.pix())
             make.left.right.equalToSuperview().inset(30)
             make.bottom.equalTo(confirmBtn.snp.top).offset(-5)
         }

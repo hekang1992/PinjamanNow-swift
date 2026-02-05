@@ -104,6 +104,9 @@ class argentficationModel: Codable {
     var civsimplyfier: civsimplyfierModel?
     var provide: String?
     var phalar: [phalarModel]?
+    var taxish: [argentficationModel]?
+    var bebit: String?
+    var sy: String?
 }
 
 class civsimplyfierModel: Codable {
