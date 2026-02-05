@@ -33,8 +33,44 @@ class recordModel: Codable {
     var americanate: String?
     var camera: String?
     var salinee: String?
+    var graphen: String?
     var entersome: [entersomeModel]?
     var argentfication: [argentficationModel]?
+    var popul: populModel?
+    var asty: [astyModel]?
+    var applyorium: astyModel?
+    var sorb: sorbModel?
+    var computer: sorbModel?
+}
+
+class sorbModel: Codable {
+    var graphen: String?
+    var felicitosity: felicitosityModel?
+}
+
+class felicitosityModel: Codable {
+    var sy: String?
+    var pylacity: String?
+    var killature: String?
+}
+
+class astyModel: Codable {
+    var tv: String?
+    var actionsome: String?
+    var pinier: String?
+    var emesiaire: String?
+    var meria: Int?
+}
+
+class populModel: Codable {
+    var seniorot: String?
+    var opportunityacle: String?
+    var large: String?
+    var canproof: String?
+    var sorc: String?
+    var loquiwhenlet: String?
+    var behindern: Int?
+    var fensacious: String?
 }
 
 class entersomeModel: Codable {

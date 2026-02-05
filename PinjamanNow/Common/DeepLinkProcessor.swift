@@ -56,10 +56,12 @@ final class DeepLinkProcessor {
                 try? await Task.sleep(nanoseconds: 250_000_000)
                 NotificationCenter.default.post(name: NSNotification.Name("changeRootViewController"), object: nil)
             }
-        case "fugitdom":
-            break
-            
         case "arborion":
+            let productVc = ProductViewController()
+            productVc.productID = parameters["institutionit"] ?? ""
+            nav.pushViewController(productVc, animated: true)
+            
+        case "nonagenfic":
             break
             
         default:

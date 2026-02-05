@@ -47,6 +47,11 @@
 		7358E1402F31C19300A2DB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7358E1372F31C19300A2DB8D /* Assets.xcassets */; };
 		7358E1422F31C19300A2DB8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7358E13A2F31C19300A2DB8D /* LaunchScreen.storyboard */; };
 		7358E1442F31C19300A2DB8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E1362F31C19300A2DB8D /* AppDelegate.swift */; };
+		73744FB32F342B490082DE69 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FB22F342B490082DE69 /* ProductView.swift */; };
+		73744FB72F342FB10082DE69 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FB62F342FB10082DE69 /* ProductViewCell.swift */; };
+		73744FB92F343E070082DE69 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FB82F343E070082DE69 /* CardViewController.swift */; };
+		73744FBB2F343EA10082DE69 /* FacialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FBA2F343EA10082DE69 /* FacialViewController.swift */; };
+		73744FBD2F343EC10082DE69 /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FBC2F343EC10082DE69 /* CompleteViewController.swift */; };
 		7388BF4D2F324277005790B7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7388BF4C2F324277005790B7 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +101,11 @@
 		7358E1372F31C19300A2DB8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7358E1382F31C19300A2DB8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7358E1392F31C19300A2DB8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		73744FB22F342B490082DE69 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
+		73744FB62F342FB10082DE69 /* ProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
+		73744FB82F343E070082DE69 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		73744FBA2F343EA10082DE69 /* FacialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacialViewController.swift; sourceTree = "<group>"; };
+		73744FBC2F343EC10082DE69 /* CompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteViewController.swift; sourceTree = "<group>"; };
 		7388BF4C2F324277005790B7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		7E0B03D3F966E03BEBE80A87 /* Pods-PinjamanNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinjamanNow.debug.xcconfig"; path = "Target Support Files/Pods-PinjamanNow/Pods-PinjamanNow.debug.xcconfig"; sourceTree = "<group>"; };
 		85F11FD525DD0D99194062AB /* Pods-PinjamanNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinjamanNow.release.xcconfig"; path = "Target Support Files/Pods-PinjamanNow/Pods-PinjamanNow.release.xcconfig"; sourceTree = "<group>"; };
@@ -272,9 +282,30 @@
 		7358E14D2F31C2B300A2DB8D /* Product */ = {
 			isa = PBXGroup;
 			children = (
-				7344C3322F31C31A006DEE99 /* ProductViewController.swift */,
+				73744FB52F342F9C0082DE69 /* View */,
+				73744FB42F342F940082DE69 /* Controller */,
 			);
 			path = Product;
+			sourceTree = "<group>";
+		};
+		73744FB42F342F940082DE69 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7344C3322F31C31A006DEE99 /* ProductViewController.swift */,
+				73744FB82F343E070082DE69 /* CardViewController.swift */,
+				73744FBA2F343EA10082DE69 /* FacialViewController.swift */,
+				73744FBC2F343EC10082DE69 /* CompleteViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		73744FB52F342F9C0082DE69 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73744FB22F342B490082DE69 /* ProductView.swift */,
+				73744FB62F342FB10082DE69 /* ProductViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		7D3F3FFA0331CAB789565AAC /* Frameworks */ = {
@@ -416,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73744FB32F342B490082DE69 /* ProductView.swift in Sources */,
 				734D1D7C2F339F41003F916A /* HomeDescBannerView.swift in Sources */,
 				7344C3352F31C38D006DEE99 /* BaseNavigationController.swift in Sources */,
 				734D1D722F33153D003F916A /* OrderView.swift in Sources */,
@@ -427,7 +459,9 @@
 				7344326E2F31F679006A8F1E /* IDFVKeychainManager.swift in Sources */,
 				7344C32B2F31C2FC006DEE99 /* LoginViewController.swift in Sources */,
 				734D1D6C2F32F613003F916A /* AppExitView.swift in Sources */,
+				73744FBB2F343EA10082DE69 /* FacialViewController.swift in Sources */,
 				7344C3462F31C65A006DEE99 /* CustomTabBar.swift in Sources */,
+				73744FBD2F343EC10082DE69 /* CompleteViewController.swift in Sources */,
 				7344C3442F31C560006DEE99 /* MainTabBarController.swift in Sources */,
 				734D1D742F3325BD003F916A /* OrderViewCell.swift in Sources */,
 				7344C3422F31C418006DEE99 /* Color+Extension.swift in Sources */,
@@ -435,8 +469,10 @@
 				734432722F31FC3B006A8F1E /* LoadingManager.swift in Sources */,
 				7344C32F2F31C30B006DEE99 /* OrderViewController.swift in Sources */,
 				7344C3502F31DB9F006DEE99 /* NetworkManager.swift in Sources */,
+				73744FB72F342FB10082DE69 /* ProductViewCell.swift in Sources */,
 				7344326A2F31F37D006A8F1E /* AppViewModel.swift in Sources */,
 				734D1D662F32E50C003F916A /* H5HeadView.swift in Sources */,
+				73744FB92F343E070082DE69 /* CardViewController.swift in Sources */,
 				7358E1442F31C19300A2DB8D /* AppDelegate.swift in Sources */,
 				7344C3332F31C31A006DEE99 /* ProductViewController.swift in Sources */,
 				734D1D682F32ED36003F916A /* DeepLinkProcessor.swift in Sources */,

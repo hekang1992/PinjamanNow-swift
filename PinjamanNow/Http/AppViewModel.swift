@@ -28,6 +28,7 @@ class AppViewModel {
     
 }
 
+// MARK: - home_page
 extension AppViewModel {
     
     func homeInfo() async throws -> BaseModel {
@@ -188,4 +189,44 @@ extension AppViewModel {
         )
     }
     
+}
+
+// MARK: - product_page
+extension AppViewModel {
+    
+    func productDetailInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/signfold",
+            parameters: parameters
+        )
+    }
+    
+    func cardInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.getRequest(
+            url: "/nameling/music",
+            parameters: parameters
+        )
+    }
 }
