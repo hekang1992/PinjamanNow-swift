@@ -1,5 +1,5 @@
 //
-//  FlossViewController.swift
+//  WalletViewController.swift
 //  PinjamanNow
 //
 //  Created by hekang on 2026/2/5.
@@ -10,7 +10,7 @@ import SnapKit
 import TYAlertController
 import BRPickerView
 
-class FlossViewController: BaseViewController {
+class WalletViewController: BaseViewController {
     
     var orderID: String = ""
     
@@ -34,7 +34,7 @@ class FlossViewController: BaseViewController {
     
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
-        bgImageView.image = languageCode == .indonesian ? UIImage(named: "flo_id_head_image") : UIImage(named: "flo_en_head_image")
+        bgImageView.image = languageCode == .indonesian ? UIImage(named: "bank_info_ed_image") : UIImage(named: "bank_info_e_image")
         bgImageView.contentMode = .scaleAspectFit
         return bgImageView
     }()
@@ -76,7 +76,7 @@ class FlossViewController: BaseViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(FlossViewCell.self, forCellReuseIdentifier: "FlossViewCell")
+        tableView.register(OvaltineViewCell.self, forCellReuseIdentifier: "OvaltineViewCell")
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
         }
@@ -145,15 +145,15 @@ class FlossViewController: BaseViewController {
     
 }
 
-extension FlossViewController {
+extension WalletViewController {
     
     private func basicInfo() async {
         do {
             let paras = ["institutionit": productID]
-            let model = try await viewModel.flossInfo(with: paras)
+            let model = try await viewModel.walletInfo(with: paras)
             let bebit = model.bebit ?? ""
             if bebit == "0" || bebit == "00" {
-                self.modelArray = model.record?.libr?.argentfication ?? []
+                self.modelArray = model.record?.fragthoughice ?? []
                 self.tableView.reloadData()
             }
         } catch {
@@ -163,7 +163,7 @@ extension FlossViewController {
     
     private func saveInfo(with paras: [String: String]) async {
         do {
-            let model = try await viewModel.saveFlossInfo(with: paras)
+            let model = try await viewModel.saveWalletInfo(with: paras)
             let bebit = model.bebit ?? ""
             if bebit == "0" || bebit == "00" {
                 Task {
@@ -180,86 +180,61 @@ extension FlossViewController {
     }
     
     @objc func sureBtnClick() {
-        var jsonArray: [[String: String]] = []
+        var paras = ["institutionit": productID]
         for model in modelArray {
-            var paras: [String: String] = [:]
-            paras["selfopen"] = model.selfopen ?? ""
-            paras["sy"] = model.sy ?? ""
-            paras["ethnesque"] = model.ethnesque ?? ""
-            paras["theroally"] = model.theroally ?? ""
-            jsonArray.append(paras)
+            let key = model.bebit ?? ""
+            let value = model.provide ?? ""
+            paras[key] = value
         }
-        
-        do {
-            let jsonData = try JSONSerialization.data(
-                withJSONObject: jsonArray,
-                options: []
-            )
-            
-            guard let jsonString = String(data: jsonData, encoding: .utf8) else {
-                print("Failed to convert data to string")
-                return
-            }
-            
-            let parameters = ["institutionit": productID, "record": jsonString]
-            
-            Task {
-                await self.saveInfo(with: parameters)
-            }
-            
-        } catch {
-            
+        Task {
+            await self.saveInfo(with: paras)
         }
         
     }
 }
 
-extension FlossViewController: UITableViewDelegate, UITableViewDataSource {
+extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.modelArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FlossViewCell", for: indexPath) as! FlossViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OvaltineViewCell", for: indexPath) as! OvaltineViewCell
         let model = self.modelArray[indexPath.row]
+        let type = model.be ?? ""
+        if type == "myzchargeship" {
+            cell.editBlock = { title in
+                model.executiveitious = title
+                model.provide = title
+            }
+        }else if type == "current" {
+            cell.tapBlock = { [weak self] in
+                guard let self = self else { return }
+                self.view.endEditing(true)
+                self.tapCellWithType(cell: cell, listModel: model)
+            }
+        }else if type == "troph" {
+            cell.tapBlock = { [weak self] in
+                guard let self = self else { return }
+                self.view.endEditing(true)
+                self.tapCellWithPocType(cell: cell, listModel: model)
+            }
+        }else {
+            
+        }
         cell.model = model
-        cell.relationBlock = { [weak self] in
-            guard let self = self else { return }
-            tapCellWithType(cell: cell, listModel: model)
-        }
-        cell.phoneBlock = { [weak self] in
-            guard let self = self else { return }
-            ContactManager.shared.pickSingleContact(from: self) { [weak self] contact in
-                guard let self = self else { return }
-                let name = contact?.sy ?? ""
-                let phone = contact?.tryatory ?? ""
-                if name.isEmpty || phone.isEmpty {
-                    ToastManager.showMessage(languageCode == .indonesian ? "Nama dan nomor telepon tidak boleh kosong." : "Name and phone number cannot be empty.")
-                    return
-                }
-                model.sy = name
-                model.selfopen = phone
-                cell.phoneFiled.text = String(format: "%@-%@", name, phone)
-            }
-            ContactManager.shared.getAllContacts { [weak self] contacts in
-                guard let self = self else { return }
-                if contacts.isEmpty {
-                    return
-                }
-            }
-        }
         return cell
     }
     
 }
 
-extension FlossViewController {
+extension WalletViewController {
     
-    private func tapCellWithType(cell: FlossViewCell, listModel: fragthoughiceModel) {
+    private func tapCellWithType(cell: OvaltineViewCell, listModel: fragthoughiceModel) {
         let popView = PopAuthListView(frame: self.view.bounds)
-        popView.nameLabel.text = listModel.pauchundredot ?? ""
-        let modelArray = listModel.whateverfic ?? []
+        popView.nameLabel.text = listModel.actionsome ?? ""
+        let modelArray = listModel.cineial ?? []
         
         let text = cell.enterFiled.text ?? ""
         for (index, model) in modelArray.enumerated() {
@@ -280,7 +255,7 @@ extension FlossViewController {
             guard let self = self else { return }
             self.dismiss(animated: true) {
                 listModel.executiveitious = model.sy ?? ""
-                listModel.ethnesque = model.provide ?? ""
+                listModel.provide = model.provide ?? ""
                 cell.enterFiled.text = model.sy ?? ""
             }
         }
@@ -288,4 +263,50 @@ extension FlossViewController {
         self.present(alertVc!, animated: true)
     }
     
+    private func tapCellWithPocType(cell: OvaltineViewCell, listModel: fragthoughiceModel) {
+        guard
+            let cityModelArray = CitysManager.shared.citysModel,
+            !cityModelArray.isEmpty
+        else {
+            return
+        }
+        
+        let listArray = ProvicesDecodeModel.getAddressModelArray(
+            dataSourceArr: cityModelArray
+        )
+        
+        let pickerView = BRTextPickerView()
+        pickerView.pickerMode = .componentCascade
+        pickerView.title = listModel.actionsome ?? ""
+        pickerView.dataSourceArr = listArray
+        pickerView.pickerStyle = createPickerStyle()
+        
+        pickerView.multiResultBlock = { models, _ in
+            guard let models = models else { return }
+            
+            let selectText = models
+                .compactMap { $0.text }
+                .joined(separator: "-")
+            
+            cell.enterFiled.text = selectText
+            listModel.executiveitious = selectText
+            listModel.provide = selectText
+        }
+        
+        pickerView.show()
+        
+    }
+    
+    private func createPickerStyle() -> BRPickerStyle {
+        let style = BRPickerStyle()
+        style.rowHeight = 45.pix()
+        style.language = "en"
+        style.doneBtnTitle = languageCode == .indonesian ? "OKE" : "OK"
+        style.cancelBtnTitle = languageCode == .indonesian ? "Batal" : "Cancel"
+        style.doneTextColor = UIColor(hexString: "#010204")
+        style.selectRowTextColor = UIColor(hexString: "#010204")
+        style.pickerTextFont = UIFont.systemFont(ofSize: 15.pix(), weight: .bold)
+        style.selectRowTextFont = UIFont.systemFont(ofSize: 15.pix(), weight: .bold)
+        return style
+    }
 }

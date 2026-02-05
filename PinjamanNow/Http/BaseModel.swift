@@ -162,28 +162,6 @@ class phalarModel: Codable {
     
 }
 
-class fragthoughiceModel: Codable {
-    var actionsome: String?
-    var emesiaire: String?
-    var bebit: String?
-    var be: String?
-    var executiveitious: String?
-    var provide: String?
-    var herator: String?
-    var cineial: [cineialModel]?
-    var sy: String?
-    var taxish: [argentficationModel]?
-    var ethnesque: String?
-    var selfopen: String?
-    var theroally: String?
-    var whateverfic: [cineialModel]?
-    var tenuess: String?
-    var pauchundredot: String?
-    var fugable: String?
-    var withify: String?
-    var westernarian: String?
-}
-
 class cineialModel: Codable {
     var sy: String?
     var provide: String?
@@ -205,4 +183,101 @@ class cineialModel: Codable {
         }
     }
     
+}
+
+class fragthoughiceModel: Codable {
+    var actionsome: String?
+    var emesiaire: String?
+    var bebit: String?
+    var be: String?
+    var executiveitious: String?
+    var provide: String?
+    var herator: String?
+    var cineial: [cineialModel]?
+    var sy: String?
+    var taxish: [argentficationModel]?
+    var ethnesque: String?
+    var selfopen: String?
+    var theroally: String?
+    var whateverfic: [cineialModel]?
+    var tenuess: String?
+    var pauchundredot: String?
+    var fugable: String?
+    var withify: String?
+    var westernarian: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case actionsome
+        case emesiaire
+        case bebit
+        case be
+        case executiveitious
+        case provide
+        case herator
+        case cineial
+        case sy
+        case taxish
+        case ethnesque
+        case selfopen
+        case theroally
+        case whateverfic
+        case tenuess
+        case pauchundredot
+        case fugable
+        case withify
+        case westernarian
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        actionsome = try? container.decode(String.self, forKey: .actionsome)
+        emesiaire = try? container.decode(String.self, forKey: .emesiaire)
+        bebit = try? container.decode(String.self, forKey: .bebit)
+        be = try? container.decode(String.self, forKey: .be)
+        executiveitious = try? container.decode(String.self, forKey: .executiveitious)
+        provide = try? container.decode(String.self, forKey: .provide)
+        
+        if let intValue = try? container.decode(Int.self, forKey: .herator) {
+            herator = String(intValue)
+        } else {
+            herator = try? container.decode(String.self, forKey: .herator)
+        }
+        
+        cineial = try? container.decode([cineialModel].self, forKey: .cineial)
+        sy = try? container.decode(String.self, forKey: .sy)
+        taxish = try? container.decode([argentficationModel].self, forKey: .taxish)
+        ethnesque = try? container.decode(String.self, forKey: .ethnesque)
+        selfopen = try? container.decode(String.self, forKey: .selfopen)
+        theroally = try? container.decode(String.self, forKey: .theroally)
+        whateverfic = try? container.decode([cineialModel].self, forKey: .whateverfic)
+        tenuess = try? container.decode(String.self, forKey: .tenuess)
+        pauchundredot = try? container.decode(String.self, forKey: .pauchundredot)
+        fugable = try? container.decode(String.self, forKey: .fugable)
+        withify = try? container.decode(String.self, forKey: .withify)
+        westernarian = try? container.decode(String.self, forKey: .westernarian)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(actionsome, forKey: .actionsome)
+        try container.encodeIfPresent(emesiaire, forKey: .emesiaire)
+        try container.encodeIfPresent(bebit, forKey: .bebit)
+        try container.encodeIfPresent(be, forKey: .be)
+        try container.encodeIfPresent(executiveitious, forKey: .executiveitious)
+        try container.encodeIfPresent(provide, forKey: .provide)
+        try container.encodeIfPresent(herator, forKey: .herator)
+        try container.encodeIfPresent(cineial, forKey: .cineial)
+        try container.encodeIfPresent(sy, forKey: .sy)
+        try container.encodeIfPresent(taxish, forKey: .taxish)
+        try container.encodeIfPresent(ethnesque, forKey: .ethnesque)
+        try container.encodeIfPresent(selfopen, forKey: .selfopen)
+        try container.encodeIfPresent(theroally, forKey: .theroally)
+        try container.encodeIfPresent(whateverfic, forKey: .whateverfic)
+        try container.encodeIfPresent(tenuess, forKey: .tenuess)
+        try container.encodeIfPresent(pauchundredot, forKey: .pauchundredot)
+        try container.encodeIfPresent(fugable, forKey: .fugable)
+        try container.encodeIfPresent(withify, forKey: .withify)
+        try container.encodeIfPresent(westernarian, forKey: .westernarian)
+    }
 }

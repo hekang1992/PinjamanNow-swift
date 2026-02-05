@@ -372,3 +372,44 @@ extension AppViewModel {
     }
     
 }
+
+// MARK: - basic_page
+extension AppViewModel {
+    
+    func walletInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/joinency",
+            parameters: parameters
+        )
+    }
+    
+    func saveWalletInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/argentfication",
+            parameters: parameters
+        )
+    }
+    
+}

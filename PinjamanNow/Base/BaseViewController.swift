@@ -85,7 +85,11 @@ extension BaseViewController {
             self.navigationController?.pushViewController(flossVc, animated: true)
             
         case "oplaceous":
-            break
+            let walletVc = WalletViewController()
+            walletVc.pageTitle = typeModel.actionsome ?? ""
+            walletVc.orderID = cardModel.canproof ?? ""
+            walletVc.productID = cardModel.personal ?? ""
+            self.navigationController?.pushViewController(walletVc, animated: true)
             
         default:
             break
