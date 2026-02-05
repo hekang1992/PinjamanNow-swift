@@ -55,7 +55,8 @@ class ProductViewController: BaseViewController {
             guard let self = self else { return }
             let meria = model.meria ?? 0
             if meria == 1 {
-                self.stepInfo(with: model, cardModel: self.model?.record?.popul)
+                self.toNextVc(typeModel: model,
+                              cardModel: self.model?.record?.popul ?? populModel())
             }else {
                 self.sureBtnClick()
             }
@@ -82,35 +83,36 @@ extension ProductViewController {
     
     @objc func sureBtnClick() {
         if let model = self.model?.record?.applyorium {
-            stepInfo(with: model, cardModel: self.model?.record?.popul)
+            toNextVc(typeModel: model,
+                     cardModel: self.model?.record?.popul ?? populModel())
         }
     }
     
-    private func stepInfo(with typeModel: astyModel, cardModel: populModel?) {
-        let type = typeModel.tv ?? ""
-        switch type {
-        case "tensia":
-            Task {
-                await self.getCardInfo(with: typeModel)
-            }
-            
-        case "recentorium":
-            let personalVc = PersonalViewController()
-            personalVc.productID = productID
-            personalVc.orderID = cardModel?.canproof ?? ""
-            personalVc.pageTitle = typeModel.actionsome ?? ""
-            self.navigationController?.pushViewController(personalVc, animated: true)
-            
-        case "womanture":
-            break
-            
-        case "oplaceous":
-            break
-            
-        default:
-            break
-        }
-    }
+//    private func stepInfo(with typeModel: astyModel, cardModel: populModel?) {
+//        let type = typeModel.tv ?? ""
+//        switch type {
+//        case "tensia":
+//            Task {
+//                await self.getCardInfo(with: typeModel)
+//            }
+//            
+//        case "recentorium":
+//            let personalVc = PersonalViewController()
+//            personalVc.productID = productID
+//            personalVc.orderID = cardModel?.canproof ?? ""
+//            personalVc.pageTitle = typeModel.actionsome ?? ""
+//            self.navigationController?.pushViewController(personalVc, animated: true)
+//            
+//        case "womanture":
+//            break
+//            
+//        case "oplaceous":
+//            break
+//            
+//        default:
+//            break
+//        }
+//    }
     
     private func detailInfo() async {
         do {

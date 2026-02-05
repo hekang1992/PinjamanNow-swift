@@ -30,6 +30,10 @@ class OvaltineViewCell: UITableViewCell {
         }
     }
     
+    var tapBlock: (() -> Void)?
+    
+    var editBlock: ((String) -> Void)?
+    
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
         bgImageView.image = UIImage(named: "listd_car_d_image")
@@ -61,6 +65,7 @@ class OvaltineViewCell: UITableViewCell {
     
     lazy var clickBtn: UIButton = {
         let clickBtn = UIButton(type: .custom)
+        clickBtn.addTarget(self, action: #selector(sureClick), for: .touchUpInside)
         clickBtn.isHidden = true
         return clickBtn
     }()
@@ -99,11 +104,28 @@ class OvaltineViewCell: UITableViewCell {
         clickBtn.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
+        setupTextFieldObserver()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+extension OvaltineViewCell {
+    
+    private func setupTextFieldObserver() {
+        enterFiled.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        let text = textField.text ?? ""
+        editBlock?(text)
+    }
+    
+    @objc func sureClick() {
+        self.tapBlock?()
     }
     
 }

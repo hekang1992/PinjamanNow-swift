@@ -50,6 +50,13 @@ extension AppViewModel {
         )
     }
     
+    func citysInfo() async throws -> BaseModel {
+        
+        return try await NetworkManager.shared.getRequest(
+            url: "/nameling/prima"
+        )
+    }
+    
     func clickProductInfo(with parameters: [String: String]) async throws -> BaseModel {
         
         await MainActor.run {
@@ -311,6 +318,55 @@ extension AppViewModel {
         
         return try await NetworkManager.shared.postRequest(
             url: "/nameling/dictaceous",
+            parameters: parameters
+        )
+    }
+    
+}
+
+// MARK: - floss_page
+extension AppViewModel {
+    
+    func flossInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/spring",
+            parameters: parameters
+        )
+    }
+    
+    func saveFlossInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/ponder",
+            parameters: parameters
+        )
+    }
+    
+    func uploadFlossInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/directoro",
             parameters: parameters
         )
     }

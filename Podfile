@@ -15,4 +15,5 @@ target 'PinjamanNow' do
   pod 'FBSDKCoreKit'
   pod 'Toast-Swift'
   pod 'MJRefresh'
+  pod 'BRPickerView'
 end

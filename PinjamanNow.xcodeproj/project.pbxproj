@@ -58,7 +58,10 @@
 		73744FC52F346CEF0082DE69 /* CardMessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FC42F346CEF0082DE69 /* CardMessageListView.swift */; };
 		73744FC72F3482160082DE69 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FC62F3482160082DE69 /* PersonalViewController.swift */; };
 		73744FC92F3491890082DE69 /* OvaltineViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FC82F3491890082DE69 /* OvaltineViewCell.swift */; };
+		73744FCB2F3499B10082DE69 /* PopAuthListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FCA2F3499B10082DE69 /* PopAuthListView.swift */; };
 		7388BF4D2F324277005790B7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7388BF4C2F324277005790B7 /* ProfileView.swift */; };
+		73A128252F34D8DF00862CF4 /* ProvicesModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A128242F34D8DF00862CF4 /* ProvicesModelManager.swift */; };
+		73A128272F34DC5A00862CF4 /* FlossViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A128262F34DC5A00862CF4 /* FlossViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,7 +121,10 @@
 		73744FC42F346CEF0082DE69 /* CardMessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMessageListView.swift; sourceTree = "<group>"; };
 		73744FC62F3482160082DE69 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		73744FC82F3491890082DE69 /* OvaltineViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvaltineViewCell.swift; sourceTree = "<group>"; };
+		73744FCA2F3499B10082DE69 /* PopAuthListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAuthListView.swift; sourceTree = "<group>"; };
 		7388BF4C2F324277005790B7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		73A128242F34D8DF00862CF4 /* ProvicesModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvicesModelManager.swift; sourceTree = "<group>"; };
+		73A128262F34DC5A00862CF4 /* FlossViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlossViewController.swift; sourceTree = "<group>"; };
 		7E0B03D3F966E03BEBE80A87 /* Pods-PinjamanNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinjamanNow.debug.xcconfig"; path = "Target Support Files/Pods-PinjamanNow/Pods-PinjamanNow.debug.xcconfig"; sourceTree = "<group>"; };
 		85F11FD525DD0D99194062AB /* Pods-PinjamanNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinjamanNow.release.xcconfig"; path = "Target Support Files/Pods-PinjamanNow/Pods-PinjamanNow.release.xcconfig"; sourceTree = "<group>"; };
 		C7264E18894459A09CDC5067 /* Pods_PinjamanNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinjamanNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -309,6 +315,7 @@
 				73744FBA2F343EA10082DE69 /* FacialViewController.swift */,
 				73744FBC2F343EC10082DE69 /* CompleteViewController.swift */,
 				73744FC62F3482160082DE69 /* PersonalViewController.swift */,
+				73A128262F34DC5A00862CF4 /* FlossViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -316,12 +323,14 @@
 		73744FB52F342F9C0082DE69 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				73A128242F34D8DF00862CF4 /* ProvicesModelManager.swift */,
 				73744FB22F342B490082DE69 /* ProductView.swift */,
 				73744FB62F342FB10082DE69 /* ProductViewCell.swift */,
 				73744FBE2F3441610082DE69 /* CardListView.swift */,
 				73744FC22F3466940082DE69 /* PopCardMessageView.swift */,
 				73744FC42F346CEF0082DE69 /* CardMessageListView.swift */,
 				73744FC82F3491890082DE69 /* OvaltineViewCell.swift */,
+				73744FCA2F3499B10082DE69 /* PopAuthListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -473,7 +482,9 @@
 				734432702F31F9F2006A8F1E /* LoginManager.swift in Sources */,
 				7344C34C2F31CF81006DEE99 /* HomeHeadView.swift in Sources */,
 				7344C34E2F31DA64006DEE99 /* BaseModel.swift in Sources */,
+				73744FCB2F3499B10082DE69 /* PopAuthListView.swift in Sources */,
 				734D1D642F32E4B7003F916A /* H5ViewController.swift in Sources */,
+				73A128272F34DC5A00862CF4 /* FlossViewController.swift in Sources */,
 				7344326E2F31F679006A8F1E /* IDFVKeychainManager.swift in Sources */,
 				7344C32B2F31C2FC006DEE99 /* LoginViewController.swift in Sources */,
 				734D1D6C2F32F613003F916A /* AppExitView.swift in Sources */,
@@ -492,6 +503,7 @@
 				7344C3502F31DB9F006DEE99 /* NetworkManager.swift in Sources */,
 				73744FB72F342FB10082DE69 /* ProductViewCell.swift in Sources */,
 				7344326A2F31F37D006A8F1E /* AppViewModel.swift in Sources */,
+				73A128252F34D8DF00862CF4 /* ProvicesModelManager.swift in Sources */,
 				73744FC52F346CEF0082DE69 /* CardMessageListView.swift in Sources */,
 				734D1D662F32E50C003F916A /* H5HeadView.swift in Sources */,
 				73744FB92F343E070082DE69 /* CardViewController.swift in Sources */,

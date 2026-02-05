@@ -45,6 +45,11 @@ class recordModel: Codable {
     var killature: String?
     var pylacity: String?
     var fragthoughice: [fragthoughiceModel]?
+    var libr: librModel?
+}
+
+class librModel: Codable {
+    var argentfication: [fragthoughiceModel]?
 }
 
 class sorbModel: Codable {
@@ -75,6 +80,7 @@ class populModel: Codable {
     var loquiwhenlet: String?
     var behindern: Int?
     var fensacious: String?
+    var personal: String?
 }
 
 class entersomeModel: Codable {
@@ -162,6 +168,17 @@ class fragthoughiceModel: Codable {
     var provide: String?
     var herator: String?
     var cineial: [cineialModel]?
+    var sy: String?
+    var taxish: [argentficationModel]?
+    var ethnesque: String?
+    var selfopen: String?
+    var theroally: String?
+    var whateverfic: [cineialModel]?
+    var tenuess: String?
+    var pauchundredot: String?
+    var fugable: String?
+    var withify: String?
+    var westernarian: String?
 }
 
 class cineialModel: Codable {

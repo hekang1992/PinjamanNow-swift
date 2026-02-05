@@ -74,10 +74,15 @@ extension BaseViewController {
             let personalVc = PersonalViewController()
             personalVc.pageTitle = typeModel.actionsome ?? ""
             personalVc.orderID = cardModel.canproof ?? ""
+            personalVc.productID = cardModel.personal ?? ""
             self.navigationController?.pushViewController(personalVc, animated: true)
             
         case "womanture":
-            break
+            let flossVc = FlossViewController()
+            flossVc.pageTitle = typeModel.actionsome ?? ""
+            flossVc.orderID = cardModel.canproof ?? ""
+            flossVc.productID = cardModel.personal ?? ""
+            self.navigationController?.pushViewController(flossVc, animated: true)
             
         case "oplaceous":
             break

@@ -48,6 +48,9 @@ class HomeViewController: BaseViewController {
             }
         })
         
+        Task {
+            await self.allCitysInfo()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,3 +123,20 @@ extension HomeViewController {
     }
     
 }
+
+extension HomeViewController {
+    
+    private func allCitysInfo() async {
+        do {
+            let model = try await viewModel.citysInfo()
+            let bebit = model.bebit ?? ""
+            if bebit == "0" || bebit == "00" {
+                CitysManager.shared.citysModel = model.record?.argentfication ?? []
+            }
+        } catch {
+            
+        }
+    }
+    
+}
+

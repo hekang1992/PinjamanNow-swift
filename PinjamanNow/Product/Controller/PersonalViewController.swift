@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import TYAlertController
+import BRPickerView
 
 class PersonalViewController: BaseViewController {
     
@@ -159,12 +161,40 @@ extension PersonalViewController {
         }
     }
     
+    private func saveInfo(with paras: [String: String]) async {
+        do {
+            let model = try await viewModel.saveBasicInfo(with: paras)
+            let bebit = model.bebit ?? ""
+            if bebit == "0" || bebit == "00" {
+                Task {
+                    await self.productMessageInfo(with: productID,
+                                                  orderID: orderID,
+                                                  viewModel: viewModel)
+                }
+            }else {
+                ToastManager.showMessage(model.calcfootment ?? "")
+            }
+        } catch {
+            
+        }
+    }
+    
     @objc func sureBtnClick() {
+        var paras = ["institutionit": productID]
+        for model in modelArray {
+            let key = model.bebit ?? ""
+            let value = model.provide ?? ""
+            paras[key] = value
+        }
+        Task {
+            await self.saveInfo(with: paras)
+        }
         
     }
 }
 
 extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.modelArray.count
     }
@@ -172,9 +202,111 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OvaltineViewCell", for: indexPath) as! OvaltineViewCell
         let model = self.modelArray[indexPath.row]
+        let type = model.be ?? ""
+        if type == "myzchargeship" {
+            cell.editBlock = { title in
+                model.executiveitious = title
+                model.provide = title
+            }
+        }else if type == "current" {
+            cell.tapBlock = { [weak self] in
+                guard let self = self else { return }
+                self.view.endEditing(true)
+                self.tapCellWithType(cell: cell, listModel: model)
+            }
+        }else if type == "troph" {
+            cell.tapBlock = { [weak self] in
+                guard let self = self else { return }
+                self.view.endEditing(true)
+                self.tapCellWithPocType(cell: cell, listModel: model)
+            }
+        }else {
+            
+        }
         cell.model = model
         return cell
     }
     
+}
+
+extension PersonalViewController {
     
+    private func tapCellWithType(cell: OvaltineViewCell, listModel: fragthoughiceModel) {
+        let popView = PopAuthListView(frame: self.view.bounds)
+        popView.nameLabel.text = listModel.actionsome ?? ""
+        let modelArray = listModel.cineial ?? []
+        
+        let text = cell.enterFiled.text ?? ""
+        for (index, model) in modelArray.enumerated() {
+            let targetText = model.sy ?? ""
+            if text == targetText {
+                popView.selectedIndex = index
+            }
+        }
+        
+        popView.modelArray = modelArray
+        let alertVc = TYAlertController(alert: popView, preferredStyle: .actionSheet)
+        
+        popView.cancelBlock = { [weak self] in
+            self?.dismiss(animated: true)
+        }
+        
+        popView.sureBlock = { [weak self] model in
+            guard let self = self else { return }
+            self.dismiss(animated: true) {
+                listModel.executiveitious = model.sy ?? ""
+                listModel.provide = model.provide ?? ""
+                cell.enterFiled.text = model.sy ?? ""
+            }
+        }
+        
+        self.present(alertVc!, animated: true)
+    }
+    
+    private func tapCellWithPocType(cell: OvaltineViewCell, listModel: fragthoughiceModel) {
+        guard
+            let cityModelArray = CitysManager.shared.citysModel,
+            !cityModelArray.isEmpty
+        else {
+            return
+        }
+        
+        let listArray = ProvicesDecodeModel.getAddressModelArray(
+            dataSourceArr: cityModelArray
+        )
+        
+        let pickerView = BRTextPickerView()
+        pickerView.pickerMode = .componentCascade
+        pickerView.title = listModel.actionsome ?? ""
+        pickerView.dataSourceArr = listArray
+        pickerView.pickerStyle = createPickerStyle()
+        
+        pickerView.multiResultBlock = { models, _ in
+            guard let models = models else { return }
+            
+            let selectText = models
+                .compactMap { $0.text }
+                .joined(separator: "-")
+            
+            cell.enterFiled.text = selectText
+            listModel.executiveitious = selectText
+            listModel.provide = selectText
+        }
+        
+        pickerView.show()
+        
+    }
+    
+    private func createPickerStyle() -> BRPickerStyle {
+        let style = BRPickerStyle()
+        style.rowHeight = 45.pix()
+        style.language = "en"
+        style.doneBtnTitle = languageCode == .indonesian ? "OKE" : "OK"
+        style.cancelBtnTitle = languageCode == .indonesian ? "Batal" : "Cancel"
+        style.doneTextColor = UIColor(hexString: "#010204")
+        style.selectRowTextColor = UIColor(hexString: "#010204")
+        style.pickerTextFont = UIFont.systemFont(ofSize: 15.pix(), weight: .bold)
+        style.selectRowTextFont = UIFont.systemFont(ofSize: 15.pix(), weight: .bold)
+        return style
+    }
 }
