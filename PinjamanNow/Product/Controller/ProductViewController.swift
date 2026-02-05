@@ -150,7 +150,7 @@ extension ProductViewController {
                     return
                 }
                 
-                if cardImageUrl.isEmpty {
+                if faceImageUrl.isEmpty {
                     goFacePage(with: listModel)
                     return
                 }
@@ -165,6 +165,7 @@ extension ProductViewController {
     private func goCardPage(with listModel: astyModel?) {
         let cardVc = CardViewController()
         cardVc.productID = productID
+        cardVc.orderID = self.model?.record?.popul?.canproof ?? ""
         cardVc.pageTitle = listModel?.actionsome ?? ""
         self.navigationController?.pushViewController(cardVc, animated: true)
     }
@@ -172,6 +173,7 @@ extension ProductViewController {
     private func goFacePage(with listModel: astyModel?) {
         let faceVc = FacialViewController()
         faceVc.productID = productID
+        faceVc.orderID = self.model?.record?.popul?.canproof ?? ""
         faceVc.pageTitle = listModel?.actionsome ?? ""
         self.navigationController?.pushViewController(faceVc, animated: true)
     }

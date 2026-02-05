@@ -105,14 +105,13 @@ class NetworkManager {
     
     func uploadImage<T: Decodable>(
         url: String,
-        image: UIImage,
-        imageParameterName: String = "image",
-        imageName: String = "upload.jpg",
+        imageData: Data,
+        imageParameterName: String = "kilowhyial",
+        imageName: String = "kilowhyial.jpg",
         parameters: [String: String]? = nil,
         headers: HTTPHeaders? = nil
     ) async throws -> T {
-        guard let url = createRequestUrl(baseUrl: base_url + url),
-              let imageData = image.jpegData(compressionQuality: 0.3) else {
+        guard let url = createRequestUrl(baseUrl: base_url + url) else {
             throw APIError.uploadError
         }
         
@@ -143,9 +142,6 @@ class NetworkManager {
                 method: .post,
                 headers: headers
             )
-            .uploadProgress { progress in
-                print("上传进度: \(progress.fractionCompleted)")
-            }
             .validate()
             .responseDecodable(of: T.self) { response in
                 switch response.result {

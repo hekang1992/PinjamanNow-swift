@@ -5,6 +5,8 @@
 //  Created by hekang on 2026/2/3.
 //
 
+import Foundation
+
 // MARK: - init_page
 class AppViewModel {
     
@@ -226,6 +228,43 @@ extension AppViewModel {
         
         return try await NetworkManager.shared.getRequest(
             url: "/nameling/music",
+            parameters: parameters
+        )
+    }
+    
+    func saveCardInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/meria",
+            parameters: parameters
+        )
+    }
+    
+    func uploadInfo(with parameters: [String: String], imageData: Data) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.uploadImage(
+            url: "/nameling/airdom",
+            imageData: imageData,
             parameters: parameters
         )
     }

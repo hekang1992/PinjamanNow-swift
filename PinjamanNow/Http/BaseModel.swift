@@ -41,6 +41,9 @@ class recordModel: Codable {
     var applyorium: astyModel?
     var sorb: sorbModel?
     var computer: sorbModel?
+    var sy: String?
+    var killature: String?
+    var pylacity: String?
 }
 
 class sorbModel: Codable {
