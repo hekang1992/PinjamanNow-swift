@@ -19,6 +19,8 @@ class OvaltineViewCell: UITableViewCell {
             clickBtn.isHidden = type == "myzchargeship" ? true : false
             arrowImageView.isHidden = type == "myzchargeship" ? true : false
             
+            enterFiled.isEnabled = type == "myzchargeship" ? true : false
+            
             let herator = model.herator ?? ""
             enterFiled.keyboardType = herator == "1" ? .numberPad : .default
             
