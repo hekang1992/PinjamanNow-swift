@@ -57,6 +57,7 @@
 		73744FC32F3466940082DE69 /* PopCardMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FC22F3466940082DE69 /* PopCardMessageView.swift */; };
 		73744FC52F346CEF0082DE69 /* CardMessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FC42F346CEF0082DE69 /* CardMessageListView.swift */; };
 		73744FC72F3482160082DE69 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FC62F3482160082DE69 /* PersonalViewController.swift */; };
+		73744FC92F3491890082DE69 /* OvaltineViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FC82F3491890082DE69 /* OvaltineViewCell.swift */; };
 		7388BF4D2F324277005790B7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7388BF4C2F324277005790B7 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +117,7 @@
 		73744FC22F3466940082DE69 /* PopCardMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCardMessageView.swift; sourceTree = "<group>"; };
 		73744FC42F346CEF0082DE69 /* CardMessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMessageListView.swift; sourceTree = "<group>"; };
 		73744FC62F3482160082DE69 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		73744FC82F3491890082DE69 /* OvaltineViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvaltineViewCell.swift; sourceTree = "<group>"; };
 		7388BF4C2F324277005790B7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		7E0B03D3F966E03BEBE80A87 /* Pods-PinjamanNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinjamanNow.debug.xcconfig"; path = "Target Support Files/Pods-PinjamanNow/Pods-PinjamanNow.debug.xcconfig"; sourceTree = "<group>"; };
 		85F11FD525DD0D99194062AB /* Pods-PinjamanNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinjamanNow.release.xcconfig"; path = "Target Support Files/Pods-PinjamanNow/Pods-PinjamanNow.release.xcconfig"; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				73744FBE2F3441610082DE69 /* CardListView.swift */,
 				73744FC22F3466940082DE69 /* PopCardMessageView.swift */,
 				73744FC42F346CEF0082DE69 /* CardMessageListView.swift */,
+				73744FC82F3491890082DE69 /* OvaltineViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				7344326C2F31F4AC006A8F1E /* CommonParaManager.swift in Sources */,
 				7344C34A2F31CDBC006DEE99 /* HomeView.swift in Sources */,
 				7344C3292F31C2F4006DEE99 /* BaseViewController.swift in Sources */,
+				73744FC92F3491890082DE69 /* OvaltineViewCell.swift in Sources */,
 				7344C3542F31DBF3006DEE99 /* LoginView.swift in Sources */,
 				7344C32D2F31C302006DEE99 /* HomeViewController.swift in Sources */,
 				734D1D6E2F32FB20003F916A /* AppCancelView.swift in Sources */,

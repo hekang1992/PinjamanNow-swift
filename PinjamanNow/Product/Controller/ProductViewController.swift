@@ -96,6 +96,7 @@ extension ProductViewController {
             
         case "recentorium":
             let personalVc = PersonalViewController()
+            personalVc.productID = productID
             personalVc.orderID = cardModel?.canproof ?? ""
             personalVc.pageTitle = typeModel.actionsome ?? ""
             self.navigationController?.pushViewController(personalVc, animated: true)

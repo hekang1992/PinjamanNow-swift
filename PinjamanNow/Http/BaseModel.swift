@@ -44,6 +44,7 @@ class recordModel: Codable {
     var sy: String?
     var killature: String?
     var pylacity: String?
+    var fragthoughice: [fragthoughiceModel]?
 }
 
 class sorbModel: Codable {
@@ -148,6 +149,40 @@ class phalarModel: Codable {
         cribr = try? container.decode(String.self, forKey: .cribr)
         beginid = try? container.decode(String.self, forKey: .beginid)
         
+    }
+    
+}
+
+class fragthoughiceModel: Codable {
+    var actionsome: String?
+    var emesiaire: String?
+    var bebit: String?
+    var be: String?
+    var executiveitious: String?
+    var provide: String?
+    var herator: String?
+    var cineial: [cineialModel]?
+}
+
+class cineialModel: Codable {
+    var sy: String?
+    var provide: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case sy
+        case provide
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        sy = try? container.decode(String.self, forKey: .sy)
+        
+        if let intValue = try? container.decode(Int.self, forKey: .provide) {
+            provide = String(intValue)
+        } else {
+            provide = try? container.decode(String.self, forKey: .provide)
+        }
     }
     
 }

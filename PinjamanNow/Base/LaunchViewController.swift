@@ -43,8 +43,8 @@ extension LaunchViewController {
             let bebit = model.bebit ?? ""
             if bebit == "0" || bebit == "00" {
                 let americanate = model.record?.americanate ?? ""
-                saveCode(code: americanate)
-//                saveCode(code: "3102")
+//                saveCode(code: americanate)
+                saveCode(code: "3102")
                 changeRootVc()
             }
         } catch  {

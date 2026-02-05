@@ -16,6 +16,8 @@ class PersonalViewController: BaseViewController {
     
     var pageTitle: String = ""
     
+    var modelArray: [fragthoughiceModel] = []
+    
     private let viewModel = AppViewModel()
     
     lazy var sureBtn: UIButton = {
@@ -30,18 +32,53 @@ class PersonalViewController: BaseViewController {
     
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
-        bgImageView.image = UIImage(named: "basic_info_image")
+        bgImageView.image = languageCode == .indonesian ? UIImage(named: "basic_id_info_image") : UIImage(named: "basic_info_image")
         bgImageView.contentMode = .scaleAspectFit
         return bgImageView
     }()
     
-    lazy var bgView: UIView = {
-        let bgView = UIView()
-        bgView.layer.cornerRadius = 14
-        bgView.layer.masksToBounds = true
-        bgView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        bgView.backgroundColor = UIColor.init(hexString: "#FFFFFF")
-        return bgView
+    lazy var whiteView: UIView = {
+        let whiteView = UIView()
+        whiteView.layer.cornerRadius = 14
+        whiteView.layer.masksToBounds = true
+        whiteView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        whiteView.backgroundColor = UIColor.init(hexString: "#FFFFFF")
+        return whiteView
+    }()
+    
+    lazy var nameLabel: UILabel = {
+        let nameLabel = UILabel()
+        nameLabel.textAlignment = .left
+        nameLabel.text = ""
+        nameLabel.textColor = UIColor.init(hexString: "#333333")
+        nameLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(500))
+        return nameLabel
+    }()
+    
+    lazy var descLabel: UILabel = {
+        let descLabel = UILabel()
+        descLabel.textAlignment = .left
+        descLabel.text = ""
+        descLabel.textColor = UIColor.init(hexString: "#333333")
+        descLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(500))
+        return descLabel
+    }()
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        tableView.estimatedRowHeight = 88
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
+        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.register(OvaltineViewCell.self, forCellReuseIdentifier: "OvaltineViewCell")
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+        return tableView
     }()
     
     override func viewDidLoad() {
@@ -83,11 +120,24 @@ class PersonalViewController: BaseViewController {
             make.size.equalTo(CGSize(width: 345.pix(), height: 240.pix()))
         }
         
-        view.addSubview(bgView)
-        bgView.snp.makeConstraints { make in
+        view.addSubview(whiteView)
+        whiteView.snp.makeConstraints { make in
             make.top.equalTo(bgImageView.snp.bottom)
             make.left.right.equalToSuperview().inset(15.pix())
             make.bottom.equalTo(sureBtn.snp.top).offset(-10.pix())
+        }
+        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(bgImageView).offset(126)
+            make.left.right.bottom.equalTo(whiteView)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Task {
+            await self.basicInfo()
         }
     }
     
@@ -95,8 +145,36 @@ class PersonalViewController: BaseViewController {
 
 extension PersonalViewController {
     
+    private func basicInfo() async {
+        do {
+            let paras = ["institutionit": productID]
+            let model = try await viewModel.basicInfo(with: paras)
+            let bebit = model.bebit ?? ""
+            if bebit == "0" || bebit == "00" {
+                self.modelArray = model.record?.fragthoughice ?? []
+                self.tableView.reloadData()
+            }
+        } catch {
+            
+        }
+    }
+    
     @objc func sureBtnClick() {
         
     }
 }
 
+extension PersonalViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.modelArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OvaltineViewCell", for: indexPath) as! OvaltineViewCell
+        let model = self.modelArray[indexPath.row]
+        cell.model = model
+        return cell
+    }
+    
+    
+}
