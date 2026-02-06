@@ -21,11 +21,22 @@ class HomeViewController: BaseViewController {
         return homeView
     }()
     
+    lazy var duoView: OvaDuoView = {
+        let duoView = OvaDuoView(frame: .zero)
+        duoView.isHidden = true
+        return duoView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addSubview(homeView)
         homeView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        view.addSubview(duoView)
+        duoView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
@@ -42,6 +53,13 @@ class HomeViewController: BaseViewController {
         }
         
         homeView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+            guard let self = self else { return }
+            Task {
+                await self.getHomeInfo()
+            }
+        })
+        
+        duoView.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             guard let self = self else { return }
             Task {
                 await self.getHomeInfo()
@@ -77,19 +95,24 @@ extension HomeViewController {
                 
                 if hasSkept {
                     self.homeView.isHidden = true
+                    self.duoView.isHidden = false
+                    self.duoView.modelArray = productArray
                 } else {
                     let listModel = productArray.first(where: { $0.provide == "habitot" })
                     self.homeView.isHidden = false
+                    self.duoView.isHidden = true
                     self.homeView.model = listModel?.phalar?.first
                 }
                 
             }
             await MainActor.run {
                 self.homeView.scrollView.mj_header?.endRefreshing()
+                self.duoView.tableView.mj_header?.endRefreshing()
             }
         } catch {
             await MainActor.run {
                 self.homeView.scrollView.mj_header?.endRefreshing()
+                self.duoView.tableView.mj_header?.endRefreshing()
             }
         }
     }

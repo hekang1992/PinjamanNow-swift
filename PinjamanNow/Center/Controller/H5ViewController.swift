@@ -145,10 +145,16 @@ extension H5ViewController: WKUIDelegate {
     
     func createRequestUrl(baseUrl: String) -> URL? {
         let params = CommonParaManager.toJson()
-        
+       
         guard var components = URLComponents(string: baseUrl) else { return nil }
         
-        components.queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value) }
+        var queryDict = [String: String]()
+        
+        components.queryItems?.forEach { queryDict[$0.name] = $0.value }
+        
+        params.forEach { queryDict[$0.key] = $0.value }
+        
+        components.queryItems = queryDict.map { URLQueryItem(name: $0.key, value: $0.value) }
         
         return components.url
     }

@@ -65,6 +65,10 @@
 		73A128292F34E13100862CF4 /* FlossViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A128282F34E13100862CF4 /* FlossViewCell.swift */; };
 		73A1282B2F34E77000862CF4 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A1282A2F34E77000862CF4 /* ContactManager.swift */; };
 		73A1282D2F34ED5600862CF4 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A1282C2F34ED5600862CF4 /* WalletViewController.swift */; };
+		73AAD0DE2F3586E30096273C /* OvaDuoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AAD0DD2F3586E30096273C /* OvaDuoView.swift */; };
+		73AAD0E02F3589890096273C /* OvaDuoCardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AAD0DF2F3589880096273C /* OvaDuoCardViewCell.swift */; };
+		73AAD0E22F3589940096273C /* OvaDuoBannerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AAD0E12F3589940096273C /* OvaDuoBannerViewCell.swift */; };
+		73AAD0E42F35899F0096273C /* OvaDuoProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AAD0E32F35899F0096273C /* OvaDuoProductViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +135,10 @@
 		73A128282F34E13100862CF4 /* FlossViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlossViewCell.swift; sourceTree = "<group>"; };
 		73A1282A2F34E77000862CF4 /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
 		73A1282C2F34ED5600862CF4 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		73AAD0DD2F3586E30096273C /* OvaDuoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvaDuoView.swift; sourceTree = "<group>"; };
+		73AAD0DF2F3589880096273C /* OvaDuoCardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvaDuoCardViewCell.swift; sourceTree = "<group>"; };
+		73AAD0E12F3589940096273C /* OvaDuoBannerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvaDuoBannerViewCell.swift; sourceTree = "<group>"; };
+		73AAD0E32F35899F0096273C /* OvaDuoProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OvaDuoProductViewCell.swift; sourceTree = "<group>"; };
 		7E0B03D3F966E03BEBE80A87 /* Pods-PinjamanNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinjamanNow.debug.xcconfig"; path = "Target Support Files/Pods-PinjamanNow/Pods-PinjamanNow.debug.xcconfig"; sourceTree = "<group>"; };
 		85F11FD525DD0D99194062AB /* Pods-PinjamanNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinjamanNow.release.xcconfig"; path = "Target Support Files/Pods-PinjamanNow/Pods-PinjamanNow.release.xcconfig"; sourceTree = "<group>"; };
 		C7264E18894459A09CDC5067 /* Pods_PinjamanNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinjamanNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +204,10 @@
 				7344C34B2F31CF81006DEE99 /* HomeHeadView.swift */,
 				734D1D792F33995D003F916A /* HomeApplyView.swift */,
 				734D1D7B2F339F41003F916A /* HomeDescBannerView.swift */,
+				73AAD0DD2F3586E30096273C /* OvaDuoView.swift */,
+				73AAD0DF2F3589880096273C /* OvaDuoCardViewCell.swift */,
+				73AAD0E12F3589940096273C /* OvaDuoBannerViewCell.swift */,
+				73AAD0E32F35899F0096273C /* OvaDuoProductViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -486,6 +498,8 @@
 				73744FB32F342B490082DE69 /* ProductView.swift in Sources */,
 				734D1D7C2F339F41003F916A /* HomeDescBannerView.swift in Sources */,
 				7344C3352F31C38D006DEE99 /* BaseNavigationController.swift in Sources */,
+				73AAD0E02F3589890096273C /* OvaDuoCardViewCell.swift in Sources */,
+				73AAD0E22F3589940096273C /* OvaDuoBannerViewCell.swift in Sources */,
 				734D1D722F33153D003F916A /* OrderView.swift in Sources */,
 				734432682F31F012006A8F1E /* LaunchViewController.swift in Sources */,
 				734432702F31F9F2006A8F1E /* LoginManager.swift in Sources */,
@@ -503,6 +517,7 @@
 				73744FBD2F343EC10082DE69 /* CompleteViewController.swift in Sources */,
 				73A1282B2F34E77000862CF4 /* ContactManager.swift in Sources */,
 				7344C3442F31C560006DEE99 /* MainTabBarController.swift in Sources */,
+				73AAD0E42F35899F0096273C /* OvaDuoProductViewCell.swift in Sources */,
 				734D1D742F3325BD003F916A /* OrderViewCell.swift in Sources */,
 				7344C3422F31C418006DEE99 /* Color+Extension.swift in Sources */,
 				73744FC12F3449DB0082DE69 /* CameraPosition.swift in Sources */,
@@ -533,6 +548,7 @@
 				73744FC92F3491890082DE69 /* OvaltineViewCell.swift in Sources */,
 				7344C3542F31DBF3006DEE99 /* LoginView.swift in Sources */,
 				7344C32D2F31C302006DEE99 /* HomeViewController.swift in Sources */,
+				73AAD0DE2F3586E30096273C /* OvaDuoView.swift in Sources */,
 				734D1D6E2F32FB20003F916A /* AppCancelView.swift in Sources */,
 				73744FBF2F3441610082DE69 /* CardListView.swift in Sources */,
 				734D1D7A2F33995D003F916A /* HomeApplyView.swift in Sources */,
