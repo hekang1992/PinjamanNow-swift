@@ -50,6 +50,10 @@ class CenterViewController: BaseViewController {
                 break
             }
         }
+        
+        centerView.tapClickBlock = { [weak self] type in
+            guard let self = self else { return }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

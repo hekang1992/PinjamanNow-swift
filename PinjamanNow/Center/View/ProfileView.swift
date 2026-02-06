@@ -16,6 +16,8 @@ class ProfileView: UIView {
     
     var cellBlock: ((entersomeModel) -> Void)?
     
+    var tapClickBlock: ((String) -> Void)?
+    
     lazy var whiteView: UIView = {
         let whiteView = UIView()
         whiteView.backgroundColor = .white
@@ -58,7 +60,36 @@ class ProfileView: UIView {
         let odImageView = UIImageView()
         odImageView.image = languageCode == .indonesian ? UIImage(named: "mb_bg_ynimage") : UIImage(named: "mb_bg_edc")
         odImageView.contentMode = .scaleAspectFit
+        odImageView.isUserInteractionEnabled = true
         return odImageView
+    }()
+    
+    lazy var oneBtn: UIButton = {
+        let oneBtn = UIButton(type: .custom)
+        oneBtn.backgroundColor = .red
+        oneBtn.addTarget(self, action: #selector(oneBtnClick), for: .touchUpInside)
+        return oneBtn
+    }()
+    
+    lazy var twoBtn: UIButton = {
+        let twoBtn = UIButton(type: .custom)
+        twoBtn.backgroundColor = .black
+        twoBtn.addTarget(self, action: #selector(twoBtnClick), for: .touchUpInside)
+        return twoBtn
+    }()
+    
+    lazy var threeBtn: UIButton = {
+        let threeBtn = UIButton(type: .custom)
+        threeBtn.backgroundColor = .blue
+        threeBtn.addTarget(self, action: #selector(threeBtnClick), for: .touchUpInside)
+        return threeBtn
+    }()
+    
+    lazy var fourBtn: UIButton = {
+        let fourBtn = UIButton(type: .custom)
+        fourBtn.backgroundColor = .systemPink
+        fourBtn.addTarget(self, action: #selector(fourBtnClick), for: .touchUpInside)
+        return fourBtn
     }()
     
     lazy var tableView: UITableView = {
@@ -121,6 +152,30 @@ class ProfileView: UIView {
             make.left.right.equalToSuperview()
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-70)
         }
+        odImageView.addSubview(oneBtn)
+        odImageView.addSubview(twoBtn)
+        odImageView.addSubview(threeBtn)
+        odImageView.addSubview(fourBtn)
+        
+        oneBtn.snp.makeConstraints { make in
+            make.right.left.top.equalToSuperview()
+            make.height.equalTo(40.pix())
+        }
+        twoBtn.snp.makeConstraints { make in
+            make.top.equalTo(oneBtn.snp.bottom)
+            make.left.equalToSuperview()
+            make.size.equalTo(CGSize(width: 106.pix(), height: 99.pix()))
+        }
+        threeBtn.snp.makeConstraints { make in
+            make.top.equalTo(oneBtn.snp.bottom)
+            make.left.equalTo(twoBtn.snp.right).offset(9.pix())
+            make.size.equalTo(CGSize(width: 106.pix(), height: 99.pix()))
+        }
+        fourBtn.snp.makeConstraints { make in
+            make.top.equalTo(oneBtn.snp.bottom)
+            make.right.equalToSuperview()
+            make.size.equalTo(CGSize(width: 106.pix(), height: 99.pix()))
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -179,6 +234,26 @@ extension ProfileView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = listArray[indexPath.row]
         self.cellBlock?(model)
+    }
+    
+}
+
+extension ProfileView {
+    
+    @objc func oneBtnClick() {
+        self.tapClickBlock?("1")
+    }
+    
+    @objc func twoBtnClick() {
+        self.tapClickBlock?("2")
+    }
+    
+    @objc func threeBtnClick() {
+        self.tapClickBlock?("3")
+    }
+    
+    @objc func fourBtnClick() {
+        self.tapClickBlock?("4")
     }
     
 }
