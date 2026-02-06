@@ -102,7 +102,7 @@ extension SystemCamera: UIImagePickerControllerDelegate, UINavigationControllerD
         
         guard let image = info[.originalImage] as? UIImage else { return }
         
-        if let data = compressImage(image, maxKB: 800) {
+        if let data = compressImage(image, maxKB: 500) {
             completion(data)
         }
     }

