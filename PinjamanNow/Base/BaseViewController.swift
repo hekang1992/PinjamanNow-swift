@@ -56,14 +56,15 @@ extension BaseViewController {
             let bebit = model.bebit ?? ""
             if bebit == "0" || bebit == "00" {
                 self.toNextVc(typeModel: model.record?.applyorium ?? astyModel(),
-                              cardModel: model.record?.popul ?? populModel())
+                              cardModel: model.record?.popul ?? populModel(),
+                              viewModel: viewModel)
             }
         } catch {
             
         }
     }
     
-    func toNextVc(typeModel: astyModel, cardModel: populModel) {
+    func toNextVc(typeModel: astyModel, cardModel: populModel, viewModel: AppViewModel) {
         let type = typeModel.tv ?? ""
         
         switch type {
@@ -91,8 +92,30 @@ extension BaseViewController {
             walletVc.productID = cardModel.personal ?? ""
             self.navigationController?.pushViewController(walletVc, animated: true)
             
+        case "":
+            Task {
+                await self.applyOrderInfo(with: cardModel, viewModel: viewModel)
+            }
+            
         default:
             break
+        }
+    }
+    
+    private func applyOrderInfo(with model: populModel, viewModel: AppViewModel) async {
+        do {
+            let paras = ["orderible": model.canproof ?? "",
+                         "opportunityacle": model.opportunityacle ?? "",
+                         "loquiwhenlet": model.loquiwhenlet ?? "",
+                         "behindern": String(model.behindern ?? 0),
+                         "femoraceous": LoginManager.shared.getPhone()]
+            let model = try await viewModel.applyOrderInfo(with: paras)
+            let bebit = model.bebit ?? ""
+            if bebit == "0" || bebit == "00" {
+                
+            }
+        } catch  {
+            
         }
     }
     

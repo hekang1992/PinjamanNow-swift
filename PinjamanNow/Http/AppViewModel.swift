@@ -221,6 +221,24 @@ extension AppViewModel {
         )
     }
     
+    func applyOrderInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        await MainActor.run {
+            LoadingManager.shared.show()
+        }
+        
+        defer {
+            Task { @MainActor in
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/provide",
+            parameters: parameters
+        )
+    }
+    
 }
 
 // MARK: - card_image_page

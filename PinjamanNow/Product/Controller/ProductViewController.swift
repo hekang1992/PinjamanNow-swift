@@ -56,7 +56,7 @@ class ProductViewController: BaseViewController {
             let meria = model.meria ?? 0
             if meria == 1 {
                 self.toNextVc(typeModel: model,
-                              cardModel: self.model?.record?.popul ?? populModel())
+                              cardModel: self.model?.record?.popul ?? populModel(), viewModel: viewModel)
             }else {
                 self.sureBtnClick()
             }
@@ -82,10 +82,9 @@ class ProductViewController: BaseViewController {
 extension ProductViewController {
     
     @objc func sureBtnClick() {
-        if let model = self.model?.record?.applyorium {
-            toNextVc(typeModel: model,
-                     cardModel: self.model?.record?.popul ?? populModel())
-        }
+        toNextVc(typeModel: self.model?.record?.applyorium ?? astyModel(),
+                 cardModel: self.model?.record?.popul ?? populModel(),
+                 viewModel: viewModel)
     }
     
 //    private func stepInfo(with typeModel: astyModel, cardModel: populModel?) {
