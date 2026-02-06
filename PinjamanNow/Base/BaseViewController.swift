@@ -113,6 +113,19 @@ extension BaseViewController {
             let bebit = model.bebit ?? ""
             if bebit == "0" || bebit == "00" {
                 
+                let pageUrl = model.record?.graphen ?? ""
+                
+                switch true {
+                case pageUrl.contains(scheme_url):
+                    DeepLinkProcessor.handleString(pageUrl, from: self)
+                    
+                case pageUrl.contains("http"):
+                    self.goH5WebVcWith(to: pageUrl)
+                    
+                default:
+                    break
+                }
+                
             }
         } catch  {
             

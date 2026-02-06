@@ -115,7 +115,6 @@ extension HomeViewController {
                 default:
                     break
                 }
-                
             }
         } catch {
             
