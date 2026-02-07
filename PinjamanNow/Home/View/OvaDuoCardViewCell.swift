@@ -21,6 +21,15 @@ class OvaDuoCardViewCell: UITableViewCell {
             logoImageView.kf.setImage(with: URL(string: logoUrl))
             nameLabel.text = model.large ?? ""
             applyBtn.setTitle(model.sorc ?? "", for: .normal)
+            moneyLabel.text = model.directoro ?? ""
+            descLabel.text = model.legis ?? ""
+            
+            leftListView.nameLabel.text = model.directoro ?? ""
+            leftListView.descLabel.text = model.cribr ?? ""
+            
+            rightListView.nameLabel.text = model.clearlyward ?? ""
+            rightListView.descLabel.text = model.plaudine ?? ""
+            
         }
     }
     
@@ -62,6 +71,32 @@ class OvaDuoCardViewCell: UITableViewCell {
         return tapBtn
     }()
     
+    lazy var moneyLabel: UILabel = {
+        let moneyLabel = UILabel()
+        moneyLabel.textAlignment = .left
+        moneyLabel.textColor = UIColor.init(hexString: "#0956FB")
+        moneyLabel.font = UIFont.systemFont(ofSize: 44, weight: .bold)
+        return moneyLabel
+    }()
+    
+    lazy var descLabel: UILabel = {
+        let descLabel = UILabel()
+        descLabel.textAlignment = .left
+        descLabel.textColor = UIColor.init(hexString: "#B4B4B4")
+        descLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        return descLabel
+    }()
+    
+    lazy var leftListView: RateListView = {
+        let leftListView = RateListView()
+        return leftListView
+    }()
+    
+    lazy var rightListView: RateListView = {
+        let rightListView = RateListView()
+        return rightListView
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
@@ -70,7 +105,11 @@ class OvaDuoCardViewCell: UITableViewCell {
         contentView.addSubview(logoImageView)
         bgImageView.addSubview(nameLabel)
         contentView.addSubview(applyBtn)
+        bgImageView.addSubview(moneyLabel)
+        bgImageView.addSubview(descLabel)
         contentView.addSubview(tapBtn)
+        bgImageView.addSubview(leftListView)
+        bgImageView.addSubview(rightListView)
         bgImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(40.pix())
             make.centerX.equalToSuperview()
@@ -91,6 +130,26 @@ class OvaDuoCardViewCell: UITableViewCell {
             make.size.equalTo(CGSize(width: 287.pix(), height: 55.pix()))
             make.top.equalTo(bgImageView.snp.bottom).offset(-20.pix())
             make.bottom.equalToSuperview().offset(-17.pix())
+        }
+        moneyLabel.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(26)
+            make.left.equalToSuperview().offset(20)
+            make.height.equalTo(44)
+        }
+        descLabel.snp.makeConstraints { make in
+            make.left.equalTo(moneyLabel)
+            make.top.equalTo(moneyLabel.snp.bottom).offset(10)
+            make.height.equalTo(15)
+        }
+        leftListView.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalTo(descLabel.snp.bottom).offset(26)
+            make.height.equalTo(46)
+        }
+        rightListView.snp.makeConstraints { make in
+            make.left.equalTo(leftListView.snp.right).offset(30)
+            make.top.equalTo(leftListView)
+            make.height.equalTo(46)
         }
         tapBtn.snp.makeConstraints { make in
             make.edges.equalToSuperview()
