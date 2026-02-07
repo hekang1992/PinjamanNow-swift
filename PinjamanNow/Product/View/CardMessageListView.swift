@@ -10,6 +10,8 @@ import SnapKit
 
 class CardMessageListView: UIView {
     
+    var tapBlock: (() -> Void)?
+    
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
         bgImageView.image = UIImage(named: "list_d_car_d_image")
@@ -41,6 +43,7 @@ class CardMessageListView: UIView {
     
     lazy var clickBtn: UIButton = {
         let clickBtn = UIButton(type: .custom)
+        clickBtn.addTarget(self, action: #selector(clickBtnClick), for: .touchUpInside)
         clickBtn.isHidden = true
         return clickBtn
     }()
@@ -81,4 +84,11 @@ class CardMessageListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+extension CardMessageListView {
+    
+    @objc func clickBtnClick() {
+        self.tapBlock?()
+    }
 }

@@ -130,6 +130,7 @@ class SettingsViewController: BaseViewController {
         }
         
         let deleteBtn = UIButton(type: .custom)
+        deleteBtn.isHidden = languageCode == .indonesian ? true : false
         deleteBtn.setImage(UIImage(named: "del_ac_image"), for: .normal)
         deleteBtn.adjustsImageWhenHighlighted = false
         view.addSubview(deleteBtn)
