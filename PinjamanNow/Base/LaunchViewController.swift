@@ -26,9 +26,36 @@ class LaunchViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
         
-        Task {
-            await self.appInfo()
+        NetworkMonitor.shared.statusChanged = { status in
+            switch status {
+            case .wifi:
+                Task {
+                    await self.appInfo()
+                }
+                UserDefaults.standard.set("WIFI", forKey: "net_type")
+                UserDefaults.standard.synchronize()
+                NetworkMonitor.shared.stop()
+                
+            case .cellular:
+                Task {
+                    await self.appInfo()
+                }
+                UserDefaults.standard.set("5G", forKey: "net_type")
+                UserDefaults.standard.synchronize()
+                NetworkMonitor.shared.stop()
+                
+            case .notReachable:
+                UserDefaults.standard.set("Bad Network", forKey: "net_type")
+                UserDefaults.standard.synchronize()
+
+                
+            case .unknown:
+                UserDefaults.standard.set("Unknown Network", forKey: "net_type")
+                UserDefaults.standard.synchronize()
+                
+            }
         }
+        NetworkMonitor.shared.start()
         
     }
     

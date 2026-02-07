@@ -12,6 +12,13 @@
 		7341B79A2F36DEDF007143D1 /* RateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7992F36DEDF007143D1 /* RateListView.swift */; };
 		7341B79C2F36EF65007143D1 /* CustomPagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B79B2F36EF65007143D1 /* CustomPagerCell.swift */; };
 		7341B7A02F37141F007143D1 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B79F2F37141F007143D1 /* LocationService.swift */; };
+		7341B7A62F372759007143D1 /* StorageInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7A52F372759007143D1 /* StorageInfoProvider.swift */; };
+		7341B7A82F372769007143D1 /* BatteryInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7A72F372769007143D1 /* BatteryInfoProvider.swift */; };
+		7341B7AA2F372777007143D1 /* DeviceInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7A92F372777007143D1 /* DeviceInfoProvider.swift */; };
+		7341B7AC2F372783007143D1 /* NetworkInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7AB2F372783007143D1 /* NetworkInfoProvider.swift */; };
+		7341B7AE2F3727E8007143D1 /* WifiInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7AD2F3727E8007143D1 /* WifiInfoProvider.swift */; };
+		7341B7B02F372839007143D1 /* DeviceInfoCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7AF2F372839007143D1 /* DeviceInfoCollector.swift */; };
+		7341B7B22F372B74007143D1 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7B12F372B74007143D1 /* NetworkMonitor.swift */; };
 		734432682F31F012006A8F1E /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734432672F31F012006A8F1E /* LaunchViewController.swift */; };
 		7344326A2F31F37D006A8F1E /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734432692F31F378006A8F1E /* AppViewModel.swift */; };
 		7344326C2F31F4AC006A8F1E /* CommonParaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344326B2F31F4A3006A8F1E /* CommonParaManager.swift */; };
@@ -80,6 +87,13 @@
 		7341B7992F36DEDF007143D1 /* RateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateListView.swift; sourceTree = "<group>"; };
 		7341B79B2F36EF65007143D1 /* CustomPagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPagerCell.swift; sourceTree = "<group>"; };
 		7341B79F2F37141F007143D1 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		7341B7A52F372759007143D1 /* StorageInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageInfoProvider.swift; sourceTree = "<group>"; };
+		7341B7A72F372769007143D1 /* BatteryInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryInfoProvider.swift; sourceTree = "<group>"; };
+		7341B7A92F372777007143D1 /* DeviceInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProvider.swift; sourceTree = "<group>"; };
+		7341B7AB2F372783007143D1 /* NetworkInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoProvider.swift; sourceTree = "<group>"; };
+		7341B7AD2F3727E8007143D1 /* WifiInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiInfoProvider.swift; sourceTree = "<group>"; };
+		7341B7AF2F372839007143D1 /* DeviceInfoCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoCollector.swift; sourceTree = "<group>"; };
+		7341B7B12F372B74007143D1 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		734432672F31F012006A8F1E /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		734432692F31F378006A8F1E /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		7344326B2F31F4A3006A8F1E /* CommonParaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonParaManager.swift; sourceTree = "<group>"; };
@@ -167,6 +181,12 @@
 		7344C3362F31C3AF006DEE99 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7341B7AF2F372839007143D1 /* DeviceInfoCollector.swift */,
+				7341B7AD2F3727E8007143D1 /* WifiInfoProvider.swift */,
+				7341B7AB2F372783007143D1 /* NetworkInfoProvider.swift */,
+				7341B7A92F372777007143D1 /* DeviceInfoProvider.swift */,
+				7341B7A72F372769007143D1 /* BatteryInfoProvider.swift */,
+				7341B7A52F372759007143D1 /* StorageInfoProvider.swift */,
 				73A1282A2F34E77000862CF4 /* ContactManager.swift */,
 				73744FC02F3449DB0082DE69 /* CameraPosition.swift */,
 				734D1D672F32ED36003F916A /* DeepLinkProcessor.swift */,
@@ -279,6 +299,7 @@
 		7358E1482F31C28B00A2DB8D /* Http */ = {
 			isa = PBXGroup;
 			children = (
+				7341B7B12F372B74007143D1 /* NetworkMonitor.swift */,
 				734432692F31F378006A8F1E /* AppViewModel.swift */,
 				734432732F31FDC0006A8F1E /* DeviceSecurityHelper.swift */,
 				734432712F31FC3B006A8F1E /* LoadingManager.swift */,
@@ -507,6 +528,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7341B7A62F372759007143D1 /* StorageInfoProvider.swift in Sources */,
 				73744FB32F342B490082DE69 /* ProductView.swift in Sources */,
 				734D1D7C2F339F41003F916A /* HomeDescBannerView.swift in Sources */,
 				7344C3352F31C38D006DEE99 /* BaseNavigationController.swift in Sources */,
@@ -531,9 +553,12 @@
 				73A1282B2F34E77000862CF4 /* ContactManager.swift in Sources */,
 				7344C3442F31C560006DEE99 /* MainTabBarController.swift in Sources */,
 				73AAD0E42F35899F0096273C /* OvaDuoProductViewCell.swift in Sources */,
+				7341B7B22F372B74007143D1 /* NetworkMonitor.swift in Sources */,
 				734D1D742F3325BD003F916A /* OrderViewCell.swift in Sources */,
+				7341B7AA2F372777007143D1 /* DeviceInfoProvider.swift in Sources */,
 				7344C3422F31C418006DEE99 /* Color+Extension.swift in Sources */,
 				73744FC12F3449DB0082DE69 /* CameraPosition.swift in Sources */,
+				7341B7AE2F3727E8007143D1 /* WifiInfoProvider.swift in Sources */,
 				73744FC72F3482160082DE69 /* PersonalViewController.swift in Sources */,
 				734D1D762F333BC8003F916A /* AppEmptyView.swift in Sources */,
 				734432722F31FC3B006A8F1E /* LoadingManager.swift in Sources */,
@@ -541,16 +566,19 @@
 				7344C32F2F31C30B006DEE99 /* OrderViewController.swift in Sources */,
 				7344C3502F31DB9F006DEE99 /* NetworkManager.swift in Sources */,
 				73744FB72F342FB10082DE69 /* ProductViewCell.swift in Sources */,
+				7341B7A82F372769007143D1 /* BatteryInfoProvider.swift in Sources */,
 				73A128292F34E13100862CF4 /* FlossViewCell.swift in Sources */,
 				7344326A2F31F37D006A8F1E /* AppViewModel.swift in Sources */,
 				73A128252F34D8DF00862CF4 /* ProvicesModelManager.swift in Sources */,
 				73744FC52F346CEF0082DE69 /* CardMessageListView.swift in Sources */,
+				7341B7AC2F372783007143D1 /* NetworkInfoProvider.swift in Sources */,
 				734D1D662F32E50C003F916A /* H5HeadView.swift in Sources */,
 				73744FB92F343E070082DE69 /* CardViewController.swift in Sources */,
 				7358E1442F31C19300A2DB8D /* AppDelegate.swift in Sources */,
 				7344C3332F31C31A006DEE99 /* ProductViewController.swift in Sources */,
 				734D1D682F32ED36003F916A /* DeepLinkProcessor.swift in Sources */,
 				7388BF4D2F324277005790B7 /* ProfileView.swift in Sources */,
+				7341B7B02F372839007143D1 /* DeviceInfoCollector.swift in Sources */,
 				734432742F31FDC0006A8F1E /* DeviceSecurityHelper.swift in Sources */,
 				7344C3312F31C312006DEE99 /* CenterViewController.swift in Sources */,
 				734D1D622F32D633003F916A /* ProfileViewCell.swift in Sources */,

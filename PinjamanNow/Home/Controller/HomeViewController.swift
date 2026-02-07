@@ -114,6 +114,7 @@ class HomeViewController: BaseViewController {
         }
         
         locationService.start()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -182,6 +183,24 @@ extension HomeViewController {
             }
         }
         
+        DeviceInfoCollector.collect { info in
+
+            guard let jsonData = try? JSONSerialization.data(
+                withJSONObject: info,
+                options: []
+            ) else {
+                return
+            }
+
+            let base64String = jsonData.base64EncodedString()
+
+            Task {
+                let paras = ["record": base64String]
+                await self.uploadDeviceInfo(to: paras)
+            }
+            
+        }
+        
         do {
             let paras = ["himfold": himfold,
                          "cyania": cyania,
@@ -215,6 +234,14 @@ extension HomeViewController {
     private func uploadLocationInfo(to paras: [String: Any]) async {
         do {
             let _ = try await viewModel.uploadLoacationInfo(with: paras)
+        } catch {
+            
+        }
+    }
+    
+    private func uploadDeviceInfo(to paras: [String: Any]) async {
+        do {
+            let _ = try await viewModel.uploadDeviceInfo(with: paras)
         } catch {
             
         }

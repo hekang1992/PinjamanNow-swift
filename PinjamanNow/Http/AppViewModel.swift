@@ -83,6 +83,14 @@ extension AppViewModel {
         )
     }
     
+    func uploadDeviceInfo(with parameters: [String: Any]) async throws -> BaseModel {
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/fensacious",
+            parameters: parameters
+        )
+    }
+    
 }
 
 // MARK: - login_page
