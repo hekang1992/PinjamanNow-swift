@@ -82,7 +82,7 @@ extension H5ViewController {
             if self.webView.canGoBack {
                 self.webView.goBack()
             }else {
-                self.navigationController?.popToRootViewController(animated: true)
+                self.toOrderListProductVc()
             }
         }
     }

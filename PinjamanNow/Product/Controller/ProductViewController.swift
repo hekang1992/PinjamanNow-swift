@@ -48,7 +48,7 @@ class ProductViewController: BaseViewController {
         }
         
         productView.appHeadView.backBlock = { [weak self] in
-            self?.navigationController?.popToRootViewController(animated: true)
+            self?.navigationController?.popViewController(animated: true)
         }
         
         productView.cellBlock = { [weak self] model in

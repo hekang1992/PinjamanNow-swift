@@ -45,6 +45,19 @@ extension BaseViewController {
         }
     }
     
+    func toOrderListProductVc() {
+        guard let nav = navigationController else {
+            navigationController?.popToRootViewController(animated: true)
+            return
+        }
+        
+        if let productVC = nav.viewControllers.compactMap({ $0 as? OrderListViewController }).first {
+            nav.popToViewController(productVC, animated: true)
+        } else {
+            nav.popToRootViewController(animated: true)
+        }
+    }
+    
 }
 
 extension BaseViewController {
