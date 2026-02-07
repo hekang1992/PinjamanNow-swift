@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import MJRefresh
+import FBSDKCoreKit
 
 let cyania = "1000"
 let himfold = "1001"
@@ -92,8 +93,19 @@ class HomeViewController: BaseViewController {
         }
         
         Task {
-            await self.allCitysInfo()
+            await withTaskGroup(of: Void.self) { group in
+                group.addTask {
+                    await self.allCitysInfo()
+                }
+                
+                group.addTask {
+                    await self.uploadIDFAInfo()
+                }
+                
+                await group.waitForAll()
+            }
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -183,6 +195,34 @@ extension HomeViewController {
         } catch {
             
         }
+    }
+    
+    private func uploadIDFAInfo() async {
+        do {
+            let deviceManager = IDFVKeychainManager.shared
+            let paras = ["athlern": deviceManager.getIDFV(),
+                         "republicanally": deviceManager.getIDFA()]
+            let model = try await viewModel.uploadLoginInfo(with: paras)
+            let bebit = model.bebit ?? ""
+            if bebit == "0" || bebit == "00" {
+                if let googleModel = model.record?.verbade {
+                    googleBookInfo(with: googleModel)
+                }
+            }
+        } catch {
+            
+        }
+    }
+    
+    private func googleBookInfo(with model: verbadeModel) {
+        Settings.shared.displayName = model.cinerorium ?? ""
+        Settings.shared.appURLSchemeSuffix = model.sexard ?? ""
+        Settings.shared.appID = model.ficitor ?? ""
+        Settings.shared.clientToken = model.citizenical ?? ""
+        ApplicationDelegate.shared.application(
+            UIApplication.shared,
+            didFinishLaunchingWithOptions: nil
+        )
     }
     
 }

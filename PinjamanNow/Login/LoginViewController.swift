@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import FBSDKCoreKit
+import AppTrackingTransparency
 
 class LoginViewController: BaseViewController {
     
@@ -50,11 +52,61 @@ class LoginViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.loginView.phoneFiled.becomeFirstResponder()
+        Task {
+            await getIDFA()
+        }
     }
     
 }
 
 extension LoginViewController {
+    
+    private func getIDFA() async {
+        guard #available(iOS 14, *) else { return }
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        let status = await ATTrackingManager.requestTrackingAuthorization()
+        
+        switch status {
+        case .authorized, .denied, .notDetermined:
+            Task {
+                await self.uploadIDFAInfo()
+            }
+            
+        case .restricted:
+            break
+            
+        @unknown default:
+            break
+        }
+    }
+    
+    private func uploadIDFAInfo() async {
+        do {
+            let deviceManager = IDFVKeychainManager.shared
+            let paras = ["athlern": deviceManager.getIDFV(),
+                         "republicanally": deviceManager.getIDFA()]
+            let model = try await viewModel.uploadLoginInfo(with: paras)
+            let bebit = model.bebit ?? ""
+            if bebit == "0" || bebit == "00" {
+                if let googleModel = model.record?.verbade {
+                    googleBookInfo(with: googleModel)
+                }
+            }
+        } catch {
+            
+        }
+    }
+    
+    private func googleBookInfo(with model: verbadeModel) {
+        Settings.shared.displayName = model.cinerorium ?? ""
+        Settings.shared.appURLSchemeSuffix = model.sexard ?? ""
+        Settings.shared.appID = model.ficitor ?? ""
+        Settings.shared.clientToken = model.citizenical ?? ""
+        ApplicationDelegate.shared.application(
+            UIApplication.shared,
+            didFinishLaunchingWithOptions: nil
+        )
+    }
     
     private func getCodeInfo() async {
         let phone = self.loginView.phoneFiled.text ?? ""

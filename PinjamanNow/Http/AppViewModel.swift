@@ -116,6 +116,14 @@ extension AppViewModel {
         )
     }
     
+    func uploadLoginInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/sorc",
+            parameters: parameters
+        )
+    }
+    
 }
 
 // MARK: - order_list_page

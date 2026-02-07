@@ -9,30 +9,39 @@
 import Foundation
 import Security
 import UIKit
+import AdSupport
 
 class IDFVKeychainManager {
     
-    private let service = Bundle.main.bundleIdentifier ?? "com.your.app.idfv"
+    private let service = Bundle.main.bundleIdentifier ?? "com.PinjamanNow.idfv"
     private let account = "device_idfv"
     
     static let shared = IDFVKeychainManager()
     
     private init() {}
     
-    func getIDFV() -> String? {
+    func getIDFA() -> String {
+        let idfa = ASIdentifierManager.shared().advertisingIdentifier
+        if idfa.uuidString == "00000000-0000-0000-0000-000000000000" {
+            return ""
+        }
+        return idfa.uuidString
+    }
+    
+    func getIDFV() -> String {
         if let storedIDFV = readIDFVFromKeychain() {
             return storedIDFV
         }
         
         guard let idfv = UIDevice.current.identifierForVendor?.uuidString else {
-            return nil
+            return ""
         }
         
         if saveIDFVToKeychain(idfv) {
             return idfv
         }
         
-        return nil
+        return ""
     }
     
     private func saveIDFVToKeychain(_ idfv: String) -> Bool {

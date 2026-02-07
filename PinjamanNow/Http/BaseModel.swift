@@ -46,6 +46,14 @@ class recordModel: Codable {
     var pylacity: String?
     var fragthoughice: [fragthoughiceModel]?
     var libr: librModel?
+    var verbade: verbadeModel?
+}
+
+class verbadeModel: Codable {
+    var sexard: String?
+    var ficitor: String?
+    var cinerorium: String?
+    var citizenical: String?
 }
 
 class librModel: Codable {
