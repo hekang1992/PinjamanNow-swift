@@ -27,7 +27,7 @@ class OvaDuoBannerViewCell: UITableViewCell {
             make.centerX.equalToSuperview()
             make.top.equalToSuperview()
             make.size.equalTo(CGSize(width: 335.pix(), height: 82.pix()))
-            make.bottom.equalToSuperview().offset(-15.pix())
+            make.bottom.equalToSuperview()
         }
     }
     

@@ -66,28 +66,24 @@ class ProfileView: UIView {
     
     lazy var oneBtn: UIButton = {
         let oneBtn = UIButton(type: .custom)
-        oneBtn.backgroundColor = .red
         oneBtn.addTarget(self, action: #selector(oneBtnClick), for: .touchUpInside)
         return oneBtn
     }()
     
     lazy var twoBtn: UIButton = {
         let twoBtn = UIButton(type: .custom)
-        twoBtn.backgroundColor = .black
         twoBtn.addTarget(self, action: #selector(twoBtnClick), for: .touchUpInside)
         return twoBtn
     }()
     
     lazy var threeBtn: UIButton = {
         let threeBtn = UIButton(type: .custom)
-        threeBtn.backgroundColor = .blue
         threeBtn.addTarget(self, action: #selector(threeBtnClick), for: .touchUpInside)
         return threeBtn
     }()
     
     lazy var fourBtn: UIButton = {
         let fourBtn = UIButton(type: .custom)
-        fourBtn.backgroundColor = .systemPink
         fourBtn.addTarget(self, action: #selector(fourBtnClick), for: .touchUpInside)
         return fourBtn
     }()

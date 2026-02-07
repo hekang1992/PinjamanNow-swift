@@ -120,6 +120,7 @@ class phalarModel: Codable {
     var sorc: String?
     var directoro: String?
     var legis: String?
+    var ficactuallyence: String?
     
     var plaudine: String?
     var clearlyward: String?
@@ -137,6 +138,7 @@ class phalarModel: Codable {
         case clearlyward
         case cribr
         case beginid
+        case ficactuallyence
     }
     
     required init(from decoder: Decoder) throws {
@@ -148,6 +150,7 @@ class phalarModel: Codable {
             personal = try? container.decode(String.self, forKey: .personal)
         }
         
+        ficactuallyence = try? container.decode(String.self, forKey: .ficactuallyence)
         large = try? container.decode(String.self, forKey: .large)
         fensacious = try? container.decode(String.self, forKey: .fensacious)
         sorc = try? container.decode(String.self, forKey: .sorc)

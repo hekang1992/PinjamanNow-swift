@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7263EDF5A11A6AC916694517 /* Pods_PinjamanNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7264E18894459A09CDC5067 /* Pods_PinjamanNow.framework */; };
+		7341B7982F36D824007143D1 /* OrderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7972F36D824007143D1 /* OrderListViewController.swift */; };
 		734432682F31F012006A8F1E /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734432672F31F012006A8F1E /* LaunchViewController.swift */; };
 		7344326A2F31F37D006A8F1E /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734432692F31F378006A8F1E /* AppViewModel.swift */; };
 		7344326C2F31F4AC006A8F1E /* CommonParaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344326B2F31F4A3006A8F1E /* CommonParaManager.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7341B7972F36D824007143D1 /* OrderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewController.swift; sourceTree = "<group>"; };
 		734432672F31F012006A8F1E /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		734432692F31F378006A8F1E /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		7344326B2F31F4A3006A8F1E /* CommonParaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonParaManager.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				7344C3302F31C312006DEE99 /* CenterViewController.swift */,
 				734D1D692F32EE65003F916A /* SettingsViewController.swift */,
 				734D1D632F32E4B7003F916A /* H5ViewController.swift */,
+				7341B7972F36D824007143D1 /* OrderListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				7344326C2F31F4AC006A8F1E /* CommonParaManager.swift in Sources */,
 				7344C34A2F31CDBC006DEE99 /* HomeView.swift in Sources */,
 				73A1282D2F34ED5600862CF4 /* WalletViewController.swift in Sources */,
+				7341B7982F36D824007143D1 /* OrderListViewController.swift in Sources */,
 				7344C3292F31C2F4006DEE99 /* BaseViewController.swift in Sources */,
 				73744FC92F3491890082DE69 /* OvaltineViewCell.swift in Sources */,
 				7344C3542F31DBF3006DEE99 /* LoginView.swift in Sources */,

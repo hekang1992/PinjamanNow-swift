@@ -53,6 +53,34 @@ class CenterViewController: BaseViewController {
         
         centerView.tapClickBlock = { [weak self] type in
             guard let self = self else { return }
+            switch type {
+            case "1":
+                let ocList = OrderListViewController()
+                ocList.type = "4"
+                ocList.pageTitle = languageCode == .indonesian ? "Semua" : "All"
+                self.navigationController?.pushViewController(ocList, animated: true)
+                
+            case "2":
+                let ocList = OrderListViewController()
+                ocList.type = "7"
+                ocList.pageTitle = languageCode == .indonesian ? "Dalam proses" : "In progress"
+                self.navigationController?.pushViewController(ocList, animated: true)
+                
+            case "3":
+                let ocList = OrderListViewController()
+                ocList.type = "6"
+                ocList.pageTitle = languageCode == .indonesian ? "Belum lunas" : "Repayment"
+                self.navigationController?.pushViewController(ocList, animated: true)
+                
+            case "4":
+                let ocList = OrderListViewController()
+                ocList.type = "5"
+                ocList.pageTitle = languageCode == .indonesian ? "Lunas" : "Finished"
+                self.navigationController?.pushViewController(ocList, animated: true)
+                
+            default:
+                break
+            }
         }
     }
     

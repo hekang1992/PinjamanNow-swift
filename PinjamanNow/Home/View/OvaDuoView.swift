@@ -16,6 +16,8 @@ class OvaDuoView: UIView {
         }
     }
     
+    var tapClickBlock: ((phalarModel) -> Void)?
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.separatorStyle = .none
@@ -29,6 +31,9 @@ class OvaDuoView: UIView {
         tableView.register(OvaDuoCardViewCell.self, forCellReuseIdentifier: "OvaDuoCardViewCell")
         tableView.register(OvaDuoBannerViewCell.self, forCellReuseIdentifier: "OvaDuoBannerViewCell")
         tableView.register(OvaDuoProductViewCell.self, forCellReuseIdentifier: "OvaDuoProductViewCell")
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
         return tableView
     }()
     
@@ -60,6 +65,39 @@ class OvaDuoView: UIView {
 }
 
 extension OvaDuoView: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let model = self.modelArray?[section]
+        let type = model?.provide ?? ""
+        if type == "tinacosity" {
+            return 48.pix()
+        }else {
+            return 0.pix()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let model = self.modelArray?[section]
+        let type = model?.provide ?? ""
+        if type == "tinacosity" {
+            let headView = UIView()
+            let descBtn = UIButton(type: .custom)
+            descBtn.setTitle(LanguageManager.current == .indonesian ? "Produk pinjaman" : "Loan products", for: .normal)
+            descBtn.setTitleColor(UIColor.init(hexString: "#010204"), for: .normal)
+            descBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+            descBtn.setImage(UIImage(named: "f_folo_image"), for: .normal)
+            descBtn.contentHorizontalAlignment = .left
+            descBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
+            headView.addSubview(descBtn)
+            descBtn.snp.makeConstraints { make in
+                make.left.equalToSuperview().offset(20)
+                make.right.top.bottom.equalToSuperview()
+            }
+            return headView
+        }else {
+            return UIView()
+        }
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.modelArray?.count ?? 0
@@ -97,6 +135,9 @@ extension OvaDuoView: UITableViewDelegate, UITableViewDataSource {
         case "skept":
             let cell = tableView.dequeueReusableCell(withIdentifier: "OvaDuoCardViewCell", for: indexPath) as! OvaDuoCardViewCell
             cell.model = model?.phalar?[indexPath.row]
+            cell.tapClickBlock = { [weak self] model in
+                self?.tapClickBlock?(model)
+            }
             return cell
             
         case "olivress":
@@ -105,6 +146,10 @@ extension OvaDuoView: UITableViewDelegate, UITableViewDataSource {
             
         case "tinacosity":
             let cell = tableView.dequeueReusableCell(withIdentifier: "OvaDuoProductViewCell", for: indexPath) as! OvaDuoProductViewCell
+            cell.model = model?.phalar?[indexPath.row]
+            cell.tapClickBlock = { [weak self] model in
+                self?.tapClickBlock?(model)
+            }
             return cell
             
         default:
@@ -113,5 +158,4 @@ extension OvaDuoView: UITableViewDelegate, UITableViewDataSource {
         
         
     }
-    
 }

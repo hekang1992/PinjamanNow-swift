@@ -66,6 +66,14 @@ class HomeViewController: BaseViewController {
             }
         })
         
+        duoView.tapClickBlock = { [weak self] model in
+            guard let self = self else { return }
+            Task {
+                let productID = model.personal ?? ""
+                await self.clickProductInfo(to: productID)
+            }
+        }
+        
         Task {
             await self.allCitysInfo()
         }

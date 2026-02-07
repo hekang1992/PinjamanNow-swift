@@ -11,6 +11,8 @@ import Kingfisher
 
 class OvaDuoCardViewCell: UITableViewCell {
     
+    var tapClickBlock: ((phalarModel) -> Void)?
+    
     var model: phalarModel? {
         didSet {
             guard let model = model else { return }
@@ -54,6 +56,12 @@ class OvaDuoCardViewCell: UITableViewCell {
         return applyBtn
     }()
     
+    lazy var tapBtn: UIButton = {
+        let tapBtn = UIButton(type: .custom)
+        tapBtn.addTarget(self, action: #selector(tapClick), for: .touchUpInside)
+        return tapBtn
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
@@ -62,11 +70,11 @@ class OvaDuoCardViewCell: UITableViewCell {
         contentView.addSubview(logoImageView)
         bgImageView.addSubview(nameLabel)
         contentView.addSubview(applyBtn)
+        contentView.addSubview(tapBtn)
         bgImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(40.pix())
             make.centerX.equalToSuperview()
             make.size.equalTo(CGSize(width: 335.pix(), height: 239.pix()))
-            make.bottom.equalToSuperview().offset(-47.pix())
         }
         logoImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(25.pix())
@@ -81,12 +89,26 @@ class OvaDuoCardViewCell: UITableViewCell {
         applyBtn.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.size.equalTo(CGSize(width: 287.pix(), height: 55.pix()))
+            make.top.equalTo(bgImageView.snp.bottom).offset(-20.pix())
             make.bottom.equalToSuperview().offset(-17.pix())
+        }
+        tapBtn.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+extension OvaDuoCardViewCell {
+    
+    @objc func tapClick() {
+        if let model = model {
+            self.tapClickBlock?(model)
+        }
     }
     
 }
