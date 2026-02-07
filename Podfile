@@ -16,4 +16,5 @@ target 'PinjamanNow' do
   pod 'Toast-Swift'
   pod 'MJRefresh'
   pod 'BRPickerView'
+  pod 'FSPagerView'
 end

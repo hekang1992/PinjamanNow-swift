@@ -18,6 +18,8 @@ class OvaDuoView: UIView {
     
     var tapClickBlock: ((phalarModel) -> Void)?
     
+    var tapBlock: ((phalarModel) -> Void)?
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.separatorStyle = .none
@@ -142,6 +144,10 @@ extension OvaDuoView: UITableViewDelegate, UITableViewDataSource {
             
         case "olivress":
             let cell = tableView.dequeueReusableCell(withIdentifier: "OvaDuoBannerViewCell", for: indexPath) as! OvaDuoBannerViewCell
+            cell.modelArray = model?.phalar ?? []
+            cell.tapBlock = { [weak self] model in
+                self?.tapBlock?(model)
+            }
             return cell
             
         case "tinacosity":

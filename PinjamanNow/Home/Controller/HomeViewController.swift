@@ -74,6 +74,23 @@ class HomeViewController: BaseViewController {
             }
         }
         
+        duoView.tapBlock = { [weak self] model in
+            guard let self = self else { return }
+            let pageUrl = model.graphen ?? ""
+            
+            switch true {
+            case pageUrl.contains(scheme_url):
+                DeepLinkProcessor.handleString(pageUrl, from: self)
+                
+            case pageUrl.contains("http"):
+                self.goH5WebVcWith(to: pageUrl)
+                
+            default:
+                break
+            }
+            
+        }
+        
         Task {
             await self.allCitysInfo()
         }

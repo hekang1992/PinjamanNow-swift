@@ -126,6 +126,8 @@ class phalarModel: Codable {
     var clearlyward: String?
     var cribr: String?
     var beginid: String?
+    var calcfootment: String?
+    var graphen: String?
     
     private enum CodingKeys: String, CodingKey {
         case personal
@@ -139,6 +141,8 @@ class phalarModel: Codable {
         case cribr
         case beginid
         case ficactuallyence
+        case calcfootment
+        case graphen
     }
     
     required init(from decoder: Decoder) throws {
@@ -150,6 +154,8 @@ class phalarModel: Codable {
             personal = try? container.decode(String.self, forKey: .personal)
         }
         
+        graphen = try? container.decode(String.self, forKey: .graphen)
+        calcfootment = try? container.decode(String.self, forKey: .calcfootment)
         ficactuallyence = try? container.decode(String.self, forKey: .ficactuallyence)
         large = try? container.decode(String.self, forKey: .large)
         fensacious = try? container.decode(String.self, forKey: .fensacious)
