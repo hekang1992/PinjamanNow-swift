@@ -180,6 +180,7 @@ class PopCardMessageView: UIView {
         
         threeView.tapBlock = { [weak self] in
             guard let self = self else { return }
+            self.endEditing(true)
             self.tapTimeClick(dateTx: threeView.enterFiled)
         }
     }

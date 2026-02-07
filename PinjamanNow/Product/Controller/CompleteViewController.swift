@@ -196,6 +196,7 @@ extension CompleteViewController {
                 self.twoView.nameLabel.text = model.record?.sorb?.felicitosity?.pylacity ?? ""
                 self.threeView.nameLabel.text = model.record?.sorb?.felicitosity?.killature ?? ""
             }
+            await self.scrollView.mj_header?.endRefreshing()
         } catch {
             await self.scrollView.mj_header?.endRefreshing()
         }
