@@ -19,6 +19,7 @@
 		7341B7AE2F3727E8007143D1 /* WifiInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7AD2F3727E8007143D1 /* WifiInfoProvider.swift */; };
 		7341B7B02F372839007143D1 /* DeviceInfoCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7AF2F372839007143D1 /* DeviceInfoCollector.swift */; };
 		7341B7B22F372B74007143D1 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7B12F372B74007143D1 /* NetworkMonitor.swift */; };
+		7341B7B42F3730AA007143D1 /* CompleteCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7B32F3730AA007143D1 /* CompleteCardListView.swift */; };
 		734432682F31F012006A8F1E /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734432672F31F012006A8F1E /* LaunchViewController.swift */; };
 		7344326A2F31F37D006A8F1E /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734432692F31F378006A8F1E /* AppViewModel.swift */; };
 		7344326C2F31F4AC006A8F1E /* CommonParaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344326B2F31F4A3006A8F1E /* CommonParaManager.swift */; };
@@ -94,6 +95,7 @@
 		7341B7AD2F3727E8007143D1 /* WifiInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiInfoProvider.swift; sourceTree = "<group>"; };
 		7341B7AF2F372839007143D1 /* DeviceInfoCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoCollector.swift; sourceTree = "<group>"; };
 		7341B7B12F372B74007143D1 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		7341B7B32F3730AA007143D1 /* CompleteCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteCardListView.swift; sourceTree = "<group>"; };
 		734432672F31F012006A8F1E /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		734432692F31F378006A8F1E /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		7344326B2F31F4A3006A8F1E /* CommonParaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonParaManager.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 				73744FC82F3491890082DE69 /* OvaltineViewCell.swift */,
 				73744FCA2F3499B10082DE69 /* PopAuthListView.swift */,
 				73A128282F34E13100862CF4 /* FlossViewCell.swift */,
+				7341B7B32F3730AA007143D1 /* CompleteCardListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				734432722F31FC3B006A8F1E /* LoadingManager.swift in Sources */,
 				7341B79C2F36EF65007143D1 /* CustomPagerCell.swift in Sources */,
 				7344C32F2F31C30B006DEE99 /* OrderViewController.swift in Sources */,
+				7341B7B42F3730AA007143D1 /* CompleteCardListView.swift in Sources */,
 				7344C3502F31DB9F006DEE99 /* NetworkManager.swift in Sources */,
 				73744FB72F342FB10082DE69 /* ProductViewCell.swift in Sources */,
 				7341B7A82F372769007143D1 /* BatteryInfoProvider.swift in Sources */,
@@ -639,6 +643,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PinjamanNow/PinjamanNow.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 57MBH2272N;
@@ -646,10 +651,15 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PinjamanNow/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Pinjaman Now";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSContactsUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -658,6 +668,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ll.zoom.loan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -679,6 +690,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PinjamanNow/PinjamanNow.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 57MBH2272N;
@@ -686,10 +698,15 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PinjamanNow/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Pinjaman Now";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSContactsUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -698,6 +715,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ll.zoom.loan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

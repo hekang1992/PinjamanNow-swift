@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import MJRefresh
 
 class CompleteViewController: BaseViewController {
     
@@ -59,6 +60,21 @@ class CompleteViewController: BaseViewController {
         footImageView.image = UIImage(named: "fa_dcm_a_imci")
         footImageView.contentMode = .scaleAspectFit
         return footImageView
+    }()
+    
+    lazy var oneView: CompleteCardListView = {
+        let oneView = CompleteCardListView()
+        return oneView
+    }()
+    
+    lazy var twoView: CompleteCardListView = {
+        let twoView = CompleteCardListView()
+        return twoView
+    }()
+    
+    lazy var threeView: CompleteCardListView = {
+        let threeView = CompleteCardListView()
+        return threeView
     }()
     
     override func viewDidLoad() {
@@ -119,6 +135,43 @@ class CompleteViewController: BaseViewController {
             make.size.equalTo(CGSize(width: 335.pix(), height: 309.pix()))
             make.bottom.equalToSuperview().offset(-20.pix())
         }
+        
+        footImageView.addSubview(oneView)
+        footImageView.addSubview(twoView)
+        footImageView.addSubview(threeView)
+        
+        oneView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 305.pix(), height: 46.pix()))
+            make.top.equalToSuperview().offset(117.pix())
+        }
+        
+        twoView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 305.pix(), height: 46.pix()))
+            make.top.equalTo(oneView.snp.bottom).offset(15.pix())
+        }
+        
+        threeView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 305.pix(), height: 46.pix()))
+            make.top.equalTo(twoView.snp.bottom).offset(15.pix())
+        }
+        
+        self.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+            guard let self = self else { return }
+            Task {
+                await self.getCardInfo()
+            }
+        })
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Task {
+            await self.getCardInfo()
+        }
     }
     
 }
@@ -132,4 +185,20 @@ extension CompleteViewController {
                                           viewModel: viewModel)
         }
     }
+    
+    private func getCardInfo() async {
+        let paras = ["institutionit": productID]
+        do {
+            let model = try await viewModel.cardInfo(with: paras)
+            let bebit = model.bebit ?? ""
+            if bebit == "0" || bebit == "00" {
+                self.oneView.nameLabel.text = model.record?.sorb?.felicitosity?.sy ?? ""
+                self.twoView.nameLabel.text = model.record?.sorb?.felicitosity?.pylacity ?? ""
+                self.threeView.nameLabel.text = model.record?.sorb?.felicitosity?.killature ?? ""
+            }
+        } catch {
+            await self.scrollView.mj_header?.endRefreshing()
+        }
+    }
+    
 }
