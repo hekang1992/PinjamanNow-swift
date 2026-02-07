@@ -21,6 +21,11 @@ class FacialViewController: BaseViewController {
     
     private let viewModel = AppViewModel()
     
+    private let locationService = LocationService()
+    
+    private var one: String = ""
+    private var two: String = ""
+    
     lazy var headImageView: UIImageView = {
         let headImageView = UIImageView()
         headImageView.image = UIImage(named: "product_li_bg_image")
@@ -94,6 +99,14 @@ class FacialViewController: BaseViewController {
             camera?.present()
         }
         
+        locationService.success = { result in
+            print("result====\(result)")
+        }
+        
+        locationService.start()
+        
+        one = String(Int(Date().timeIntervalSince1970))
+        
     }
     
 }
@@ -118,6 +131,7 @@ extension FacialViewController {
     }
     
     private func uploadImageInfo(with imageData: Data) async {
+        two = String(Int(Date().timeIntervalSince1970))
         do {
             let paras = ["provide": "10",
                          "xanthoptionical": "2",
@@ -134,9 +148,34 @@ extension FacialViewController {
                                                   orderID: orderID,
                                                   viewModel: viewModel)
                 }
+                Task {
+                    try? await Task.sleep(nanoseconds: 3_000_000_000)
+                    await self.uploadInfo()
+                }
             }else {
                 ToastManager.showMessage(model.calcfootment ?? "")
             }
+        } catch {
+            
+        }
+    }
+    
+}
+
+extension FacialViewController {
+    
+    private func uploadInfo() async {
+        do {
+            let paras = ["manu": productID,
+                         "anemion": "3",
+                         "canproof": orderID,
+                         "armaneity": IDFVKeychainManager.shared.getIDFV(),
+                         "vagaster": IDFVKeychainManager.shared.getIDFA(),
+                         "fidel": UserDefaults.standard.object(forKey: "longitude") as? String ?? "",
+                         "regionlet": UserDefaults.standard.object(forKey: "latitude") as? String ?? "",
+                         "recentlyfaction": one,
+                         "dogmatization": two]
+            let _ = try await viewModel.uploadStudyInfo(with: paras)
         } catch {
             
         }

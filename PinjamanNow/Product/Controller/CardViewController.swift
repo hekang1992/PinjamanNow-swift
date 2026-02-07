@@ -21,6 +21,11 @@ class CardViewController: BaseViewController {
     
     private let viewModel = AppViewModel()
     
+    private let locationService = LocationService()
+    
+    private var one: String = ""
+    private var two: String = ""
+    
     lazy var headImageView: UIImageView = {
         let headImageView = UIImageView()
         headImageView.image = UIImage(named: "product_li_bg_image")
@@ -90,6 +95,14 @@ class CardViewController: BaseViewController {
             camera?.present()
         }
         
+        locationService.success = { result in
+            print("result====\(result)")
+        }
+        
+        locationService.start()
+        
+        one = String(Int(Date().timeIntervalSince1970))
+        
     }
     
 }
@@ -148,6 +161,7 @@ extension CardViewController {
     }
     
     private func dsaNameInfo(with listView: PopCardMessageView) async {
+        two = String(Int(Date().timeIntervalSince1970))
         do {
             let paras = ["killature": listView.threeView.enterFiled.text ?? "",
                          "pylacity": listView.twoView.enterFiled.text ?? "",
@@ -168,9 +182,35 @@ extension CardViewController {
                     faceVc.pageTitle = pageTitle
                     self.navigationController?.pushViewController(faceVc, animated: true)
                 }
+                Task {
+                    try? await Task.sleep(nanoseconds: 3_000_000_000)
+                    await self.uploadStdInfo()
+                }
             }else {
                 ToastManager.showMessage(model.calcfootment ?? "")
             }
+        } catch {
+            
+        }
+    }
+    
+}
+
+
+extension CardViewController {
+    
+    private func uploadStdInfo() async {
+        do {
+            let paras = ["manu": productID,
+                         "anemion": "2",
+                         "canproof": orderID,
+                         "armaneity": IDFVKeychainManager.shared.getIDFV(),
+                         "vagaster": IDFVKeychainManager.shared.getIDFA(),
+                         "fidel": UserDefaults.standard.object(forKey: "longitude") as? String ?? "",
+                         "regionlet": UserDefaults.standard.object(forKey: "latitude") as? String ?? "",
+                         "recentlyfaction": one,
+                         "dogmatization": two]
+            let _ = try await viewModel.uploadStudyInfo(with: paras)
         } catch {
             
         }

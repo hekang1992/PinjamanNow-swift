@@ -69,6 +69,13 @@ extension LocationService: CLLocationManagerDelegate {
         
         guard let location = locations.last else { return }
         
+        let latitude = String(location.coordinate.latitude)
+        let longitude = String(location.coordinate.longitude)
+        
+        UserDefaults.standard.set(latitude, forKey: "latitude")
+        UserDefaults.standard.set(longitude, forKey: "longitude")
+        UserDefaults.standard.synchronize()
+        
         stop()
         
         geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in

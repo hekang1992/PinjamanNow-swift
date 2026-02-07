@@ -22,6 +22,11 @@ class PersonalViewController: BaseViewController {
     
     private let viewModel = AppViewModel()
     
+    private let locationService = LocationService()
+    
+    private var one: String = ""
+    private var two: String = ""
+    
     lazy var sureBtn: UIButton = {
         let sureBtn = UIButton(type: .custom)
         sureBtn.setTitleColor(.white, for: .normal)
@@ -134,6 +139,13 @@ class PersonalViewController: BaseViewController {
             make.top.equalTo(bgImageView).offset(126)
             make.left.right.bottom.equalTo(whiteView)
         }
+        
+        locationService.success = { result in
+            print("result====\(result)")
+        }
+        
+        locationService.start()
+        one = String(Int(Date().timeIntervalSince1970))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -162,6 +174,7 @@ extension PersonalViewController {
     }
     
     private func saveInfo(with paras: [String: String]) async {
+        two = String(Int(Date().timeIntervalSince1970))
         do {
             let model = try await viewModel.saveBasicInfo(with: paras)
             let bebit = model.bebit ?? ""
@@ -170,6 +183,10 @@ extension PersonalViewController {
                     await self.productMessageInfo(with: productID,
                                                   orderID: orderID,
                                                   viewModel: viewModel)
+                }
+                Task {
+                    try? await Task.sleep(nanoseconds: 3_000_000_000)
+                    await self.uploadInfo()
                 }
             }else {
                 ToastManager.showMessage(model.calcfootment ?? "")
@@ -309,4 +326,25 @@ extension PersonalViewController {
         style.selectRowTextFont = UIFont.systemFont(ofSize: 15.pix(), weight: .bold)
         return style
     }
+}
+
+extension PersonalViewController {
+    
+    private func uploadInfo() async {
+        do {
+            let paras = ["manu": productID,
+                         "anemion": "4",
+                         "canproof": orderID,
+                         "armaneity": IDFVKeychainManager.shared.getIDFV(),
+                         "vagaster": IDFVKeychainManager.shared.getIDFA(),
+                         "fidel": UserDefaults.standard.object(forKey: "longitude") as? String ?? "",
+                         "regionlet": UserDefaults.standard.object(forKey: "latitude") as? String ?? "",
+                         "recentlyfaction": one,
+                         "dogmatization": two]
+            let _ = try await viewModel.uploadStudyInfo(with: paras)
+        } catch {
+            
+        }
+    }
+    
 }

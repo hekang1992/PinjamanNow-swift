@@ -17,6 +17,8 @@ class ProductViewController: BaseViewController {
     
     private var model: BaseModel?
     
+    private let locationService = LocationService()
+    
     lazy var productView: ProductView = {
         let productView = ProductView()
         return productView
@@ -68,6 +70,40 @@ class ProductViewController: BaseViewController {
                 await self.detailInfo()
             }
         })
+        
+        locationService.success = { result in
+            print("result====\(result)")
+        }
+        
+        locationService.start()
+        
+        Task {
+            do {
+                let one = UserDefaults.standard.object(forKey: "one") as? String ?? ""
+                let two = UserDefaults.standard.object(forKey: "two") as? String ?? ""
+                if one.isEmpty || two.isEmpty {
+                    return
+                }
+                let paras = ["manu": productID,
+                             "anemion": "1",
+                             "canproof": "",
+                             "armaneity": IDFVKeychainManager.shared.getIDFV(),
+                             "vagaster": IDFVKeychainManager.shared.getIDFA(),
+                             "fidel": UserDefaults.standard.object(forKey: "longitude") as? String ?? "",
+                             "regionlet": UserDefaults.standard.object(forKey: "latitude") as? String ?? "",
+                             "recentlyfaction": one,
+                             "dogmatization": two]
+                let model = try await viewModel.uploadStudyInfo(with: paras)
+                let bebit = model.bebit ?? ""
+                if bebit == "0" || bebit == "00" {
+                    UserDefaults.standard.removeObject(forKey: "one")
+                    UserDefaults.standard.removeObject(forKey: "two")
+                }
+            } catch {
+                
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,31 +130,31 @@ extension ProductViewController {
         }
     }
     
-//    private func stepInfo(with typeModel: astyModel, cardModel: populModel?) {
-//        let type = typeModel.tv ?? ""
-//        switch type {
-//        case "tensia":
-//            Task {
-//                await self.getCardInfo(with: typeModel)
-//            }
-//            
-//        case "recentorium":
-//            let personalVc = PersonalViewController()
-//            personalVc.productID = productID
-//            personalVc.orderID = cardModel?.canproof ?? ""
-//            personalVc.pageTitle = typeModel.actionsome ?? ""
-//            self.navigationController?.pushViewController(personalVc, animated: true)
-//            
-//        case "womanture":
-//            break
-//            
-//        case "oplaceous":
-//            break
-//            
-//        default:
-//            break
-//        }
-//    }
+    //    private func stepInfo(with typeModel: astyModel, cardModel: populModel?) {
+    //        let type = typeModel.tv ?? ""
+    //        switch type {
+    //        case "tensia":
+    //            Task {
+    //                await self.getCardInfo(with: typeModel)
+    //            }
+    //
+    //        case "recentorium":
+    //            let personalVc = PersonalViewController()
+    //            personalVc.productID = productID
+    //            personalVc.orderID = cardModel?.canproof ?? ""
+    //            personalVc.pageTitle = typeModel.actionsome ?? ""
+    //            self.navigationController?.pushViewController(personalVc, animated: true)
+    //
+    //        case "womanture":
+    //            break
+    //
+    //        case "oplaceous":
+    //            break
+    //
+    //        default:
+    //            break
+    //        }
+    //    }
     
     private func detailInfo() async {
         do {
@@ -198,3 +234,4 @@ extension ProductViewController {
     }
     
 }
+

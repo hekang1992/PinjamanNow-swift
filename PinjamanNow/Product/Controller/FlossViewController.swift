@@ -22,6 +22,11 @@ class FlossViewController: BaseViewController {
     
     private let viewModel = AppViewModel()
     
+    private let locationService = LocationService()
+    
+    private var one: String = ""
+    private var two: String = ""
+    
     lazy var sureBtn: UIButton = {
         let sureBtn = UIButton(type: .custom)
         sureBtn.setTitleColor(.white, for: .normal)
@@ -134,6 +139,14 @@ class FlossViewController: BaseViewController {
             make.top.equalTo(bgImageView).offset(126)
             make.left.right.bottom.equalTo(whiteView)
         }
+        
+        locationService.success = { result in
+            print("result====\(result)")
+        }
+        
+        locationService.start()
+        
+        one = String(Int(Date().timeIntervalSince1970))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -171,6 +184,10 @@ extension FlossViewController {
                                                   orderID: orderID,
                                                   viewModel: viewModel)
                 }
+                Task {
+                    try? await Task.sleep(nanoseconds: 3_000_000_000)
+                    await self.uploadInfo()
+                }
             }else {
                 ToastManager.showMessage(model.calcfootment ?? "")
             }
@@ -180,6 +197,7 @@ extension FlossViewController {
     }
     
     @objc func sureBtnClick() {
+        two = String(Int(Date().timeIntervalSince1970))
         var jsonArray: [[String: String]] = []
         for model in modelArray {
             var paras: [String: String] = [:]
@@ -295,6 +313,27 @@ extension FlossViewController {
         }
         
         self.present(alertVc!, animated: true)
+    }
+    
+}
+
+extension FlossViewController {
+    
+    private func uploadInfo() async {
+        do {
+            let paras = ["manu": productID,
+                         "anemion": "6",
+                         "canproof": orderID,
+                         "armaneity": IDFVKeychainManager.shared.getIDFV(),
+                         "vagaster": IDFVKeychainManager.shared.getIDFA(),
+                         "fidel": UserDefaults.standard.object(forKey: "longitude") as? String ?? "",
+                         "regionlet": UserDefaults.standard.object(forKey: "latitude") as? String ?? "",
+                         "recentlyfaction": one,
+                         "dogmatization": two]
+            let _ = try await viewModel.uploadStudyInfo(with: paras)
+        } catch {
+            
+        }
     }
     
 }

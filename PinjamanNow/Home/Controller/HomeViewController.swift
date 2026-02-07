@@ -114,7 +114,6 @@ class HomeViewController: BaseViewController {
         }
         
         locationService.start()
-        locationService.stop()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -175,7 +174,6 @@ extension HomeViewController {
         }
         
         locationService.start()
-        locationService.stop()
         
         locationService.success = { [weak self] result in
             guard let self = self else { return }

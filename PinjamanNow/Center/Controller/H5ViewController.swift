@@ -14,6 +14,10 @@ class H5ViewController: BaseViewController {
     
     var pageUrl: String = ""
     
+    private let locationService = LocationService()
+    
+    private let viewModel = AppViewModel()
+    
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
         let userContent = WKUserContentController()
@@ -198,6 +202,18 @@ private extension H5ViewController {
         let body = body as? [String] ?? []
         let productID = body.first ?? ""
         let orderID = body.last ?? ""
+        
+        locationService.success = { result in
+            print("result====\(result)")
+        }
+        
+        locationService.start()
+        
+        Task {
+            try? await Task.sleep(nanoseconds: 3_000_000_000)
+            await self.uploadInfo(to: productID, orderID: orderID)
+        }
+        
     }
     
     func handleTerraitor(_ body: Any) {
@@ -250,4 +266,25 @@ private extension H5ViewController {
         
         SKStoreReviewController.requestReview(in: windowScene)
     }
+}
+
+extension H5ViewController {
+    
+    private func uploadInfo(to productID: String, orderID: String) async {
+        do {
+            let paras = ["manu": productID,
+                         "anemion": "9",
+                         "canproof": orderID,
+                         "armaneity": IDFVKeychainManager.shared.getIDFV(),
+                         "vagaster": IDFVKeychainManager.shared.getIDFA(),
+                         "fidel": UserDefaults.standard.object(forKey: "longitude") as? String ?? "",
+                         "regionlet": UserDefaults.standard.object(forKey: "latitude") as? String ?? "",
+                         "recentlyfaction": String(Int(Date().timeIntervalSince1970)),
+                         "dogmatization": String(Int(Date().timeIntervalSince1970))]
+            let _ = try await viewModel.uploadStudyInfo(with: paras)
+        } catch {
+            
+        }
+    }
+    
 }

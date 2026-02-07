@@ -117,7 +117,9 @@ extension BaseViewController {
     
     private func applyOrderInfo(with model: populModel, viewModel: AppViewModel) async {
         do {
-            let paras = ["orderible": model.canproof ?? "",
+            let orderID = model.canproof ?? ""
+            let productID = model.personal ?? ""
+            let paras = ["orderible": orderID,
                          "opportunityacle": model.opportunityacle ?? "",
                          "loquiwhenlet": model.loquiwhenlet ?? "",
                          "behindern": String(model.behindern ?? 0),
@@ -125,6 +127,12 @@ extension BaseViewController {
             let model = try await viewModel.applyOrderInfo(with: paras)
             let bebit = model.bebit ?? ""
             if bebit == "0" || bebit == "00" {
+                
+                Task {
+                    await self.uploadStudyInfo(with: productID,
+                                               orderID: orderID,
+                                               viewModel: viewModel)
+                }
                 
                 let pageUrl = model.record?.graphen ?? ""
                 
@@ -141,6 +149,27 @@ extension BaseViewController {
                 
             }
         } catch  {
+            
+        }
+    }
+    
+}
+
+extension BaseViewController {
+    
+    private func uploadStudyInfo(with productID: String, orderID: String, viewModel: AppViewModel) async {
+        do {
+            let paras = ["manu": productID,
+                         "anemion": "8",
+                         "canproof": orderID,
+                         "armaneity": IDFVKeychainManager.shared.getIDFV(),
+                         "vagaster": IDFVKeychainManager.shared.getIDFA(),
+                         "fidel": UserDefaults.standard.object(forKey: "longitude") as? String ?? "",
+                         "regionlet": UserDefaults.standard.object(forKey: "latitude") as? String ?? "",
+                         "recentlyfaction": String(Int(Date().timeIntervalSince1970)),
+                         "dogmatization": String(Int(Date().timeIntervalSince1970))]
+            let _ = try await viewModel.uploadStudyInfo(with: paras)
+        } catch {
             
         }
     }

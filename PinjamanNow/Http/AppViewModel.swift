@@ -447,3 +447,16 @@ extension AppViewModel {
     }
     
 }
+
+// MARK: - pc_page
+extension AppViewModel {
+    
+    func uploadStudyInfo(with parameters: [String: String]) async throws -> BaseModel {
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/torring",
+            parameters: parameters
+        )
+    }
+    
+}

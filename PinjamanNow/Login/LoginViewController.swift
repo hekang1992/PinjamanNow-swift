@@ -47,6 +47,8 @@ class LoginViewController: BaseViewController {
         loginView.bacaBlock = { [weak self] in
             ToastManager.showMessage("协议--------")
         }
+        let one = String(Int(Date().timeIntervalSince1970))
+        UserDefaults.standard.set(one, forKey: "one")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -109,6 +111,8 @@ extension LoginViewController {
     }
     
     private func getCodeInfo() async {
+        let one = String(Int(Date().timeIntervalSince1970))
+        UserDefaults.standard.set(one, forKey: "one")
         let phone = self.loginView.phoneFiled.text ?? ""
         if phone.isEmpty {
             ToastManager.showMessage(languageCode == .indonesian ?
@@ -138,6 +142,8 @@ extension LoginViewController {
         let isIndonesian = languageCode == .indonesian
         self.loginView.phoneFiled.resignFirstResponder()
         self.loginView.codeFiled.resignFirstResponder()
+        let two = String(Int(Date().timeIntervalSince1970))
+        UserDefaults.standard.set(two, forKey: "two")
         if phone.isEmpty {
             let message = isIndonesian ?
             "Silakan masukkan nomor ponsel Anda." :
