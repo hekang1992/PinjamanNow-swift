@@ -61,6 +61,30 @@ final class DeepLinkProcessor {
             productVc.productID = parameters["institutionit"] ?? ""
             nav.pushViewController(productVc, animated: true)
             
+        case "fugitdom":
+            let ocListVc = OrderListViewController()
+            let type = parameters["majorics"] ?? ""
+            ocListVc.type = type
+            
+            switch type {
+            case "4":
+                ocListVc.pageTitle = LanguageManager.current == .indonesian ? "Semua" : "All"
+                
+            case "7":
+                ocListVc.pageTitle = LanguageManager.current == .indonesian ? "Dalam proses" : "In progress"
+                
+            case "6":
+                ocListVc.pageTitle = LanguageManager.current == .indonesian ? "Dalam proses" : "In progress"
+                
+            case "5":
+                ocListVc.pageTitle = LanguageManager.current == .indonesian ? "Dalam proses" : "In progress"
+                
+            default:
+                break
+            }
+            
+            nav.pushViewController(ocListVc, animated: true)
+            
         case "nonagenfic":
             break
             
