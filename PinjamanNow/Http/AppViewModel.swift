@@ -75,6 +75,14 @@ extension AppViewModel {
         )
     }
     
+    func uploadLoacationInfo(with parameters: [String: Any]) async throws -> BaseModel {
+        
+        return try await NetworkManager.shared.postRequest(
+            url: "/nameling/large",
+            parameters: parameters
+        )
+    }
+    
 }
 
 // MARK: - login_page

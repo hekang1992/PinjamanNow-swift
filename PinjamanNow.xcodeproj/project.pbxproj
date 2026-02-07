@@ -11,6 +11,7 @@
 		7341B7982F36D824007143D1 /* OrderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7972F36D824007143D1 /* OrderListViewController.swift */; };
 		7341B79A2F36DEDF007143D1 /* RateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B7992F36DEDF007143D1 /* RateListView.swift */; };
 		7341B79C2F36EF65007143D1 /* CustomPagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B79B2F36EF65007143D1 /* CustomPagerCell.swift */; };
+		7341B7A02F37141F007143D1 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341B79F2F37141F007143D1 /* LocationService.swift */; };
 		734432682F31F012006A8F1E /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734432672F31F012006A8F1E /* LaunchViewController.swift */; };
 		7344326A2F31F37D006A8F1E /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734432692F31F378006A8F1E /* AppViewModel.swift */; };
 		7344326C2F31F4AC006A8F1E /* CommonParaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7344326B2F31F4A3006A8F1E /* CommonParaManager.swift */; };
@@ -78,6 +79,7 @@
 		7341B7972F36D824007143D1 /* OrderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewController.swift; sourceTree = "<group>"; };
 		7341B7992F36DEDF007143D1 /* RateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateListView.swift; sourceTree = "<group>"; };
 		7341B79B2F36EF65007143D1 /* CustomPagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPagerCell.swift; sourceTree = "<group>"; };
+		7341B79F2F37141F007143D1 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		734432672F31F012006A8F1E /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		734432692F31F378006A8F1E /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		7344326B2F31F4A3006A8F1E /* CommonParaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonParaManager.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				73744FC02F3449DB0082DE69 /* CameraPosition.swift */,
 				734D1D672F32ED36003F916A /* DeepLinkProcessor.swift */,
 				7344C3412F31C410006DEE99 /* Color+Extension.swift */,
+				7341B79F2F37141F007143D1 /* LocationService.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				7344C3312F31C312006DEE99 /* CenterViewController.swift in Sources */,
 				734D1D622F32D633003F916A /* ProfileViewCell.swift in Sources */,
 				734D1D6A2F32EE65003F916A /* SettingsViewController.swift in Sources */,
+				7341B7A02F37141F007143D1 /* LocationService.swift in Sources */,
 				7344326C2F31F4AC006A8F1E /* CommonParaManager.swift in Sources */,
 				7344C34A2F31CDBC006DEE99 /* HomeView.swift in Sources */,
 				73A1282D2F34ED5600862CF4 /* WalletViewController.swift in Sources */,

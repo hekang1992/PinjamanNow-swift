@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import CoreLocation
 
 protocol CustomTabBarDelegate: AnyObject {
     func didSelectTab(at index: Int)
@@ -111,6 +112,13 @@ class CustomTabBar: UIView {
     }
     
     @objc private func tabButtonTapped(_ sender: UIButton) {
+        
+        let status = CLLocationManager().authorizationStatus
+        if status == .restricted || status == .denied {
+            self.showAuthAlert()
+            return
+        }
+        
         let index = sender.tag
         
         guard selectedIndex != index else { return }
@@ -131,5 +139,32 @@ class CustomTabBar: UIView {
         guard index >= 0 && index < buttons.count else { return }
         selectedIndex = index
         updateButtonStates()
+    }
+}
+
+extension CustomTabBar {
+    
+    func showAuthAlert() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(
+                title: "定位权限未开启",
+                message: "请前往系统设置中开启定位权限",
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(UIAlertAction(title: "取消", style: .cancel))
+            alert.addAction(UIAlertAction(title: "去设置", style: .default) { _ in
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+            })
+            
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let keyWindow = windowScene.windows.first(where: \.isKeyWindow) else {
+                return
+            }
+            keyWindow.rootViewController?.present(alert, animated: true)
+            
+        }
     }
 }

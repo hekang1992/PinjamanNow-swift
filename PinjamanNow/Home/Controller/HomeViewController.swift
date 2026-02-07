@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import MJRefresh
 import FBSDKCoreKit
+import CoreLocation
 
 let cyania = "1000"
 let himfold = "1001"
@@ -27,6 +28,8 @@ class HomeViewController: BaseViewController {
         duoView.isHidden = true
         return duoView
     }()
+    
+    private let locationService = LocationService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,6 +109,12 @@ class HomeViewController: BaseViewController {
             }
         }
         
+        locationService.success = { result in
+            print("result====\(result)")
+        }
+        
+        locationService.start()
+        locationService.stop()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -155,6 +164,26 @@ extension HomeViewController {
     }
     
     private func clickProductInfo(to productID: String) async {
+        
+        let status = CLLocationManager().authorizationStatus
+        
+        if languageCode == .indonesian {
+            if status == .denied || status == .restricted {
+                self.showAuthAlert()
+                return
+            }
+        }
+        
+        locationService.start()
+        locationService.stop()
+        
+        locationService.success = { [weak self] result in
+            guard let self = self else { return }
+            Task {
+                await self.uploadLocationInfo(to: result)
+            }
+        }
+        
         do {
             let paras = ["himfold": himfold,
                          "cyania": cyania,
@@ -184,6 +213,14 @@ extension HomeViewController {
 }
 
 extension HomeViewController {
+    
+    private func uploadLocationInfo(to paras: [String: Any]) async {
+        do {
+            let _ = try await viewModel.uploadLoacationInfo(with: paras)
+        } catch {
+            
+        }
+    }
     
     private func allCitysInfo() async {
         do {
@@ -223,6 +260,28 @@ extension HomeViewController {
             UIApplication.shared,
             didFinishLaunchingWithOptions: nil
         )
+    }
+    
+}
+
+extension HomeViewController {
+    
+    func showAuthAlert() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(
+                title: "定位权限未开启",
+                message: "请前往系统设置中开启定位权限",
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(UIAlertAction(title: "取消", style: .cancel))
+            alert.addAction(UIAlertAction(title: "去设置", style: .default) { _ in
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+            })
+            self.present(alert, animated: true)
+        }
     }
     
 }
