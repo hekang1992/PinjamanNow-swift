@@ -289,7 +289,7 @@ extension WalletViewController {
             return
         }
         
-        let listArray = ProvicesDecodeModel.getAddressModelArray(
+        let listArray = ProvincesDecodeModel.getAddressModelArray(
             dataSourceArr: cityModelArray
         )
         
