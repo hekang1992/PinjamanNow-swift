@@ -49,7 +49,7 @@ class ProfileView: UIView {
     
     lazy var phoneLabel: UILabel = {
         let phoneLabel = UILabel()
-        phoneLabel.text = LoginManager.shared.getPhone()
+        phoneLabel.text = maskPhoneNumberRegex(number: LoginManager.shared.getPhone())
         phoneLabel.textAlignment = .left
         phoneLabel.textColor = UIColor.init(hexString: "#FFFFFF")
         phoneLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -250,6 +250,19 @@ extension ProfileView {
     
     @objc func fourBtnClick() {
         self.tapClickBlock?("4")
+    }
+    
+}
+
+extension ProfileView {
+    
+    func maskPhoneNumberRegex(number: String) -> String {
+        let pattern = "^(\\d{3})(\\d+)(\\d{2})$"
+        return number.replacingOccurrences(
+            of: pattern,
+            with: "$1****$3",
+            options: .regularExpression
+        )
     }
     
 }
