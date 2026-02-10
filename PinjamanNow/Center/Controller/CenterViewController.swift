@@ -55,28 +55,32 @@ class CenterViewController: BaseViewController {
             guard let self = self else { return }
             switch type {
             case "1":
-                let ocList = OrderListViewController()
-                ocList.type = "4"
-                ocList.pageTitle = languageCode == .indonesian ? "Semua" : "All"
-                self.navigationController?.pushViewController(ocList, animated: true)
+//                let ocList = OrderListViewController()
+//                ocList.type = "4"
+//                ocList.pageTitle = languageCode == .indonesian ? "Semua" : "All"
+//                self.navigationController?.pushViewController(ocList, animated: true)
+                NotificationCenter.default.post(name: NSNotification.Name("changeRootViewController"), object: nil, userInfo: ["tabBar": "1", "type": "4"])
                 
             case "2":
-                let ocList = OrderListViewController()
-                ocList.type = "7"
-                ocList.pageTitle = languageCode == .indonesian ? "Dalam proses" : "In progress"
-                self.navigationController?.pushViewController(ocList, animated: true)
+//                let ocList = OrderListViewController()
+//                ocList.type = "7"
+//                ocList.pageTitle = languageCode == .indonesian ? "Dalam proses" : "In progress"
+//                self.navigationController?.pushViewController(ocList, animated: true)
+                NotificationCenter.default.post(name: NSNotification.Name("changeRootViewController"), object: nil, userInfo: ["tabBar": "1", "type": "7"])
                 
             case "3":
-                let ocList = OrderListViewController()
-                ocList.type = "6"
-                ocList.pageTitle = languageCode == .indonesian ? "Belum lunas" : "Repayment"
-                self.navigationController?.pushViewController(ocList, animated: true)
+//                let ocList = OrderListViewController()
+//                ocList.type = "6"
+//                ocList.pageTitle = languageCode == .indonesian ? "Belum lunas" : "Repayment"
+//                self.navigationController?.pushViewController(ocList, animated: true)
+                NotificationCenter.default.post(name: NSNotification.Name("changeRootViewController"), object: nil, userInfo: ["tabBar": "1", "type": "6"])
                 
             case "4":
-                let ocList = OrderListViewController()
-                ocList.type = "5"
-                ocList.pageTitle = languageCode == .indonesian ? "Lunas" : "Finished"
-                self.navigationController?.pushViewController(ocList, animated: true)
+//                let ocList = OrderListViewController()
+//                ocList.type = "5"
+//                ocList.pageTitle = languageCode == .indonesian ? "Lunas" : "Finished"
+//                self.navigationController?.pushViewController(ocList, animated: true)
+                NotificationCenter.default.post(name: NSNotification.Name("changeRootViewController"), object: nil, userInfo: ["tabBar": "1", "type": "5"])
                 
             default:
                 break

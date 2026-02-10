@@ -40,19 +40,57 @@ extension AppDelegate {
         
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(handleChangeRootViewController),
+            selector: #selector(handleChangeRootViewController(_:)),
             name: AppNotification.changeRootViewController,
             object: nil
         )
     }
     
-    @objc private func handleChangeRootViewController() {
+    @objc private func handleChangeRootViewController(_ noti: Notification) {
+        let tabBar = MainTabBarController()
+        let userInfo = noti.userInfo as? [String: String]
+        let index = Int(userInfo?["tabBar"] ?? "0") ?? 0
+        let type = userInfo?["type"] ?? ""
+        
+        tabBar.didSelectTab(at: index)
+        
+        if let targetVC = tabBar.getRootViewController(at: index) {
+            if index == 1, let orderVC = targetVC as? OrderViewController {
+                switch type {
+                case "4":
+                    orderVC.orderType = .all
+                    orderVC.orderView.clickblock?(.all)
+                    orderVC.orderView.updateSelectedButton(orderVC.orderView.oneBtn, animated: false)
+                    
+                case "7":
+                    orderVC.orderType = .inProgress
+                    orderVC.orderView.clickblock?(.inProgress)
+                    orderVC.orderView.updateSelectedButton(orderVC.orderView.twoBtn, animated: false)
+                    
+                case "6":
+                    orderVC.orderType = .repayment
+                    orderVC.orderView.clickblock?(.repayment)
+                    orderVC.orderView.updateSelectedButton(orderVC.orderView.threeBtn, animated: false)
+                    
+                case "5":
+                    orderVC.orderType = .finished
+                    orderVC.orderView.clickblock?(.finished)
+                    orderVC.orderView.updateSelectedButton(orderVC.orderView.fourBtn, animated: false)
+                    
+                default:
+                    break
+                }
+                
+            }
+        }
+        
         let rootViewController = LoginManager.shared.isLoggedIn() ?
-        MainTabBarController() :
+        tabBar :
         BaseNavigationController(rootViewController: LoginViewController())
         
         window?.rootViewController = rootViewController
     }
+    
 }
 
 extension AppDelegate {

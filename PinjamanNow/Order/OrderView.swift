@@ -207,7 +207,7 @@ private extension OrderView {
     }
 }
 
-private extension OrderView {
+extension OrderView {
     
     @objc func buttonTapped(_ sender: UIButton) {
         updateSelectedButton(sender, animated: true)

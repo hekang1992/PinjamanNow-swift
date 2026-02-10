@@ -57,7 +57,7 @@ class OrderViewController: BaseViewController {
     }
 }
 
-private extension OrderViewController {
+extension OrderViewController {
     
     func setupUI() {
         view.addSubview(orderView)

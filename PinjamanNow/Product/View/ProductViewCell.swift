@@ -20,12 +20,11 @@ class ProductViewCell: UITableViewCell {
             
             let emesiaire = model.emesiaire ?? ""
             
-            
             descLabel.textColor = meria == 1 ? UIColor.init(hexString: "#0956FB") : UIColor.init(hexString: "#B4B4B4")
             
             let typestr = model.bestlike ?? ""
             
-            descLabel.text = meria == 1 ? typestr : emesiaire
+            descLabel.text = meria == 1 ? typestr : typestr
             
             logoImageView.kf.setImage(with: URL(string: model.pinier ?? ""))
         }
