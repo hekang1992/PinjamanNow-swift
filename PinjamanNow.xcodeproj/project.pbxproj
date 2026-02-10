@@ -59,6 +59,7 @@
 		7358E1402F31C19300A2DB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7358E1372F31C19300A2DB8D /* Assets.xcassets */; };
 		7358E1422F31C19300A2DB8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7358E13A2F31C19300A2DB8D /* LaunchScreen.storyboard */; };
 		7358E1442F31C19300A2DB8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7358E1362F31C19300A2DB8D /* AppDelegate.swift */; };
+		7363AAEB2F3ACDCC00E8002F /* HomeOneFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7363AAEA2F3ACDCC00E8002F /* HomeOneFootView.swift */; };
 		73744FB32F342B490082DE69 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FB22F342B490082DE69 /* ProductView.swift */; };
 		73744FB72F342FB10082DE69 /* ProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FB62F342FB10082DE69 /* ProductViewCell.swift */; };
 		73744FB92F343E070082DE69 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73744FB82F343E070082DE69 /* CardViewController.swift */; };
@@ -141,6 +142,7 @@
 		7358E1372F31C19300A2DB8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7358E1382F31C19300A2DB8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7358E1392F31C19300A2DB8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7363AAEA2F3ACDCC00E8002F /* HomeOneFootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOneFootView.swift; sourceTree = "<group>"; };
 		73744FB22F342B490082DE69 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		73744FB62F342FB10082DE69 /* ProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewCell.swift; sourceTree = "<group>"; };
 		73744FB82F343E070082DE69 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				7341B79B2F36EF65007143D1 /* CustomPagerCell.swift */,
 				73AAD0E32F35899F0096273C /* OvaDuoProductViewCell.swift */,
 				7341B7992F36DEDF007143D1 /* RateListView.swift */,
+				7363AAEA2F3ACDCC00E8002F /* HomeOneFootView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				73744FBB2F343EA10082DE69 /* FacialViewController.swift in Sources */,
 				7344C3462F31C65A006DEE99 /* CustomTabBar.swift in Sources */,
 				73744FBD2F343EC10082DE69 /* CompleteViewController.swift in Sources */,
+				7363AAEB2F3ACDCC00E8002F /* HomeOneFootView.swift in Sources */,
 				73A1282B2F34E77000862CF4 /* ContactManager.swift in Sources */,
 				7344C3442F31C560006DEE99 /* MainTabBarController.swift in Sources */,
 				73AAD0E42F35899F0096273C /* OvaDuoProductViewCell.swift in Sources */,

@@ -26,10 +26,18 @@ class CardViewController: BaseViewController {
     private var one: String = ""
     private var two: String = ""
     
-    lazy var headImageView: UIImageView = {
-        let headImageView = UIImageView()
-        headImageView.image = UIImage(named: "product_li_bg_image")
-        return headImageView
+//    lazy var headImageView: UIImageView = {
+//        let headImageView = UIImageView()
+//        headImageView.image = UIImage(named: "product_li_bg_image")
+//        return headImageView
+//    }()
+    
+    lazy var headImageView: UIView = {
+        let bgView = UIView()
+//        bgView.layer.cornerRadius = 16
+//        bgView.layer.masksToBounds = true
+        bgView.backgroundColor = UIColor.init(hexString: "#0956FB")
+        return bgView
     }()
     
     lazy var sureBtn: UIButton = {

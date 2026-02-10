@@ -10,6 +10,8 @@ import SnapKit
 
 class HomeHeadView: UIView {
     
+    var serviceBlock: (() -> Void)?
+    
     lazy var logoImageView: UIImageView = {
         let logoImageView = UIImageView()
         logoImageView.layer.borderWidth = 1
@@ -30,6 +32,7 @@ class HomeHeadView: UIView {
     lazy var serviceBtn: UIButton = {
         let serviceBtn = UIButton(type: .custom)
         serviceBtn.setImage(UIImage(named: "sy_kf_ic"), for: .normal)
+        serviceBtn.addTarget(self, action: #selector(serviceBtnClick), for: .touchUpInside)
         return serviceBtn
     }()
 
@@ -70,4 +73,11 @@ class HomeHeadView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+extension HomeHeadView {
+    
+    @objc func serviceBtnClick() {
+        self.serviceBlock?()
+    }
 }

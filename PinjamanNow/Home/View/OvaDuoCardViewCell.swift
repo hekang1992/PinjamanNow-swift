@@ -24,7 +24,7 @@ class OvaDuoCardViewCell: UITableViewCell {
             moneyLabel.text = model.directoro ?? ""
             descLabel.text = model.legis ?? ""
             
-            leftListView.nameLabel.text = model.directoro ?? ""
+            leftListView.nameLabel.text = model.beginid ?? ""
             leftListView.descLabel.text = model.cribr ?? ""
             
             rightListView.nameLabel.text = model.clearlyward ?? ""

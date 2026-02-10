@@ -40,8 +40,8 @@ class CompleteViewController: BaseViewController {
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
         bgImageView.image = languageCode == .indonesian ?
-        UIImage(named: "en_c_w_image") :
-        UIImage(named: "id_c_w_image")
+        UIImage(named: "id_c_w_image") :
+        UIImage(named: "en_c_w_image")
         bgImageView.contentMode = .scaleAspectFit
         return bgImageView
     }()

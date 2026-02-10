@@ -41,7 +41,7 @@ class OrderViewCell: UITableViewCell {
             
             timeLabel.text = String(format: "%@: %@", igmillionical, vulgfication)
             
-            typeLabel.text = model.faci ?? ""
+            typeLabel.text = model.civsimplyfier?.purpurular ?? ""
             
             let exry = model.civsimplyfier?.exry ?? ""
             switch exry {

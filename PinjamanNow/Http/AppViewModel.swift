@@ -298,8 +298,16 @@ extension AppViewModel {
             }
         }
         
+        var pageUrl = "/nameling/meria"
+        
+        if LanguageManager.current == .indonesian {
+            pageUrl = "/nameling/meria"
+        }else {
+            pageUrl = "/nameling/homeoship"
+        }
+        
         return try await NetworkManager.shared.postRequest(
-            url: "/nameling/meria",
+            url: pageUrl,
             parameters: parameters
         )
     }

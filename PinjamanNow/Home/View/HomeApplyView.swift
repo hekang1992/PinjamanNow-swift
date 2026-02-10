@@ -12,6 +12,8 @@ class HomeApplyView: UIView {
     
     var clickBlock: (() -> Void)?
     
+    var loanBlock: (() -> Void)?
+    
     private let languageCode = LanguageManager.current
     
     lazy var descBtn: UIButton = {
@@ -136,7 +138,7 @@ extension HomeApplyView {
     }
     
     @objc private func labelTapped(_ gesture: UITapGestureRecognizer) {
-        ToastManager.showMessage("1")
+        self.loanBlock?()
     }
     
 }

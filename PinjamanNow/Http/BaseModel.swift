@@ -77,6 +77,7 @@ class astyModel: Codable {
     var pinier: String?
     var emesiaire: String?
     var meria: Int?
+    var bestlike: String?
 }
 
 class populModel: Codable {
@@ -119,6 +120,7 @@ class argentficationModel: Codable {
 
 class civsimplyfierModel: Codable {
     var exry: String?
+    var purpurular: String?
 }
 
 class phalarModel: Codable {

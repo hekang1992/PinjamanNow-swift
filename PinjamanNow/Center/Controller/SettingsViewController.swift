@@ -85,7 +85,7 @@ class SettingsViewController: BaseViewController {
         
         let versionLabel = UILabel()
         versionLabel.textAlignment = .center
-        versionLabel.text = "Version:1.0.0"
+        versionLabel.text = languageCode == .indonesian ? "Versi: 1.0.0" : "Version: 1.0.0"
         versionLabel.textColor = UIColor.init(hexString: "#C1EBFF")
         versionLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         

@@ -13,6 +13,10 @@ class HomeView: UIView {
     
     var clickBlock: ((phalarModel) -> Void)?
     
+    var serviceBlock: (() -> Void)?
+    
+    var loanBlock: (() -> Void)?
+    
     private let languageCode = LanguageManager.current
     
     var model: phalarModel? {
@@ -32,6 +36,8 @@ class HomeView: UIView {
             twoBtn.setTitle("\(plaudine): \(clearlyward)", for: .normal)
             
             self.applyView.applyBtn.setTitle(model.sorc ?? "", for: .normal)
+            
+            onefooterView.model = model
         }
     }
     
@@ -111,6 +117,9 @@ class HomeView: UIView {
             guard let self = self, let model = model else { return }
             self.clickBlock?(model)
         }
+        applyView.loanBlock = { [weak self] in
+            self?.loanBlock?()
+        }
         return applyView
     }()
     
@@ -131,10 +140,12 @@ class HomeView: UIView {
         return threeImageView
     }()
     
-    lazy var fourImageView: UIImageView = {
-        let fourImageView = UIImageView()
-        fourImageView.image = UIImage(named: "pro_dl_image")
-        return fourImageView
+    lazy var onefooterView: HomeOneFootView = {
+        let onefooterView = HomeOneFootView()
+        onefooterView.tapBlock = { [weak self] model in
+            self?.clickBlock?(model)
+        }
+        return onefooterView
     }()
     
     override init(frame: CGRect) {
@@ -211,7 +222,7 @@ class HomeView: UIView {
         }else {
             scrollView.addSubview(bannerView)
             scrollView.addSubview(threeImageView)
-            scrollView.addSubview(fourImageView)
+            scrollView.addSubview(onefooterView)
             bannerView.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
                 make.top.equalTo(applyView.snp.bottom).offset(16)
@@ -223,12 +234,16 @@ class HomeView: UIView {
                 make.centerX.equalToSuperview()
                 make.size.equalTo(CGSize(width: 335.pix(), height: 114.pix()))
             }
-            fourImageView.snp.makeConstraints { make in
+            onefooterView.snp.makeConstraints { make in
                 make.top.equalTo(threeImageView.snp.bottom).offset(10.pix())
                 make.centerX.equalToSuperview()
                 make.size.equalTo(CGSize(width: 335.pix(), height: 70.pix()))
                 make.bottom.equalToSuperview().offset(-90.pix())
             }
+        }
+        
+        headView.serviceBlock = { [weak self] in
+            self?.serviceBlock?()
         }
         
     }

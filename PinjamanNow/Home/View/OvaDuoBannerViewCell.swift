@@ -58,6 +58,19 @@ final class OvaDuoBannerViewCell: UITableViewCell {
         label.textAlignment = .left
         return label
     }()
+    
+    lazy var typeLabel: UILabel = {
+        let typeLabel = UILabel()
+        typeLabel.textAlignment = .center
+        typeLabel.text = LanguageManager.current == .indonesian ? "Pelunasan >" : "Repayment >"
+        typeLabel.textColor = UIColor.init(hexString: "#0956FB")
+        typeLabel.font = UIFont.systemFont(ofSize: 11, weight: .regular)
+        typeLabel.layer.borderWidth = 1
+        typeLabel.layer.borderColor = UIColor.init(hexString: "#0956FB")?.cgColor
+        typeLabel.layer.cornerRadius = 12
+        typeLabel.layer.masksToBounds = true
+        return typeLabel
+    }()
 
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -82,6 +95,7 @@ private extension OvaDuoBannerViewCell {
         bgView.addSubview(bgImageView)
         bgView.addSubview(nameLabel)
         bgView.addSubview(pagerView)
+        bgView.addSubview(typeLabel)
     }
 
     func setupConstraints() {
@@ -99,6 +113,12 @@ private extension OvaDuoBannerViewCell {
             $0.centerY.equalTo(bgImageView)
             $0.left.equalTo(bgImageView.snp.right).offset(5)
             $0.height.equalTo(15)
+        }
+        
+        typeLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(nameLabel)
+            make.right.equalToSuperview().offset(-15)
+            make.size.equalTo(CGSize(width: 78, height: 24))
         }
 
         pagerView.snp.makeConstraints {

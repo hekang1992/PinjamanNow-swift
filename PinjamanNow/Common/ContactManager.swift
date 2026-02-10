@@ -76,7 +76,7 @@ class ContactManager: NSObject {
                     self.presentContactPicker()
                 } else {
                     self.showPermissionAlert()
-                    completion(nil)
+//                    completion(nil)
                 }
             }
         }

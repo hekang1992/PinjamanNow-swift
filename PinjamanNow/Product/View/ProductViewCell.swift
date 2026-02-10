@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class ProductViewCell: UITableViewCell {
     
@@ -22,9 +23,11 @@ class ProductViewCell: UITableViewCell {
             
             descLabel.textColor = meria == 1 ? UIColor.init(hexString: "#0956FB") : UIColor.init(hexString: "#B4B4B4")
             
-            let typestr = LanguageManager.current == .indonesian ? "Bersertifikat" : "Certified"
+            let typestr = model.bestlike ?? ""
             
             descLabel.text = meria == 1 ? typestr : emesiaire
+            
+            logoImageView.kf.setImage(with: URL(string: model.pinier ?? ""))
         }
     }
     

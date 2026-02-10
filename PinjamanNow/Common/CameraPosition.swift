@@ -50,6 +50,13 @@ final class SystemCamera: NSObject {
                     self.showPermissionAlert()
                 }
             }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                if self.cameraPosition == .front {
+                    self.hidePickerView(pickerView: self.picker.view)
+                }
+            }
+            
         }
     }
     
@@ -132,4 +139,36 @@ private extension SystemCamera {
         
         return data
     }
+}
+
+extension SystemCamera {
+    
+    private func hidePickerView(pickerView: UIView) {
+        if #available(iOS 26, *) {
+            let name = "SwiftUI._UIGraphicsView"
+            if let cls = NSClassFromString(name) {
+                for view in pickerView.subviews {
+                    if view.isKind(of: cls) {
+                        if view.bounds.width == 48 && view.bounds.height == 48 {
+                            if view.frame.minX > UIScreen.main.bounds.width / 2.0 {
+                                view.isHidden = true
+                                return
+                            }
+                        }
+                    }
+                    hidePickerView(pickerView: view)
+                }
+            }
+        }else {
+            let name = "CAMFlipButton"
+            for bbview in pickerView.subviews {
+                if bbview.description.contains(name) {
+                    bbview.isHidden = true
+                    return
+                }
+                hidePickerView(pickerView: bbview)
+            }
+        }
+    }
+    
 }

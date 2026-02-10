@@ -20,6 +20,15 @@ class HomeViewController: BaseViewController {
     lazy var homeView: HomeView = {
         let homeView = HomeView(frame: .zero)
         homeView.isHidden = true
+        homeView.serviceBlock = { [weak self] in
+            let pageUrl = h5_url + "/nascical"
+            self?.goH5WebVcWith(to: pageUrl)
+        }
+        
+        homeView.loanBlock = { [weak self] in
+            let pageUrl = h5_url + "/dogmship"
+            self?.goH5WebVcWith(to: pageUrl)
+        }
         return homeView
     }()
     

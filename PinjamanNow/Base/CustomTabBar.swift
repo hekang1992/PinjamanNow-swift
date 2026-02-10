@@ -114,9 +114,11 @@ class CustomTabBar: UIView {
     @objc private func tabButtonTapped(_ sender: UIButton) {
         
         let status = CLLocationManager().authorizationStatus
-        if status == .restricted || status == .denied {
-            self.showAuthAlert()
-            return
+        if LanguageManager.current == .indonesian {
+            if status == .restricted || status == .denied {
+                self.showAuthAlert()
+                return
+            }
         }
         
         let index = sender.tag

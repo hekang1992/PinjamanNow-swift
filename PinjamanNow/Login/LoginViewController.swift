@@ -45,8 +45,10 @@ class LoginViewController: BaseViewController {
         }
         
         loginView.bacaBlock = { [weak self] in
-            ToastManager.showMessage("协议--------")
+            let pageUrl = h5_url + "/fessarticlelike"
+            self?.goH5WebVcWith(to: pageUrl)
         }
+        
         let one = String(Int(Date().timeIntervalSince1970))
         UserDefaults.standard.set(one, forKey: "one")
     }

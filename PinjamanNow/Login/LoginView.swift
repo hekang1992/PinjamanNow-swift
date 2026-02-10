@@ -230,26 +230,26 @@ class LoginView: UIView {
             make.height.equalTo(304.pix())
         }
         logoImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(70)
-            make.width.height.equalTo(80)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(80)
+            make.width.height.equalTo(80.pix())
             make.centerX.equalToSuperview()
         }
         descImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(logoImageView.snp.bottom).offset(20)
+            make.top.equalTo(logoImageView.snp.bottom).offset(20.pix())
             if languageCode == .indonesian {
-                make.size.equalTo(CGSize(width: 309, height: 56))
+                make.size.equalTo(CGSize(width: 309.pix(), height: 56.pix()))
             }else {
-                make.size.equalTo(CGSize(width: 286, height: 42))
+                make.size.equalTo(CGSize(width: 286.pix(), height: 42.pix()))
             }
         }
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(descImageView.snp.bottom)
+            make.top.equalTo(descImageView.snp.bottom).offset(5.pix())
             make.left.bottom.right.equalToSuperview()
         }
         oneLabel.snp.makeConstraints { make in
             make.height.equalTo(15)
-            make.top.equalToSuperview().offset(65)
+            make.top.equalToSuperview().offset(68.pix())
             make.left.equalToSuperview().offset(30)
         }
         oneView.snp.makeConstraints { make in
