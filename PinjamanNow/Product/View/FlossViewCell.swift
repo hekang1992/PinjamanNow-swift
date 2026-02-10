@@ -2,7 +2,7 @@
 //  FlossViewCell.swift
 //  PinjamanNow
 //
-//  Created by hekang on 2026/2/5.
+//  Created by Ethan Hayes on 2026/2/5.
 //
 
 import UIKit

@@ -2,7 +2,7 @@
 //  HomeOneFootView.swift
 //  PinjamanNow
 //
-//  Created by hekang on 2026/2/10.
+//  Created by Ethan Hayes on 2026/2/10.
 //
 
 import UIKit

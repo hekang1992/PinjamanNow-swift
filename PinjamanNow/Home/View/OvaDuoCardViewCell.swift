@@ -2,7 +2,7 @@
 //  OvaDuoCardViewCell.swift
 //  PinjamanNow
 //
-//  Created by hekang on 2026/2/6.
+//  Created by Ethan Hayes on 2026/2/6.
 //
 
 import UIKit
