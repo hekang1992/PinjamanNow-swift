@@ -110,7 +110,7 @@ class FlossViewController: BaseViewController {
         
         appHeadView.backBlock = { [weak self] in
             guard let self = self else { return }
-            self.toProductVc()
+            self.popLeoView()
         }
         
         view.addSubview(sureBtn)

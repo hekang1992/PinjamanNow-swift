@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TYAlertController
 
 class BaseViewController: UIViewController {
     
@@ -57,6 +58,23 @@ extension BaseViewController {
             nav.popToRootViewController(animated: true)
         }
     }
+    
+    func popLeoView() {
+       let popView = AppLeoView(frame: self.view.bounds)
+       let alertVc = TYAlertController(alert: popView, preferredStyle: .alert)
+       self.present(alertVc!, animated: true)
+       
+       popView.cancelBlock = { [weak self] in
+           self?.dismiss(animated: true)
+       }
+       
+       popView.sureBlock = { [weak self] in
+           self?.dismiss(animated: true) {
+               self?.toProductVc()
+           }
+       }
+       
+   }
     
 }
 
