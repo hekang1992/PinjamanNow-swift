@@ -236,7 +236,7 @@ extension PopCardMessageView {
         private static func createPickerStyle() -> BRPickerStyle {
             let style = BRPickerStyle()
             style.rowHeight = 45.pix()
-            style.language = "en"
+            style.language = LanguageManager.current == .indonesian ? nil : "en"
             style.doneBtnTitle = LanguageManager.current == .indonesian ? "OKE" : "OK"
             style.cancelBtnTitle = LanguageManager.current == .indonesian ? "Batal" : "Cancel"
             style.doneTextColor = UIColor(hexString: "#010204")

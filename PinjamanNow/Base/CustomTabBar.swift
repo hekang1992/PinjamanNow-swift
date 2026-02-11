@@ -149,15 +149,15 @@ extension CustomTabBar {
     func showAuthAlert() {
         DispatchQueue.main.async {
             let alert = UIAlertController(
-                title: "定位权限未开启",
-                message: "请前往系统设置中开启定位权限",
+                title: LanguageManager.current == .indonesian ? "Izin Lokasi" : "Location Permission",
+                message: LanguageManager.current == .indonesian ? "Izin lokasi adalah persyaratan wajib untuk verifikasi identitas. Izin ini hanya digunakan untuk verifikasi kali ini, dan proses tidak dapat dilanjutkan jika tidak diaktifkan. Silakan pergi ke Pengaturan untuk memberikan otorisasi." : "Location permission is a necessary requirement for identity verification. It is only used for this verification, and the process cannot continue if it is not enabled. Please go to Settings to authorize it.",
                 preferredStyle: .alert
             )
             
-            alert.addAction(UIAlertAction(title: "取消", style: .cancel))
-            alert.addAction(UIAlertAction(title: "去设置", style: .default) { _ in
+            alert.addAction(UIAlertAction(title: LanguageManager.current == .indonesian ? "Batalkan" : "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: LanguageManager.current == .indonesian ? "Masuk ke Pengaturan" : "Go to Settings", style: .default) { _ in
                 if let url = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(url)
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             })
             

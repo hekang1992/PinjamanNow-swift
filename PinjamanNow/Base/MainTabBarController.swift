@@ -56,12 +56,12 @@ extension MainTabBarController: CustomTabBarDelegate {
     }
     
     func getRootViewController(at index: Int) -> UIViewController? {
-            guard index >= 0 && index < (viewControllers?.count ?? 0),
-                  let navController = viewControllers?[index] as? BaseNavigationController else {
-                return nil
-            }
-            return navController.viewControllers.first
+        guard index >= 0 && index < (viewControllers?.count ?? 0),
+              let navController = viewControllers?[index] as? BaseNavigationController else {
+            return nil
         }
+        return navController.viewControllers.first
+    }
 }
 
 extension MainTabBarController {
@@ -72,7 +72,7 @@ extension MainTabBarController {
         ? CGAffineTransform(translationX: 0, y: offset)
         : .identity
         
-        guard customTabBar.transform != transform else { return }
+//        guard customTabBar.transform != transform else { return }
         
         if animated {
             UIView.animate(withDuration: 0.2) {

@@ -153,13 +153,13 @@ class ContactManager: NSObject {
     
     private func showPermissionAlert() {
         let alert = UIAlertController(
-            title: "需要通讯录权限",
-            message: "请前往设置开启通讯录权限，以使用联系人功能",
+            title: LanguageManager.current == .indonesian ? "Izin akses kontak" : "Contacts Permission",
+            message: LanguageManager.current == .indonesian ? "Izin kontak digunakan untuk verifikasi identitas dan pencegahan penipuan. Tinjauan akan tertunda jika tidak diaktifkan. Silakan pergi ke Pengaturan untuk memberikan otorisasi." : "Contacts permission is used for identity verification and fraud prevention. The review will be delayed if it is not enabled. Please go to Settings to authorize it.",
             preferredStyle: .alert
         )
         
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel))
-        alert.addAction(UIAlertAction(title: "去设置", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: LanguageManager.current == .indonesian ? "Batalkan" : "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: LanguageManager.current == .indonesian ? "Masuk ke Pengaturan" : "Go to Settings", style: .default) { _ in
             if let url = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
