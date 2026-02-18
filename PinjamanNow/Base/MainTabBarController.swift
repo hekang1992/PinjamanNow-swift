@@ -10,44 +10,75 @@ import SnapKit
 import CoreLocation
 
 class MainTabBarController: UITabBarController {
-    
-    let customTabBar = CustomTabBar()
+
+    private let tabImages = [
+        ("tab_home_ic", "tab_home_ic_01"),
+        ("tab_order_ic", "tab_order_ic_01"),
+        ("tab_me_ic", "tab_me_ic_01")
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupViewControllers()
-        setupCustomTabBar()
-        tabBar.removeFromSuperview()
+        setupTabBarAppearance()
     }
-    
 }
 
 extension MainTabBarController {
     
     private func setupViewControllers() {
+        
         let homeVC = HomeViewController()
         let orderVC = OrderViewController()
         let centerVC = CenterViewController()
         
-        viewControllers = [
-            BaseNavigationController(rootViewController: homeVC),
-            BaseNavigationController(rootViewController: orderVC),
-            BaseNavigationController(rootViewController: centerVC)
-        ]
+        let homeNav = BaseNavigationController(rootViewController: homeVC)
+        let orderNav = BaseNavigationController(rootViewController: orderVC)
+        let centerNav = BaseNavigationController(rootViewController: centerVC)
+        
+        homeNav.tabBarItem = UITabBarItem(
+            title: nil,
+            image: UIImage(named: tabImages[0].1)?.withRenderingMode(.alwaysOriginal),
+            selectedImage: UIImage(named: tabImages[0].0)?.withRenderingMode(.alwaysOriginal)
+        )
+        
+        orderNav.tabBarItem = UITabBarItem(
+            title: nil,
+            image: UIImage(named: tabImages[1].1)?.withRenderingMode(.alwaysOriginal),
+            selectedImage: UIImage(named: tabImages[1].0)?.withRenderingMode(.alwaysOriginal)
+        )
+        
+        centerNav.tabBarItem = UITabBarItem(
+            title: nil,
+            image: UIImage(named: tabImages[2].1)?.withRenderingMode(.alwaysOriginal),
+            selectedImage: UIImage(named: tabImages[2].0)?.withRenderingMode(.alwaysOriginal)
+        )
+        
+        viewControllers = [homeNav, orderNav, centerNav]
     }
     
-    private func setupCustomTabBar() {
-        customTabBar.delegate = self
-        view.addSubview(customTabBar)
+    private func setupTabBarAppearance() {
         
-        customTabBar.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            make.width.equalTo(335.pix())
-            make.height.equalTo(62.pix())
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.clear]
+        
+        tabBar.standardAppearance = appearance
+        
+        if #available(iOS 15.0, *) {
+            tabBar.scrollEdgeAppearance = appearance
+        }
+        
+        tabBar.items?.forEach { item in
+            item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 300)
+            item.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
         }
     }
 }
+
 
 extension MainTabBarController: CustomTabBarDelegate {
     
@@ -64,28 +95,3 @@ extension MainTabBarController: CustomTabBarDelegate {
     }
 }
 
-extension MainTabBarController {
-    
-    override func setTabBarHidden(_ hidden: Bool, animated: Bool = true) {
-        let offset = customTabBar.frame.height + view.safeAreaInsets.bottom
-        let transform = hidden
-        ? CGAffineTransform(translationX: 0, y: offset)
-        : .identity
-        
-//        guard customTabBar.transform != transform else { return }
-        
-        if animated {
-            UIView.animate(withDuration: 0.2) {
-                self.customTabBar.transform = transform
-            }
-        } else {
-            customTabBar.transform = transform
-        }
-    }
-    
-    override var selectedIndex: Int {
-        didSet {
-            customTabBar.setSelectedTab(at: selectedIndex)
-        }
-    }
-}

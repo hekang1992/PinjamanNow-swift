@@ -11,7 +11,6 @@ class BaseNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self
         self.navigationBar.isHidden = true
         self.navigationBar.isTranslucent = false
         if let gestureRecognizers = view.gestureRecognizers {
@@ -32,16 +31,3 @@ class BaseNavigationController: UINavigationController {
     
 }
 
-extension BaseNavigationController: UINavigationControllerDelegate {
-    
-    func navigationController(
-        _ navigationController: UINavigationController,
-        willShow viewController: UIViewController,
-        animated: Bool
-    ) {
-        guard let tab = tabBarController as? MainTabBarController else { return }
-        
-        let isRoot = navigationController.viewControllers.first === viewController
-        tab.setTabBarHidden(!isRoot)
-    }
-}

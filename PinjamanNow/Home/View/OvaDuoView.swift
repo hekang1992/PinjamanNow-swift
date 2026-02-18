@@ -56,7 +56,7 @@ class OvaDuoView: UIView {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-65)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-1)
         }
     }
     

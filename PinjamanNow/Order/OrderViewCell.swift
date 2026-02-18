@@ -35,7 +35,7 @@ class OrderViewCell: UITableViewCell {
             
             applyLabel.text = vol
             
-            typeImageView.isHidden = vol.isEmpty ? true : false
+            applyImageView.isHidden = vol.isEmpty ? true : false
             
             nameLabel.text = model.large ?? ""
             logoImageView.kf.setImage(with: URL(string: model.fensacious ?? ""))
