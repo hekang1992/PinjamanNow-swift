@@ -19,7 +19,7 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.delegate = self
         setupViewControllers()
         setupTabBarAppearance()
     }
@@ -80,7 +80,7 @@ extension MainTabBarController {
 }
 
 
-extension MainTabBarController: CustomTabBarDelegate {
+extension MainTabBarController {
     
     func didSelectTab(at index: Int) {
         selectedIndex = index
@@ -95,3 +95,43 @@ extension MainTabBarController: CustomTabBarDelegate {
     }
 }
 
+extension MainTabBarController: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        
+        let status = CLLocationManager().authorizationStatus
+        if LanguageManager.current == .indonesian {
+            if status == .restricted || status == .denied {
+                self.showAuthAlert()
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    func showAuthAlert() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(
+                title: LanguageManager.current == .indonesian ? "Izin Lokasi" : "Location Permission",
+                message: LanguageManager.current == .indonesian ? "Izin lokasi adalah persyaratan wajib untuk verifikasi identitas. Izin ini hanya digunakan untuk verifikasi kali ini, dan proses tidak dapat dilanjutkan jika tidak diaktifkan. Silakan pergi ke Pengaturan untuk memberikan otorisasi." : "Location permission is a necessary requirement for identity verification. It is only used for this verification, and the process cannot continue if it is not enabled. Please go to Settings to authorize it.",
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(UIAlertAction(title: LanguageManager.current == .indonesian ? "Batalkan" : "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: LanguageManager.current == .indonesian ? "Masuk ke Pengaturan" : "Go to Settings", style: .default) { _ in
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            })
+            
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let keyWindow = windowScene.windows.first(where: \.isKeyWindow) else {
+                return
+            }
+            keyWindow.rootViewController?.present(alert, animated: true)
+            
+        }
+    }
+    
+}
