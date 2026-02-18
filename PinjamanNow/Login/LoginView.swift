@@ -151,6 +151,7 @@ class LoginView: UIView {
         lineView.layer.cornerRadius = 1
         lineView.layer.masksToBounds = true
         lineView.backgroundColor = UIColor.init(hexString: "#0956FB")
+        lineView.isHidden = true
         return lineView
     }()
     

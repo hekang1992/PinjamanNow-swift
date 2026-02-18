@@ -28,7 +28,14 @@ class OrderViewCell: UITableViewCell {
             footLabel.text = gamery
             footLabel.isHidden = gamery.isEmpty
             
-            applyLabel.text = model.sorc ?? ""
+            
+            let vol = model.civsimplyfier?.vol ?? ""
+            
+            applyLabel.isHidden = vol.isEmpty ? true : false
+            
+            applyLabel.text = vol
+            
+            typeImageView.isHidden = vol.isEmpty ? true : false
             
             nameLabel.text = model.large ?? ""
             logoImageView.kf.setImage(with: URL(string: model.fensacious ?? ""))
@@ -37,9 +44,9 @@ class OrderViewCell: UITableViewCell {
             amountLabel.text = model.affectoon ?? ""
             
             let igmillionical = model.igmillionical ?? ""
-            let vulgfication = model.vulgfication ?? ""
+            let rachality = model.civsimplyfier?.rachality ?? ""
             
-            timeLabel.text = String(format: "%@: %@", igmillionical, vulgfication)
+            timeLabel.text = String(format: "%@: %@", igmillionical, rachality)
             
             typeLabel.text = model.civsimplyfier?.purpurular ?? ""
             

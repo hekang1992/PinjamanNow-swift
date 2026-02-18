@@ -89,18 +89,18 @@ class PopCardMessageView: UIView {
         return scrollView
     }()
     
-    lazy var leftBtn: UIButton = {
-        let leftBtn = UIButton(type: .custom)
-        leftBtn.setTitle(languageCode == .indonesian ? "Membatalkan" : "Cancel", for: .normal)
-        leftBtn.setTitleColor(UIColor.init(hexString: "#0956FB"), for: .normal)
-        leftBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        leftBtn.layer.borderWidth = 1
-        leftBtn.layer.borderColor = UIColor.init(hexString: "#0956FB")?.cgColor
-        leftBtn.layer.cornerRadius = 22.pix()
-        leftBtn.layer.masksToBounds = true
-        leftBtn.addTarget(self, action: #selector(cancelClick), for: .touchUpInside)
-        return leftBtn
-    }()
+//    lazy var leftBtn: UIButton = {
+//        let leftBtn = UIButton(type: .custom)
+//        leftBtn.setTitle(languageCode == .indonesian ? "Membatalkan" : "Cancel", for: .normal)
+//        leftBtn.setTitleColor(UIColor.init(hexString: "#0956FB"), for: .normal)
+//        leftBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+//        leftBtn.layer.borderWidth = 1
+//        leftBtn.layer.borderColor = UIColor.init(hexString: "#0956FB")?.cgColor
+//        leftBtn.layer.cornerRadius = 22.pix()
+//        leftBtn.layer.masksToBounds = true
+//        leftBtn.addTarget(self, action: #selector(cancelClick), for: .touchUpInside)
+//        return leftBtn
+//    }()
     
     lazy var rightBtn: UIButton = {
         let rightBtn = UIButton(type: .custom)
@@ -124,7 +124,7 @@ class PopCardMessageView: UIView {
         scrollView.addSubview(oneView)
         scrollView.addSubview(twoView)
         scrollView.addSubview(threeView)
-        bgImageView.addSubview(leftBtn)
+//        bgImageView.addSubview(leftBtn)
         bgImageView.addSubview(rightBtn)
         
         bgImageView.snp.makeConstraints { make in
@@ -167,14 +167,14 @@ class PopCardMessageView: UIView {
             make.size.equalTo(CGSize(width: 335.pix(), height: 88.pix()))
             make.bottom.equalToSuperview().offset(-20.pix())
         }
-        leftBtn.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-34.pix())
-            make.left.equalToSuperview().offset(20.pix())
-            make.size.equalTo(CGSize(width: 143.pix(), height: 48.pix()))
-        }
+//        leftBtn.snp.makeConstraints { make in
+//            make.bottom.equalToSuperview().offset(-34.pix())
+//            make.left.equalToSuperview().offset(20.pix())
+//            make.size.equalTo(CGSize(width: 143.pix(), height: 48.pix()))
+//        }
         rightBtn.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-34.pix())
-            make.right.equalToSuperview().offset(-20.pix())
+            make.centerX.equalToSuperview()
             make.size.equalTo(CGSize(width: 184.pix(), height: 48.pix()))
         }
         

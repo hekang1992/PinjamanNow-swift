@@ -19,6 +19,7 @@ class ProductView: UIView {
             nameLabel.text = model.popul?.large ?? ""
             amountLabel.text = model.popul?.opportunityacle ?? ""
             descLabel.text = model.popul?.seniorot ?? ""
+            appHeadView.nameLabel.text = model.popul?.large ?? ""
         }
     }
     

@@ -121,6 +121,8 @@ class argentficationModel: Codable {
 class civsimplyfierModel: Codable {
     var exry: String?
     var purpurular: String?
+    var rachality: String?
+    var vol: String?
 }
 
 class phalarModel: Codable {
