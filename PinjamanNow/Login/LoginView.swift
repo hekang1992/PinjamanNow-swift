@@ -16,6 +16,8 @@ class LoginView: UIView {
     
     var bacaBlock: (() -> Void)?
     
+    var backBlock: (() -> Void)?
+    
     let languageCode = LanguageManager.current
     
     lazy var bgImageView: UIImageView = {
@@ -203,9 +205,17 @@ class LoginView: UIView {
         return loginBtn
     }()
     
+    lazy var backBtn: UIButton = {
+        let backBtn = UIButton(type: .custom)
+        backBtn.setBackgroundImage(UIImage(named: "bbq_ic_b"), for: .normal)
+        backBtn.addTarget(self, action: #selector(backBtnClick), for: .touchUpInside)
+        return backBtn
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(bgImageView)
+        addSubview(backBtn)
         addSubview(logoImageView)
         addSubview(descImageView)
         addSubview(scrollView)
@@ -230,6 +240,13 @@ class LoginView: UIView {
             make.left.right.top.equalToSuperview()
             make.height.equalTo(304.pix())
         }
+        
+        backBtn.snp.makeConstraints { make in
+            make.width.height.equalTo(20)
+            make.top.equalTo(safeAreaLayoutGuide).offset(16.pix())
+            make.left.equalToSuperview().offset(20.pix())
+        }
+        
         logoImageView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(80)
             make.width.height.equalTo(80.pix())
@@ -347,6 +364,10 @@ extension LoginView {
     
     @objc private func labelTapped(_ gesture: UITapGestureRecognizer) {
         self.bacaBlock?()
+    }
+    
+    @objc func backBtnClick() {
+        self.backBlock?()
     }
     
 }

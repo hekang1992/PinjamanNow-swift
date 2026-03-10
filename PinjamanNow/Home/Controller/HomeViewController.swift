@@ -10,6 +10,7 @@ import SnapKit
 import MJRefresh
 import FBSDKCoreKit
 import CoreLocation
+import AppTrackingTransparency
 
 let cyania = "1000"
 let himfold = "1001"
@@ -70,12 +71,71 @@ class HomeViewController: BaseViewController {
             Task {
                 await self.getHomeInfo()
             }
+            
+            if LoginManager.shared.isLoggedIn() {
+                locationService.start()
+                
+                locationService.success = { [weak self] result in
+                    guard let self = self else { return }
+                    Task {
+                        await self.uploadLocationInfo(to: result)
+                    }
+                }
+                
+                DeviceInfoCollector.collect { info in
+
+                    guard let jsonData = try? JSONSerialization.data(
+                        withJSONObject: info,
+                        options: []
+                    ) else {
+                        return
+                    }
+
+                    let base64String = jsonData.base64EncodedString()
+
+                    Task {
+                        let paras = ["record": base64String]
+                        await self.uploadDeviceInfo(to: paras)
+                    }
+                    
+                }
+            }
+            
         })
         
         duoView.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             guard let self = self else { return }
             Task {
                 await self.getHomeInfo()
+            }
+            
+            if LoginManager.shared.isLoggedIn() {
+                locationService.start()
+                
+                locationService.success = { [weak self] result in
+                    guard let self = self else { return }
+                    Task {
+                        await self.uploadLocationInfo(to: result)
+                    }
+                }
+                
+                DeviceInfoCollector.collect { info in
+
+                    guard let jsonData = try? JSONSerialization.data(
+                        withJSONObject: info,
+                        options: []
+                    ) else {
+                        return
+                    }
+
+                    let base64String = jsonData.base64EncodedString()
+
+                    Task {
+                        let paras = ["record": base64String]
+                        await self.uploadDeviceInfo(to: paras)
+                    }
+                    
+                }
             }
         })
         
@@ -111,18 +171,25 @@ class HomeViewController: BaseViewController {
                 }
                 
                 group.addTask {
-                    await self.uploadIDFAInfo()
+//                    await self.uploadIDFAInfo()
                 }
                 
                 await group.waitForAll()
             }
         }
         
-        locationService.success = { result in
-            print("result====\(result)")
+        if LoginManager.shared.isLoggedIn() {
+            
+            let status = CLLocationManager().authorizationStatus
+            
+            if languageCode == .indonesian {
+                if status == .denied || status == .restricted {
+                    self.showAuthAlert()
+                    
+                }
+            }
+            
         }
-        
-        locationService.start()
         
     }
     
@@ -131,11 +198,68 @@ class HomeViewController: BaseViewController {
         Task {
             await self.getHomeInfo()
         }
+        
+        if LoginManager.shared.isLoggedIn() {
+            locationService.start()
+            
+            locationService.success = { [weak self] result in
+                guard let self = self else { return }
+                Task {
+                    await self.uploadLocationInfo(to: result)
+                }
+            }
+            
+            DeviceInfoCollector.collect { info in
+
+                guard let jsonData = try? JSONSerialization.data(
+                    withJSONObject: info,
+                    options: []
+                ) else {
+                    return
+                }
+
+                let base64String = jsonData.base64EncodedString()
+
+                Task {
+                    let paras = ["record": base64String]
+                    await self.uploadDeviceInfo(to: paras)
+                }
+                
+            }
+        }
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Task {
+            await getIDFA()
+        }
     }
     
 }
 
 extension HomeViewController {
+    
+    private func getIDFA() async {
+        guard #available(iOS 14, *) else { return }
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        let status = await ATTrackingManager.requestTrackingAuthorization()
+        
+        switch status {
+        case .authorized, .denied, .notDetermined:
+            Task {
+//                await self.uploadIDFAInfo()
+            }
+            
+        case .restricted:
+            break
+            
+        @unknown default:
+            break
+        }
+    }
     
     private func getHomeInfo() async {
         do {
@@ -174,41 +298,19 @@ extension HomeViewController {
     
     private func clickProductInfo(to productID: String) async {
         
-        let status = CLLocationManager().authorizationStatus
-        
-        if languageCode == .indonesian {
-            if status == .denied || status == .restricted {
-                self.showAuthAlert()
-                return
-            }
+        if LoginManager.shared.isLoggedIn() == false {
+            self.popLoginVc()
+            return
         }
         
-        locationService.start()
-        
-        locationService.success = { [weak self] result in
-            guard let self = self else { return }
-            Task {
-                await self.uploadLocationInfo(to: result)
-            }
-        }
-        
-        DeviceInfoCollector.collect { info in
-
-            guard let jsonData = try? JSONSerialization.data(
-                withJSONObject: info,
-                options: []
-            ) else {
-                return
-            }
-
-            let base64String = jsonData.base64EncodedString()
-
-            Task {
-                let paras = ["record": base64String]
-                await self.uploadDeviceInfo(to: paras)
-            }
-            
-        }
+//        let status = CLLocationManager().authorizationStatus
+//        
+//        if languageCode == .indonesian {
+//            if status == .denied || status == .restricted {
+//                self.showAuthAlert()
+//                return
+//            }
+//        }
         
         do {
             let paras = ["himfold": himfold,
@@ -301,6 +403,15 @@ extension HomeViewController {
 extension HomeViewController {
     
     func showAuthAlert() {
+        let lastShownDate = UserDefaults.standard.object(forKey: "lastAuthAlertDate") as? Date
+        let calendar = Calendar.current
+        
+        if let lastDate = lastShownDate {
+            if calendar.isDateInToday(lastDate) {
+                return
+            }
+        }
+        
         DispatchQueue.main.async {
             let alert = UIAlertController(
                 title: LanguageManager.current == .indonesian ? "Izin Lokasi" : "Location Permission",
@@ -314,9 +425,22 @@ extension HomeViewController {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             })
+            
             self.present(alert, animated: true)
+            
+            UserDefaults.standard.set(Date(), forKey: "lastAuthAlertDate")
         }
     }
     
 }
 
+extension HomeViewController {
+    
+    private func popLoginVc() {
+        let loginVc = LoginViewController()
+        let rootVc = BaseNavigationController(rootViewController: loginVc)
+        rootVc.modalPresentationStyle = .overFullScreen
+        self.present(rootVc, animated: true)
+    }
+    
+}

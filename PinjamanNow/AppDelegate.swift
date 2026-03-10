@@ -84,11 +84,11 @@ extension AppDelegate {
             }
         }
         
-        let rootViewController = LoginManager.shared.isLoggedIn() ?
-        tabBar :
-        BaseNavigationController(rootViewController: LoginViewController())
+//        let rootViewController = LoginManager.shared.isLoggedIn() ?
+//        tabBar :
+//        BaseNavigationController(rootViewController: LoginViewController())
         
-        window?.rootViewController = rootViewController
+        window?.rootViewController = tabBar
     }
     
 }

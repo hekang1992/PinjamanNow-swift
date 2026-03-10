@@ -47,6 +47,7 @@ class recordModel: Codable {
     var fragthoughice: [fragthoughiceModel]?
     var libr: librModel?
     var verbade: verbadeModel?
+    var characterot: Int?
 }
 
 class verbadeModel: Codable {

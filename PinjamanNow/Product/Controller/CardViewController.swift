@@ -26,16 +26,16 @@ class CardViewController: BaseViewController {
     private var one: String = ""
     private var two: String = ""
     
-//    lazy var headImageView: UIImageView = {
-//        let headImageView = UIImageView()
-//        headImageView.image = UIImage(named: "product_li_bg_image")
-//        return headImageView
-//    }()
+    //    lazy var headImageView: UIImageView = {
+    //        let headImageView = UIImageView()
+    //        headImageView.image = UIImage(named: "product_li_bg_image")
+    //        return headImageView
+    //    }()
     
     lazy var headImageView: UIView = {
         let bgView = UIView()
-//        bgView.layer.cornerRadius = 16
-//        bgView.layer.masksToBounds = true
+        //        bgView.layer.cornerRadius = 16
+        //        bgView.layer.masksToBounds = true
         bgView.backgroundColor = UIColor.init(hexString: "#0956FB")
         return bgView
     }()
@@ -144,7 +144,26 @@ extension CardViewController {
             let model = try await viewModel.uploadInfo(with: paras,imageData: imageData)
             let bebit = model.bebit ?? ""
             if bebit == "0" || bebit == "00" {
-                popCardMessageView(with: model)
+                let characterot = model.record?.characterot ?? 0
+                if characterot == 1 {
+                    popCardMessageView(with: model)
+                }else {
+                    two = String(Int(Date().timeIntervalSince1970))
+                    Task {
+                        try? await Task.sleep(nanoseconds: 20_000_000)
+                        let faceVc = FacialViewController()
+                        faceVc.productID = productID
+                        faceVc.orderID = orderID
+                        faceVc.pageTitle = pageTitle
+                        self.navigationController?.pushViewController(faceVc, animated: true)
+                    }
+                    Task {
+                        try? await Task.sleep(nanoseconds: 3_000_000_000)
+                        await self.uploadStdInfo()
+                    }
+                    
+                }
+                
             }else {
                 ToastManager.showMessage(model.calcfootment ?? "")
             }
@@ -228,6 +247,6 @@ extension CardViewController {
 
 extension CardViewController {
     
-     
+    
     
 }

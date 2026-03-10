@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import FBSDKCoreKit
 
 class LaunchViewController: BaseViewController {
     
@@ -71,6 +72,11 @@ extension LaunchViewController {
             if bebit == "0" || bebit == "00" {
                 let americanate = model.record?.americanate ?? ""
                 saveCode(code: americanate)
+                
+                if let faceBook = model.record?.verbade {
+                    self.googleBookInfo(with: faceBook)
+                }
+                
 //                saveCode(code: "3102")
                 changeRootVc()
             }
@@ -86,6 +92,21 @@ extension LaunchViewController {
     
     private func changeRootVc() {
         NotificationCenter.default.post(name: NSNotification.Name("changeRootViewController"), object: nil)
+    }
+    
+}
+
+extension LaunchViewController {
+    
+    private func googleBookInfo(with model: verbadeModel) {
+        Settings.shared.displayName = model.cinerorium ?? ""
+        Settings.shared.appURLSchemeSuffix = model.sexard ?? ""
+        Settings.shared.appID = model.ficitor ?? ""
+        Settings.shared.clientToken = model.citizenical ?? ""
+        ApplicationDelegate.shared.application(
+            UIApplication.shared,
+            didFinishLaunchingWithOptions: nil
+        )
     }
     
 }

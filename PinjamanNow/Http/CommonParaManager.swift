@@ -11,7 +11,7 @@ import DeviceKit
 class CommonParaManager {
     
     static var dictionary: [String: Any] {
-        let idfv = IDFVKeychainManager.shared.getIDFV() ?? ""
+        let idfv = IDFVKeychainManager.shared.getIDFV()
         
         return [
             "studo": "ios",
@@ -22,7 +22,8 @@ class CommonParaManager {
             "recognizeth": "pinjaman_now",
             "salinee": LoginManager.shared.getToken() ?? "",
             "ovile": idfv,
-            "americanate": UserDefaults.standard.object(forKey: "language_code") ?? ""
+            "americanate": UserDefaults.standard.object(forKey: "language_code") ?? "",
+            "republicanally": IDFVKeychainManager.shared.getIDFA()
         ]
     }
     

@@ -17,6 +17,8 @@ class LoginViewController: BaseViewController {
     private var countdownTimer: Timer?
     private var remainingSeconds = 60
     
+    private let locationService = LocationService()
+    
     lazy var loginView: LoginView = {
         let loginView = LoginView()
         return loginView
@@ -49,6 +51,10 @@ class LoginViewController: BaseViewController {
             self?.goH5WebVcWith(to: pageUrl)
         }
         
+        loginView.backBlock = { [weak self] in
+            self?.dismiss(animated: true)
+        }
+        
         let one = String(Int(Date().timeIntervalSince1970))
         UserDefaults.standard.set(one, forKey: "one")
     }
@@ -57,8 +63,23 @@ class LoginViewController: BaseViewController {
         super.viewDidAppear(animated)
         self.loginView.phoneFiled.becomeFirstResponder()
         Task {
-            await getIDFA()
+//            await getIDFA()
         }
+        
+        Task {
+            try? await Task.sleep(nanoseconds: 500_000_000)
+            
+            locationService.start()
+            
+            locationService.success = { [weak self] result in
+                guard let self = self else { return }
+                Task {
+//                    await self.uploadLocationInfo(to: result)
+                }
+            }
+        }
+        
+        
     }
     
 }

@@ -99,12 +99,20 @@ extension MainTabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
-        let status = CLLocationManager().authorizationStatus
-        if LanguageManager.current == .indonesian {
-            if status == .restricted || status == .denied {
-                self.showAuthAlert()
-                return false
-            }
+//        let status = CLLocationManager().authorizationStatus
+//        if LanguageManager.current == .indonesian {
+//            if status == .restricted || status == .denied {
+//                self.showAuthAlert()
+//                return false
+//            }
+//        }
+        
+        if !LoginManager.shared.isLoggedIn() {
+            let loginVc = LoginViewController()
+            let rootVc = BaseNavigationController(rootViewController: loginVc)
+            rootVc.modalPresentationStyle = .overFullScreen
+            self.present(rootVc, animated: true)
+            return false
         }
         
         return true
