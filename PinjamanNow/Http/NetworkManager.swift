@@ -15,8 +15,8 @@ enum APIError: Error {
     case uploadError
 }
 
-let h5_url = "https://sumesh-consultants.com"
-let base_url = "https://sumesh-consultants.com/circumbehind"
+let h5_url = "https://vasudeo-securities.com"
+let base_url = "https://vasudeo-securities.com/circumbehind"
 let scheme_url = "iridular://crepitan.patieer.oilitious"
 
 class NetworkManager {
